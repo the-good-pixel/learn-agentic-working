@@ -1,0 +1,23 @@
+Priya Achuthan
+Software Engineer — Bengaluru
+priya.a.fake@example.com
+
+SUMMARY
+4 years backend engineering at an Indian fintech. Worked on UPI flows and reconciliation tooling. Eager to take on more ownership.
+
+EXPERIENCE
+
+Backend Engineer — Tilakpay (Bengaluru), 2021–present
+- TypeScript/Node services for UPI collections and refunds.
+- Built reconciliation jobs against bank settlement files (PostgreSQL).
+- Mentored 1 intern.
+- Some on-call (shared, not lead).
+
+Associate Engineer — Bharat Tech Services, 2020–2021
+- Java + Spring internal tooling.
+
+EDUCATION
+B.E. Information Science, RVCE Bengaluru, 2020.
+
+SKILLS
+TypeScript, Node, PostgreSQL, AWS (Lambda, RDS), UPI rails, basic Go. English, Tamil, Kannada.

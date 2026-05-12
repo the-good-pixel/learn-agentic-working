@@ -1,0 +1,8 @@
+INVOICE
+Vendor: Halberd Legal LLP
+Date: 2025-11-12
+Invoice #: INV-2025-1112-003
+Bill To: Lumen Analytics Inc
+Amount: USD 4,500.00
+Items: Contract review (master services agreement), 15 hours @ USD 300/hr
+Payment terms: Net 30

@@ -1,0 +1,8 @@
+INVOICE
+Vendor: Tessera Design Studio
+Date: 2025-11-20
+Invoice #: INV-2025-1120-005
+Bill To: Lumen Analytics Inc
+Amount: USD 6,750.00
+Items: Brand refresh phase 2 — logo lockups, type system, web assets
+Payment terms: Net 14
