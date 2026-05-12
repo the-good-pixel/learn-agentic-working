@@ -1,9 +1,9 @@
 # Ch. 21 — Personal Workflows Exercise
 
-A small fictional bank statement for one month.
+A fictional personal bank statement for one month (PDF, 3 pages, ~88 transactions including a Tokyo trip).
 
 ## Exercise
 
-> Read `bank-statement.txt`, summarize the month, group expenses into categories, and flag anything that looks unusual or like a forgotten subscription.
+> Read `bank-statement.pdf`, summarize the month, group expenses into categories, and flag anything that looks unusual or like a forgotten subscription.
 
-The agent should catch the `ABC LIMITED` charge for USD 0.99 — a classic "free trial converted to a real subscription" pattern with a deliberately vague merchant name. A good agent flags it without being told to look for it.
+The agent should catch the recurring `ABC LIMITED` charge for USD 0.99 — a classic "free trial converted to a real subscription" pattern with a deliberately vague merchant name. There's a second, subtler plant: a **duplicated rent payment** to landlord JOHNSON on Nov 4 (`RENT TRF WONG`) and again on Nov 28 (`RENT TRF WONG D`) — the suffixed reference is plausibly different but the amount and beneficiary are the same. A good agent flags both without being told to look for them.

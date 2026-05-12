@@ -144,7 +144,7 @@ Same as paid ads — *monitor, don't block*. Categorizing expenses is reversible
 
 HR work is *grounded writing* — JDs, screening, onboarding lists, review skeletons. The grounding bit is what changes. The flagship prompt:
 
-> *"Score the CVs in `~/Documents/hr/senior-backend-2024-11/cvs/` against `~/Documents/hr/senior-backend-2024-11/jd.md`. Rank them 1–N with a one-sentence reason each, naming the must-have each candidate hits or misses. Save as `ranking.md` in the same folder."*
+> *"Score the CVs in `~/Documents/hr/senior-backend-2024-11/cvs/` against `~/Documents/hr/senior-backend-2024-11/jd.docx`. Rank them 1–N with a one-sentence reason each, naming the must-have each candidate hits or misses. Save as `ranking.md` in the same folder."*
 
 Related asks:
 
@@ -192,10 +192,10 @@ A Monday-morning marketing manager has at least six distinct workflows in this c
 The book repo ships starter folders so you can run the two highest-leverage exercises against real (mock) data before doing them against your own. Clone the repo and point your agent at the paths below.
 
 1. **Flagship — reconcile invoices against Stripe.** Run the finance-ops flagship against `examples/ch-20-finance-ops/`:
-   > *"Match the invoices in `examples/ch-20-finance-ops/invoices/` against `examples/ch-20-finance-ops/stripe-nov.csv`. Flag any invoice without a matching Stripe transaction, and any Stripe transaction that isn't for an invoice. **State the matching tolerances you're using** (date window, vendor-name fuzziness, sign convention). Write the result as `reconciliation-nov.md` in that folder."*
-   **You'll know it worked when** the report has three sections — matched, unmatched invoices, unmatched Stripe — the agent has written out its tolerances so you can sanity-check them (e.g. *"±2 days, vendor substring/token match, negative Stripe amounts = outflows to vendors"*), and the matches survive a quick spot-check.
+   > *"Match the invoices in `examples/ch-20-finance-ops/invoices/` against `examples/ch-20-finance-ops/stripe-nov.xlsx`. Flag any invoice without a matching Stripe transaction, and any Stripe transaction that isn't for an invoice. **State the matching tolerances you're using** (date window, vendor-name fuzziness, sign convention). Write the result as `reconciliation-nov.md` in that folder."*
+   **You'll know it worked when** the report has three sections — matched, unmatched invoices, unmatched Stripe — the agent has written out its tolerances so you can sanity-check them (e.g. *"±3 days, vendor substring/token match, negative Stripe amounts = outflows to vendors"*), and the matches survive a quick spot-check. Bonus: a careful agent will flag the two partial-pay invoices as "needs follow-up" (Stripe row roughly half the invoice total) rather than confidently mark them unpaid, and will avoid matching the trap transaction that falls outside the invoice's date window.
 2. **Resume screening.** Run the HR flagship against `examples/ch-20-hr/`:
-   > *"Score the CVs in `examples/ch-20-hr/cvs/` against `examples/ch-20-hr/jd.md`. Rank them 1–5 with a one-sentence reason each."*
+   > *"Score the CVs in `examples/ch-20-hr/cvs/` (PDFs) against `examples/ch-20-hr/jd.docx`. Rank them 1–5 with a one-sentence reason each."*
    **You'll know it worked when** the ranking is defensible — each candidate's reason names a must-have hit or missed, not a vibes-based score.
 3. **Then run it for real, end to end.** Pick one repetitive marketing or ops task from this week — a recurring report, a template update, a content variant. Start with the equip-first move (*"is there a connector for the system I'm about to touch? any pre-built workflows I should install?"*), then run the task, then close the session by asking *"write a skill from what we just did"* so the next instance is one ask. **You'll know it worked when** you don't open the underlying tool's UI at all *and* you have a named skill you can call next week.
 

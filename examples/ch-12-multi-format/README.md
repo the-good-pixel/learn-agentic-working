@@ -4,7 +4,7 @@ A single source document (a fictional Brightline Foods Q3 update) for practicing
 
 ## Exercise
 
-> Take `quarterly-update-source.md` and produce four versions of it:
+> Take `quarterly-update-source.docx` and produce four versions of it:
 >
 > 1. A one-page self-contained HTML report I can open in any browser.
 > 2. A print-ready PDF.

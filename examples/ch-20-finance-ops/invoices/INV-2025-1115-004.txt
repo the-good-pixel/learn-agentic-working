@@ -1,8 +1,0 @@
-INVOICE
-Vendor: Pinewood Coworking
-Date: 2025-11-15
-Invoice #: INV-2025-1115-004
-Bill To: Lumen Analytics Inc
-Amount: USD 2,200.00
-Items: Private office (4 desks), November membership
-Payment terms: Due on receipt

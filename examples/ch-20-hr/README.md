@@ -1,6 +1,6 @@
 # Ch. 20 — HR Resume Screening Exercise
 
-A fictional Senior Backend Engineer JD (`jd.md`) and five fictional CVs in `./cvs/`. The candidates span the realistic spectrum: one strong fit, one decent fit with gaps, one out-of-domain, two borderline.
+A fictional Senior Backend Engineer JD (`jd.md`) and five fictional CVs in `./cvs/` as PDFs (`cv-1.pdf` through `cv-5.pdf`, 1–2 pages each, varied layouts). The candidates span the realistic spectrum: one strong fit, one decent fit with gaps, one out-of-domain, two borderline.
 
 ## Exercise
 
