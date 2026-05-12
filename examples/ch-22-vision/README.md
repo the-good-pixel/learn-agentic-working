@@ -2,7 +2,7 @@
 
 Two text mockups standing in for "the kind of thing you'd screenshot and hand to your agent":
 
-- `mockup-receipt.txt` — a confusingly-formatted receipt from a fictional Japanese restaurant in Hong Kong. Mixed Chinese/English line items, items grouped strangely, a service charge line buried in the middle that's *also* included in the total below (look carefully — the line items add up to more than the "items subtotal" suggests).
+- `mockup-receipt.txt` — a confusingly-formatted receipt from a fictional Japanese restaurant in Hong Kong. Mixed Chinese/English line items, items grouped strangely, **and the printed totals don't reconcile against the line items**. The "Items subtotal", the service-charge line, and the grand total don't add up cleanly when you sum the individual dishes — the real puzzle is the *arithmetic*, not the location of the service charge. A good agent walks through the math line by line and tells you what's off.
 - `mockup-form-screenshot.txt` — a confusing benefits-portal screen with jargon like "Beneficiary Election Reaffirmation Schedule" and three nested election options.
 
 **Note:** in real use you'd hand the agent the actual photo or screenshot. This folder ships text mockups so the exercise runs without an image pipeline; the chapter's point about vision-as-input still applies.

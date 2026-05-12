@@ -25,4 +25,4 @@ calculate_rate(Package(weight_kg=5))   # returns 14.00, should return 8.00
 
 ## Notes
 
-The docstring on `tier_for_weight` already states the intended behaviour ("boundary weights fall in the *lower* tier"), so the implementation drifted from the spec — this is a one-line fix plus a regression test.
+The docstring on `tier_for_weight` already states the intended behaviour ("boundary weights fall in the *lower* tier"), so the implementation drifted from the spec — this is a small fix (one operator change on each of the three tier-boundary lines: `5`, `10`, `20`) plus a regression test covering all three boundaries.

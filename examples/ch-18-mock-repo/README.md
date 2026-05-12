@@ -23,10 +23,10 @@ A tiny Python shipping-rate calculator with one planted bug, for engineers who w
 
 ## You'll know it worked when
 
-- The agent points at the `<` vs. `<=` boundary in `tier_for_weight` without you having to guess.
+- The agent points at the `<` vs. `<=` boundaries in `tier_for_weight` (three of them: `5`, `10`, `20`) without you having to guess.
 - The agent adds a regression test pinning 5, 10, and 20 kg to the lower tier.
 - All tests pass after the fix.
-- The diff is small (one operator change in `main.py`, a handful of new test lines).
+- The diff is small (one operator change on each of three boundary lines in `main.py`, a handful of new test lines).
 
 ## Running tests
 

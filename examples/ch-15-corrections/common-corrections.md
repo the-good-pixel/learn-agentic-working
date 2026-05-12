@@ -1,4 +1,4 @@
-# Six Repeated Corrections — Pick One
+# Seven Repeated Corrections — Pick One
 
 Each of these is a real-shaped correction someone has caught themselves repeating to an agent week after week. For each, decide: is this best fixed as a **prompt tweak**, a **slash command**, a **skill**, or an **MCP**? Why?
 
@@ -13,3 +13,5 @@ Each of these is a real-shaped correction someone has caught themselves repeatin
 5. **Customer-reply tone.** I keep correcting the agent's tone in customer replies — it defaults to formal corporate ("We sincerely apologize for the inconvenience…"), and our brand voice is warm and direct ("That's on us — here's what we'll do").
 
 6. **Test command incomplete.** When the agent runs `npm test`, I keep telling it to also run `npm run typecheck` after. Both need to pass before I'll review the diff.
+
+7. **Feature-flag state unknown.** Whenever the agent reasons about a feature it doesn't know whether the flag is on for our cohort, which environment, or which percentage rollout. I keep pasting the flag config from LaunchDarkly by hand into the prompt.
