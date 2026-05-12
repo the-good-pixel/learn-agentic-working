@@ -222,6 +222,8 @@ Cron and explicit schedules still exist, and there are real cases for them (a da
 
 **Exercise 2.** Take a research question with three independent angles. Spawn three sub-agents, one per angle. Have your main agent synthesize when they return.
 
+If you don't have a real question handy, the book repo ships a ready-made one at `examples/ch-14-parallel/research-brief.md` — a fictional CEO's brief asking for three parallel deep-dives on a Vietnam launch decision (competitive landscape, regulatory, talent). Drop it in front of your agent and let it fan out.
+
 **You'll know it worked when** the synthesized output is grounded in concrete findings from each sub-agent (with details you didn't supply) and the total wall-clock time was close to the slowest of the three, not the sum.
 
 ## What's next

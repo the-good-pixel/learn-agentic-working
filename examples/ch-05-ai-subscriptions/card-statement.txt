@@ -1,0 +1,35 @@
+COMPANY CARD STATEMENT
+Card: Business Platinum ****3309
+Cardholder: J. NAKAMURA
+Period: 01 Oct 2025 - 31 Oct 2025
+Opening balance: USD 0.00
+
+Date        Description                                              Amount
+----------  -------------------------------------------------------  ----------
+2025-10-01  PROMPTFORGE AI PRO - MONTHLY                                 -39.00
+2025-10-01  ADOBIO SUITE - CREATIVE BUNDLE                               -54.99
+2025-10-02  LEXSMITH AI LEGAL - SOLO SEAT                                -79.00
+2025-10-02  STREAMHOST CLOUD - STARTER                                  -120.00
+2025-10-03  WEWORKISH COWORKING - HOT DESK                              -350.00
+2025-10-03  UBER FOR BUSINESS                                            -28.40
+2025-10-04  FIGMARY PRO - 1 EDITOR                                       -15.00
+2025-10-04  NOTIOPAGE TEAM (incl. NOTIOPAGE AI ADD-ON $8/SEAT)           -28.00
+2025-10-05  STAPLES OFFICE SUPPLIES                                      -64.12
+2025-10-06  VOXSUMMARIZE AI - INDIVIDUAL                                 -19.00
+2025-10-07  REACHAI COLD OUTREACH - GROWTH                               -99.00
+2025-10-08  DELTA-WEST AIRLINES - JFK-SFO                               -412.30
+2025-10-08  HILTONESQUE GARDEN INN                                      -289.55
+2025-10-09  STARBOUNDS COFFEE                                             -7.25
+2025-10-10  GMAILY WORKSPACE - BUSINESS STD (incl. GMAILY AI $24/SEAT)   -36.00
+2025-10-11  TINYAI SIDE-PANEL (CHROME EXTENSION)                          -5.00
+2025-10-12  AMAZUR BUSINESS - PRINTER TONER                              -82.50
+2025-10-13  DOORDOSH FOR BUSINESS - TEAM LUNCH                          -118.40
+2025-10-15  SLACKISH STANDARD (incl. SLACKISH AI $10/SEAT)               -22.50
+2025-10-16  GITHIVE TEAM PLAN                                            -16.00
+2025-10-18  ZOOMIE PRO - 1 HOST                                          -14.99
+2025-10-20  LYFTLY FOR BUSINESS                                          -34.10
+2025-10-22  PROOFINGAI GRAMMAR PRO (replaces $5/mo standard plan)        -29.00
+2025-10-25  CANDID DESIGN PRO                                            -12.99
+2025-10-28  TYPEFORMAL - BASIC                                           -25.00
+
+Closing balance: USD -2,041.09
