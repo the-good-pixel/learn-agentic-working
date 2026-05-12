@@ -82,7 +82,7 @@ Notice the shape. You hand the agent a *yardstick* it can hold up to its own wor
 
 This is the rule worth carrying: **you don't have to do the audit yourself. You have to know what the audit *is*. Then hand the audit to the agent.**
 
-A hands-on warm-up for this lives in `examples/ch-13-self-audit/` — a `sales-q3.csv` with one deliberately wrong row planted in it. Drop the file in front of your agent and ask it to summarize. Then ask it to re-check the totals. Watch what happens on the second pass.
+A hands-on warm-up for this lives in `examples/ch-13-self-audit/` — a `sales-q3.xlsx` with three sheets (Orders, Customers, Product Catalog) and several deliberately wrong things planted in it. Drop the file in front of your agent and ask it to summarize. Then ask it to re-check itself against the source. Watch what happens on the second pass.
 
 ## When something is wrong — undo, revert, redirect
 
@@ -158,11 +158,11 @@ The harder review case is when the diff is large *and correct in places, wrong i
 
 ## Try it yourself
 
-**Exercise 1.** Hand the agent the planted-error dataset shipped with the book at `examples/ch-13-self-audit/sales-q3.csv` and run the two-step self-audit pattern:
+**Exercise 1.** Hand the agent the planted-error dataset shipped with the book at `examples/ch-13-self-audit/sales-q3.xlsx` and run the two-step self-audit pattern:
 
-> *"Summarize this CSV. Then re-check your summary against the source: per-customer anomalies, date-format consistency, anything you'd want to double-check before sending this to the boss."*
+> *"Summarize this workbook. Then re-check your summary against the source: per-customer anomalies, formula-consistency on `line_total`, date-format consistency, cross-sheet referential integrity between Orders, Customers, and Product Catalog — anything you'd want to double-check before sending this to the boss."*
 
-**You'll know it worked when** the agent's *first* summary reads fine on its own — and the *second* pass catches Halcyon's anomalous $2,750 order (≈2× their typical) and the row with `08/04/2025` instead of ISO format. Both are invisible to a fast first-pass summary; both surface the moment the agent applies a specific audit lens. (If the agent catches them on the first pass without prompting, that's a sharp agent — note that the *technique* still applies to longer, messier real reports.)
+**You'll know it worked when** the agent's *first* summary reads fine on its own — and the *second* pass surfaces multiple planted issues: Halcyon's anomalous ~$2,750 order (≈2× their typical), three rows where `line_total` is hardcoded and disagrees with `quantity * unit_price`, one row with a US-style `MM/DD/YYYY` date among ISO dates, an orphaned customer record in `Customers` with no orders, and two product names in `Orders` that don't exist in `Product Catalog`. All are invisible to a fast first-pass summary; each surfaces only when the agent applies a specific audit lens. (If the agent catches them on the first pass without prompting, that's a sharp agent — note that the *technique* still applies to longer, messier real reports.)
 
 **Exercise 2.** The next time the agent reports back on a *real* batch task, before reading the summary in detail, open the system it acted on and look at two of the outputs in full. Then read the summary. Notice whether the summary matched what you saw.
 

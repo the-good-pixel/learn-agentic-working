@@ -1,8 +1,0 @@
-INVOICE
-Vendor: Brightline Cloud Services
-Date: 2025-11-06
-Invoice #: INV-2025-1106-002
-Bill To: Lumen Analytics Inc
-Amount: USD 1,840.00
-Items: Compute hours November, object storage 2TB, egress
-Payment terms: Net 14

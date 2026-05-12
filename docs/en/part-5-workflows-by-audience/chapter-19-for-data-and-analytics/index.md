@@ -139,14 +139,14 @@ Some shapes of skill that pay off for analysts:
 
 ## Try it yourself
 
-If you don't have a real messy file in front of you, the book repo ships one: `examples/ch-19-analytics/transactions-nov.csv` — a fake but realistically messy month of transactions with three currencies, a free-text `memo` column, and a few suspicious-looking recurring charges (daily coffee, monthly rent) that test the agent's restraint. Clone the repo and point your agent at that folder. The three starter exercises in `examples/ch-19-analytics/README.md` ratchet up the agent's responsibility:
+If you don't have a real messy file in front of you, the book repo ships one: `examples/ch-19-analytics/transactions-nov.xlsx` — a three-sheet workbook (Transactions, FX Rates, Categories reference) covering three months of fake-but-realistically-messy transactions with three currencies, a free-text `memo` column, a sparse `category_raw` column from the bank's auto-categorizer, and a few suspicious-looking recurring charges (daily coffee, monthly rent) that test the agent's restraint. Clone the repo and point your agent at that folder. The three starter exercises in `examples/ch-19-analytics/README.md` ratchet up the agent's responsibility:
 
 1. **Categorize and rank.**
-   > *"Read `examples/ch-19-analytics/transactions-nov.csv`, decode the memo column into clean categories, and tell me my top 5 categories of **spend** in HKD-equivalent — exclude income (salary deposits) from the totals. State the FX rates you used."*
-   **You'll know it worked when** the agent picks a sensible category taxonomy without you having to name one, excludes income from spend totals, and explicitly states the FX assumptions it made for the three currencies.
+   > *"Read `examples/ch-19-analytics/transactions-nov.xlsx`, decode the memo column into clean categories, and tell me my top 5 categories of **spend** in HKD-equivalent — exclude income (salary deposits) from the totals. State the FX rates you used."*
+   **You'll know it worked when** the agent picks a sensible category taxonomy (and ideally cross-references the `Categories (reference)` sheet rather than inventing one), excludes income from spend totals, and explicitly states the FX assumptions it made for the three currencies (ideally pulled from the `FX Rates` sheet).
 2. **One-page HTML report.**
    > *"Same file — produce a one-page **self-contained** HTML report I can open in my browser (single file, no build step, no Python web server required), with a chart for category breakdown and a table of all transactions over HK$500-equivalent."*
    **You'll know it worked when** you double-click the HTML and it opens straight away — the chart renders without internet access if possible, the table is sorted sensibly, and there are no sibling files the report depends on.
 3. **Duplicate detection (and restraint).**
    > *"Same file — find any duplicate transactions (same amount, same vendor, within 3 days). If you find none, say so — don't manufacture flags."*
-   **You'll know it worked when** the agent correctly reports **no true duplicates** and explains *why* the daily Starbucks charges and the two monthly rent payments aren't duplicates (recurring patterns, not double-charges). This exercise tests the agent's *restraint* — a sharp agent says "nothing to flag" with reasoning; a sloppy one over-flags the legitimate recurrences.
+   **You'll know it worked when** the agent correctly reports **no true duplicates** and explains *why* the daily Starbucks charges and the monthly rent payments aren't duplicates (recurring patterns, not double-charges). This exercise tests the agent's *restraint* — a sharp agent says "nothing to flag" with reasoning; a sloppy one over-flags the legitimate recurrences.

@@ -1,8 +1,0 @@
-INVOICE
-Vendor: Acme Office Supplies Ltd
-Date: 2025-11-04
-Invoice #: INV-2025-1104-001
-Bill To: Lumen Analytics Inc
-Amount: USD 312.40
-Items: A4 paper (10 reams), toner cartridges (2), assorted pens
-Payment terms: Net 7
