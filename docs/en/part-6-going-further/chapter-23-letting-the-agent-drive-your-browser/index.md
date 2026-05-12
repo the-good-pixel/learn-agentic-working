@@ -111,9 +111,13 @@ The space moves fast. The shape of the work — navigate, snapshot, interact, re
 
 **You'll know it worked when** the agent's report includes a thing you wouldn't have noticed yourself — a meta tag, a hidden field, a price-tier nuance — *and* you didn't open a single tab.
 
+*If you can't think of recon to do, pick one of these*: *what does Linear's Pro tier actually include?*, *what's the schema of the public NASA APOD API?*, *why does this Threads post (paste any URL) not render a link preview?*
+
 **Two.** Find a form on a real site you have to fill out occasionally (a benefits portal, a vendor signup, an event registration). Watch the agent fill it page by page while logged in as you. Don't help; only correct.
 
 **You'll know it worked when** the form is submitted and you spent your time *reviewing* what it typed, not typing.
+
+*If you can't think of a form, practice on a benign one*: your country's tax-office search form, a public library card application, or a vendor signup that won't actually charge you.
 
 **Three (engineers).** Pick a small flow in your own product. Ask the agent to do reconnaissance on it (drive the browser, take notes) and then author a Playwright spec from what it learned — not from your description.
 

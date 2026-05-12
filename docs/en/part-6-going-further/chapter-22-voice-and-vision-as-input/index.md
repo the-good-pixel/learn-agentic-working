@@ -104,6 +104,8 @@ Voice-to-text itself is largely a *system-level* choice, not an agent feature. W
 
 **You'll know it worked when** you got further into a real task in two minutes of talking than you would have in twenty minutes of typing — and the agent's first response shows it understood the context, not just the words.
 
+*If you can't think of a brief to dictate, try one of these*: (a) *"Plan my next two weeks: I have a board meeting on the 24th, a product launch on the 30th, and a backlog of ~15 customer follow-ups"*; (b) *"Walk me through what to do about a teammate who's underperforming — I want to think out loud first, then have you summarize the options."*
+
 **Two.** Find a screenshot you'd otherwise describe in words — a misaligned layout, a confusing chart, an error dialog, a printout. Drop it into the agent with one sentence: *"what's going on here, and what would you change?"* Don't pre-explain.
 
 **You'll know it worked when** the agent named something you hadn't yet articulated yourself.

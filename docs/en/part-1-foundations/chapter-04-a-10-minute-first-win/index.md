@@ -141,6 +141,8 @@ Do exactly the chapter:
 
 **You'll know it worked when** the agent produced a result you'd otherwise have produced yourself in the next hour, and you didn't copy-paste anything in or out of a chat window to get there. Bonus points if the thought *"oh — I could do this for the other thing on my list right now"* arrives unprompted.
 
+*If you can't think of one, try this*: (a) rename the 30 photos in `~/Downloads/trip-japan/` by date taken; (b) summarize the three PDFs sitting on your desktop into a one-page brief; (c) draft three variant subject lines for an email you have to send today.
+
 ## What's next
 
 The next chapter is the big strategic one — and the one most people quietly need. Before you go subscribe to "AI [your job]" SaaS at $20 a month per tool, read it. A general-purpose agent, pointed at the systems you already pay for, replaces a surprising number of those subscriptions.

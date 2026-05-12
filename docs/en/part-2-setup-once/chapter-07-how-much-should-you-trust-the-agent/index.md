@@ -140,6 +140,8 @@ That's the list. Everything else can run.
 
 **You'll know it worked when** the next five tasks you give it run without a single rubber-stamp prompt, and the *first* time you ask it to do something on the gate list, it pauses and asks.
 
+*If you can't think of a setup to try this against*: (a) make a throwaway sandbox with `mkdir ~/trust-sandbox && cd ~/trust-sandbox && git init` and run the trust-config conversation there with nothing important at risk; (b) run it against an open-source repo you've cloned and don't mind regenerating.
+
 ## What's next
 
 A trust posture without context is half a setup. The agent needs to know *who you are*, *what you work on*, and *what conventions matter to you* before it can decide well within the trust you've given it. That's Ch. 8 — and you don't write that file yourself, either.
