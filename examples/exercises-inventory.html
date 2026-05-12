@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Agentic Working Playbook — Exercise Inventory (v2)</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --card: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #6b6b6b;
+    --line: #e4e4e0;
+    --star-bg: #fff7e0;
+    --star-border: #f0c454;
+    --scen-bg: #f0f6ff;
+    --scen-border: #9ec3ee;
+    --part-bg: #e8eaee;
+    --part-ink: #2a3140;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    margin: 0;
+    padding: 32px 24px;
+  }
+  .container { max-width: 1320px; margin: 0 auto; }
+  h1 { font-size: 26px; margin: 0 0 6px; }
+  .sub { color: var(--muted); margin: 0 0 18px; font-size: 14px; }
+  .stats {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 14px 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin-bottom: 18px;
+  }
+  .stat { display: flex; flex-direction: column; }
+  .stat strong { font-size: 20px; }
+  .stat span { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .controls { display: flex; gap: 18px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+  .controls label { user-select: none; cursor: pointer; }
+  .controls input[type="checkbox"] { margin-right: 6px; vertical-align: -2px; }
+  .legend { font-size: 12px; color: var(--muted); margin-left: auto; }
+  .legend .star { color: #b08316; font-weight: 700; }
+  .legend .scen { color: #2e5d96; font-weight: 700; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--line);
+  }
+  th {
+    background: #f3f3ef;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.num { width: 36px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+  td.ch  { width: 44px; text-align: center; font-weight: 600; color: #2a3140; font-variant-numeric: tabular-nums; }
+  td.topic { width: 240px; font-weight: 600; }
+  td.what { width: auto; }
+  td.materials { width: 320px; font-size: 13px; color: #444; }
+
+  tr.starred td { background: var(--star-bg); }
+  tr.starred td.topic::before {
+    content: "★ ";
+    color: #b08316;
+    font-weight: 700;
+    margin-right: 2px;
+  }
+  tr.starred td.materials { color: #5a4500; }
+
+  tr.scen td { background: var(--scen-bg); }
+  tr.scen td.topic::before {
+    content: "◆ ";
+    color: #2e5d96;
+    font-weight: 700;
+    margin-right: 2px;
+  }
+  tr.scen td.materials { color: #2e5d96; }
+
+  /* If a row has BOTH starter file and scenario block, use the star color */
+  tr.starred.scen td { background: var(--star-bg); }
+  tr.starred.scen td.topic::before { content: "★ "; color: #b08316; }
+  tr.starred.scen td.materials { color: #5a4500; }
+
+  .part-row td {
+    background: var(--part-bg);
+    color: var(--part-ink);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    padding: 8px 12px;
+    border-bottom: 1px solid #d0d4dc;
+  }
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  tr.starred td code { background: rgba(176,131,22,0.15); }
+  tr.scen td code { background: rgba(46,93,150,0.15); }
+  .pill {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    background: #eee;
+    color: #555;
+    margin-right: 4px;
+  }
+  .pill.starter { background: var(--star-border); color: #5a4500; }
+  .pill.scen-pill { background: #cbe1f5; color: #2e5d96; }
+  .none { color: var(--muted); font-style: italic; }
+  footer { color: var(--muted); font-size: 12px; margin: 18px 0 0; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Agentic Working Playbook — Exercise Inventory (v2)</h1>
+  <p class="sub">All 44 exercises across 25 chapters. After two expansion passes, every exercise now has *something* concrete to start with — no reader can hit <em>"Try it yourself"</em> and stall on "what should I use?"</p>
+
+  <div class="stats">
+    <div class="stat"><strong>44</strong><span>Total exercises</span></div>
+    <div class="stat"><strong>25</strong><span>Chapters</span></div>
+    <div class="stat"><strong>17</strong><span>★ Ship with starter files</span></div>
+    <div class="stat"><strong>27</strong><span>◆ Have inline fallback scenarios</span></div>
+    <div class="stat"><strong>20</strong><span>Folders in <code>examples/</code></span></div>
+  </div>
+
+  <div class="controls">
+    <label><input type="checkbox" id="filterStarred"> Show only exercises with starter files</label>
+    <label><input type="checkbox" id="filterScen"> Show only exercises with fallback scenarios</label>
+    <span class="legend"><span class="star">★</span> = ships with starter files &nbsp;·&nbsp; <span class="scen">◆</span> = has inline fallback scenarios</span>
+  </div>
+
+  <table id="ex">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Ch</th>
+        <th>Topic</th>
+        <th>What to do</th>
+        <th>Materials / Fallbacks</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr class="part-row"><td colspan="5">Part I — Foundations</td></tr>
+
+      <tr class="scen"><td class="num">1</td><td class="ch">1</td>
+        <td class="topic">The chatbot tax</td>
+        <td class="what">Pick a recent ChatGPT/Gemini task; write down "what I asked" vs "what I had to do afterward" — that second line is the chatbot tax.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> 3 inline starter scenarios in the chapter (conference follow-ups, doc → Slack re-typing, status update → Notion reformat)</td></tr>
+
+      <tr><td class="num">2</td><td class="ch">2</td>
+        <td class="topic">Architecture diagram self-test</td>
+        <td class="what">Ask your chatbot how it would read & summarize your last 5 emails; map its answer onto the 5-box diagram.</td>
+        <td class="materials none">your own chatbot</td></tr>
+
+      <tr><td class="num">3</td><td class="ch">3</td>
+        <td class="topic">Landscape decoding</td>
+        <td class="what">Read Claude Code's and Codex's homepages for 2 mins each; note what each is proud of, what's the same, what differs.</td>
+        <td class="materials none">vendor websites</td></tr>
+
+      <tr class="scen"><td class="num">4</td><td class="ch">4</td>
+        <td class="topic">The 10-minute first win</td>
+        <td class="what">Install one terminal agent; run one real task end-to-end in the folder where its files live.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> rename trip photos by date, summarize 3 PDFs, draft 3 subject-line variants</td></tr>
+
+      <tr class="starred"><td class="num">5</td><td class="ch">5</td>
+        <td class="topic">AI-subscription audit</td>
+        <td class="what">Pick 3 "AI" line items; try the agent against the original system; cancel ≥1, keep ≥1 for a real reason.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-05-ai-subscriptions/card-statement.txt</code> (25 line items mixing AI subs, add-ons, normal expenses)</td></tr>
+
+      <tr class="part-row"><td colspan="5">Part II — Setup Once</td></tr>
+
+      <tr><td class="num">6</td><td class="ch">6</td>
+        <td class="topic">Meta-install</td>
+        <td class="what">Ask your fresh agent: <em>"Audit my shell config, propose 5 improvements, install <code>gh</code> and <code>ripgrep</code>, sanity-check both."</em></td>
+        <td class="materials none">your own machine</td></tr>
+
+      <tr class="scen"><td class="num">7</td><td class="ch">7</td>
+        <td class="topic">Trust-by-default config</td>
+        <td class="what">Ask the agent to propose a permissions config with explicit gates only for protected-branch pushes, prod DB writes, sending email, spending &gt;$20.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> throwaway sandbox folder (<code>mkdir ~/trust-sandbox</code>), or against an open-source repo you cloned</td></tr>
+
+      <tr class="starred"><td class="num">8</td><td class="ch">8</td>
+        <td class="topic">CLAUDE.md interview</td>
+        <td class="what">Agent interviews you 5–10 questions; drafts your <code>CLAUDE.md</code>; you tweak and save.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-08-personas/</code> — 3 fictional personas (marketing manager / freelance designer / finance ops) to inhabit if you don't want to use your own</td></tr>
+
+      <tr class="starred"><td class="num">9</td><td class="ch">9</td>
+        <td class="topic">MCP discovery loop</td>
+        <td class="what">List 5 SaaS tools; agent checks if MCPs exist; walks you through one install + OAuth.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-09-saas-stacks/</code> — 3 fictional stacks (startup founder / sales team / agency PM)</td></tr>
+
+      <tr class="part-row"><td colspan="5">Part III — Working With an Agent</td></tr>
+
+      <tr><td class="num">10</td><td class="ch">10</td>
+        <td class="topic">Equip-first reflex</td>
+        <td class="what">Pick a non-developer platform; ask agent if an MCP or skill exists for it.</td>
+        <td class="materials none">your own work platform</td></tr>
+
+      <tr class="starred"><td class="num">11</td><td class="ch">11</td>
+        <td class="topic">Context-from-file</td>
+        <td class="what">Replace a long-paragraph chatbot description with <em>"read this file"</em>; compare answers.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-11-context/meeting-notes-raw.txt</code> — messy 45-line meeting transcript</td></tr>
+
+      <tr><td class="num">12</td><td class="ch">11</td>
+        <td class="topic">Long-session reset</td>
+        <td class="what">Save what matters, close the session, run the next task in a fresh one — note the quality jump.</td>
+        <td class="materials none">your own sessions</td></tr>
+
+      <tr class="scen"><td class="num">13</td><td class="ch">12</td>
+        <td class="topic">Direct-action output</td>
+        <td class="what">Take a task that ended in manual data entry; redo with an MCP so the agent writes into the tool directly.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> 5 customer emails → CRM replies, or 3 spreadsheet rows from a meeting note</td></tr>
+
+      <tr class="starred"><td class="num">14</td><td class="ch">12</td>
+        <td class="topic">Multi-format output</td>
+        <td class="what">Take a Markdown brief → produce HTML, PDF, draft Linear/Notion/Slack post, voiceover script; decide which should be direct-action.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-12-multi-format/quarterly-update-source.md</code> (Brightline Foods Q3 memo)</td></tr>
+
+      <tr class="starred"><td class="num">15</td><td class="ch">13</td>
+        <td class="topic">Self-audit on planted-error CSV</td>
+        <td class="what">Two-step: summarize → re-check with per-customer-anomaly + date-format audit lens.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-13-self-audit/sales-q3.csv</code> (planted $2,750 Halcyon anomaly + <code>08/04/2025</code> drift)</td></tr>
+
+      <tr class="scen"><td class="num">16</td><td class="ch">13</td>
+        <td class="topic">Real-batch spot-check</td>
+        <td class="what">Before reading the agent's summary, open the system it acted on and look at two outputs in full.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> brief agent to create 5 throwaway Linear tickets in personal scratch project, then spot-check</td></tr>
+
+      <tr class="scen"><td class="num">17</td><td class="ch">13</td>
+        <td class="topic">Fresh-session timing test</td>
+        <td class="what">Let a session go too long; save salvage; re-run next task in fresh session; time both.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> intentionally pile 6+ unrelated tasks into one session to simulate friction</td></tr>
+
+      <tr class="scen"><td class="num">18</td><td class="ch">14</td>
+        <td class="topic">Walk-away test</td>
+        <td class="what">Brief a 10-min task, deliberately walk away for 10 minutes, come back and review.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> summarize every README in a cloned open-source repo, or rename+organize 100+ images</td></tr>
+
+      <tr class="starred"><td class="num">19</td><td class="ch">14</td>
+        <td class="topic">Parallel sub-agents</td>
+        <td class="what">Spawn 3 sub-agents on a 3-angle research question; main agent synthesizes.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-14-parallel/research-brief.md</code> (Acme Foods Vietnam launch — competitive / regulatory / talent)</td></tr>
+
+      <tr class="part-row"><td colspan="5">Part IV — Skills</td></tr>
+
+      <tr class="starred"><td class="num">20</td><td class="ch">15</td>
+        <td class="topic">Pick the layer</td>
+        <td class="what">For a repeated correction, decide: prompt / slash / skill / MCP — defend in one sentence.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-15-corrections/common-corrections.md</code> (6 plausible repeated-correction scenarios)</td></tr>
+
+      <tr class="starred"><td class="num">21</td><td class="ch">16</td>
+        <td class="topic">Spot the signal</td>
+        <td class="what">Look at last week's work; find one task you did &gt;once; skill or one-off?</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-15-corrections/common-corrections.md</code> (same file — works for both Ch. 15 and 16)</td></tr>
+
+      <tr class="starred"><td class="num">22</td><td class="ch">17</td>
+        <td class="topic">Write the skill</td>
+        <td class="what">Have the agent draft <code>SKILL.md</code> from a real session; tweak; trigger by name in a fresh session.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-17-session-transcript/session-transcript.md</code> (fake session with 4 corrections, primed for skill extraction)</td></tr>
+
+      <tr class="part-row"><td colspan="5">Part V — Workflows by Audience</td></tr>
+
+      <tr class="starred"><td class="num">23</td><td class="ch">18</td>
+        <td class="topic">Plan → diff → ship on a real ticket</td>
+        <td class="what">Pick a Linear/Jira ticket from your board; plan first, small diffs, PR or bug location.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-18-mock-repo/</code> (Python shipping-rate calculator + <code>BUG.md</code> + planted off-by-one)</td></tr>
+
+      <tr class="starred"><td class="num">24</td><td class="ch">18</td>
+        <td class="topic">Second-pair-of-eyes PR review</td>
+        <td class="what">Ask agent only for security, edge cases, missing tests on a PR you wrote.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-18-pr-review/</code> (mock PR diff with planted SQL injection, committed Stripe key, missing date validation, missing test)</td></tr>
+
+      <tr class="starred"><td class="num">25</td><td class="ch">18</td>
+        <td class="topic">Capture a skill</td>
+        <td class="what">After correcting the agent twice on the same convention, end the session with <em>"write a skill from this."</em></td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-17-session-transcript/</code> (reusable across Ch. 17 and 18)</td></tr>
+
+      <tr class="starred"><td class="num">26</td><td class="ch">19</td>
+        <td class="topic">Categorize & rank</td>
+        <td class="what">Decode <code>memo</code> column, top-5 spend in HKD, exclude income, state FX rates.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-19-analytics/transactions-nov.csv</code> (82 rows, 3 currencies, messy memos)</td></tr>
+
+      <tr class="starred"><td class="num">27</td><td class="ch">19</td>
+        <td class="topic">Self-contained HTML report</td>
+        <td class="what">Same file → one-page self-contained HTML with category chart + table over HK$500-equivalent.</td>
+        <td class="materials"><span class="pill starter">starter</span> same file (tests "no build step, no Python server")</td></tr>
+
+      <tr class="starred"><td class="num">28</td><td class="ch">19</td>
+        <td class="topic">Duplicate detection / restraint</td>
+        <td class="what">Same file → flag duplicates (same vendor, same amount, ≤3 days). If none, say so.</td>
+        <td class="materials"><span class="pill starter">starter</span> same file (tests restraint — no true duplicates planted)</td></tr>
+
+      <tr class="starred"><td class="num">29</td><td class="ch">20</td>
+        <td class="topic">Reconcile invoices vs Stripe</td>
+        <td class="what">Match invoices vs Stripe export, state tolerances, write reconciliation report.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-20-finance-ops/</code> — 6 mock invoices + Stripe CSV, 1 planted unmatched (INV-006)</td></tr>
+
+      <tr class="starred"><td class="num">30</td><td class="ch">20</td>
+        <td class="topic">Rank CVs against JD</td>
+        <td class="what">Score 5 CVs 1–5 against a fictional Senior Backend Engineer JD.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-20-hr/</code> — JD + 5 CVs (perfect / decent / borderline ×2 / off-domain)</td></tr>
+
+      <tr class="scen"><td class="num">31</td><td class="ch">20</td>
+        <td class="topic">Real ops task end-to-end</td>
+        <td class="what">Equip-first → run a real recurring marketing/ops task → write skill from session.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> welcome-email update at fictional SaaS, monthly all-hands recap from Q3 metrics, pricing one-pager on 3 rivals</td></tr>
+
+      <tr class="starred"><td class="num">32</td><td class="ch">21</td>
+        <td class="topic">Decode a bank statement</td>
+        <td class="what">Summarize, categorize, flag forgotten subscriptions; try primed + neutral prompts.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-21-everyone/bank-statement.txt</code> (planted vague <code>ABC LIMITED HKD 0.99</code> recurring sub)</td></tr>
+
+      <tr class="starred"><td class="num">33</td><td class="ch">21</td>
+        <td class="topic">Downloads folder grouping</td>
+        <td class="what">Hand the agent your Downloads; ask for grouped proposals before any moves.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-21-downloads/</code> (41 stub files: cross-year screenshots, dup CSVs, installers, etc.)</td></tr>
+
+      <tr class="starred"><td class="num">34</td><td class="ch">21</td>
+        <td class="topic">"What is this?" question</td>
+        <td class="what">One tiny everyday question — photo / screenshot / form — let the agent answer.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-21-mystery/</code> (made-up tax-form fragment + cryptic thermostat error log)</td></tr>
+
+      <tr class="part-row"><td colspan="5">Part VI — Going Further</td></tr>
+
+      <tr class="scen"><td class="num">35</td><td class="ch">22</td>
+        <td class="topic">Voice brief</td>
+        <td class="what">Dictate a 2-3 min brief into your phone; hand the transcript to the agent.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> "plan next two weeks: board meeting + product launch + 15 follow-ups", or "think out loud about an underperforming teammate"</td></tr>
+
+      <tr class="starred"><td class="num">36</td><td class="ch">22</td>
+        <td class="topic">Screenshot drop / vision</td>
+        <td class="what">Drop a screenshot in with one sentence: <em>"what's going on here?"</em></td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-22-vision/</code> (text-mock receipt with hidden service charge, confusing benefits-portal form)</td></tr>
+
+      <tr class="scen"><td class="num">37</td><td class="ch">23</td>
+        <td class="topic">Browser recon</td>
+        <td class="what">Ask the agent to drive a browser for a 3-tab recon question; bring back answer + screenshots.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> Linear Pro tier details, NASA APOD API schema, why Threads/LinkedIn won't render a link preview</td></tr>
+
+      <tr class="scen"><td class="num">38</td><td class="ch">23</td>
+        <td class="topic">Form-filling</td>
+        <td class="what">Watch the agent fill a real-world form while logged in as you.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> country tax-office search form, public library card app, benign vendor signup</td></tr>
+
+      <tr><td class="num">39</td><td class="ch">23</td>
+        <td class="topic">Recon → Playwright spec <em>(engineers)</em></td>
+        <td class="what">Agent recons a flow in your product, then writes a Playwright spec from what it learned.</td>
+        <td class="materials none">your own product</td></tr>
+
+      <tr class="scen"><td class="num">40</td><td class="ch">24</td>
+        <td class="topic">Replay set</td>
+        <td class="what">Save prompt + context + correctness note for next 5 real runs of your most-used skill.</td>
+        <td class="materials none">your team's most-used skill</td></tr>
+
+      <tr class="starred"><td class="num">41</td><td class="ch">24</td>
+        <td class="topic">Cost audit</td>
+        <td class="what">Find most expensive workflow in your billing; ask agent where a smaller model or caching helps.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-24-cost-audit/api-usage-nov.csv</code> (~140 rows, 5 workflows with mixed cost profiles)</td></tr>
+
+      <tr class="starred"><td class="num">42</td><td class="ch">24</td>
+        <td class="topic">Credential audit</td>
+        <td class="what">For each credential the agent has, ask: readonly? minimally scoped? Tighten one.</td>
+        <td class="materials"><span class="pill starter">starter</span> <code>examples/ch-24-credentials/current-setup.md</code> (7 over-permissive creds: live Stripe, passphraseless SSH, AWS Admin)</td></tr>
+
+      <tr class="scen"><td class="num">43</td><td class="ch">25</td>
+        <td class="topic">Drop one over-gate</td>
+        <td class="what">Find a confirmation prompt you mash <em>yes</em> on; drop it or restore the reading.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> file-write confirmations, git-commit confirmations, "agent about to read a file" prompts</td></tr>
+
+      <tr class="scen"><td class="num">44</td><td class="ch">25</td>
+        <td class="topic">Capture a stale repeat-correction</td>
+        <td class="what">Find a 3+ times re-prompt; have agent write the skill from the conversation.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> "stop using contractions in board docs", "stop adding 'feel free to reach out'", "stop reading venv folder"</td></tr>
+
+      <tr class="scen"><td class="num">45</td><td class="ch">25</td>
+        <td class="topic">Close the book and ship one</td>
+        <td class="what">Pick the most annoying recurring task this week; brief the agent; capture what to skill-ify.</td>
+        <td class="materials"><span class="pill scen-pill">fallback scenarios</span> monthly expense reimbursement upload, Friday team updates, weekly competitor-newsletter scan</td></tr>
+
+    </tbody>
+  </table>
+
+  <footer>Generated from <code>docs/en/**/index.md</code> · 44 exercises · <span class="star">★ 17 with starter files</span> · <span class="scen">◆ 27 with inline fallback scenarios</span> · 20 folders in <code>examples/</code></footer>
+</div>
+
+<script>
+  var rows = document.querySelectorAll('#ex tbody tr');
+  function apply() {
+    var onlyStar = document.getElementById('filterStarred').checked;
+    var onlyScen = document.getElementById('filterScen').checked;
+    rows.forEach(function(tr){
+      if (tr.classList.contains('part-row')) {
+        tr.style.display = (onlyStar || onlyScen) ? 'none' : '';
+        return;
+      }
+      var ok = true;
+      if (onlyStar && !tr.classList.contains('starred')) ok = false;
+      if (onlyScen && !tr.classList.contains('scen')) ok = false;
+      tr.style.display = ok ? '' : 'none';
+    });
+  }
+  document.getElementById('filterStarred').addEventListener('change', apply);
+  document.getElementById('filterScen').addEventListener('change', apply);
+</script>
+</body>
+</html>
