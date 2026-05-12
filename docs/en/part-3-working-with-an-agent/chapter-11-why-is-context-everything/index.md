@@ -123,7 +123,11 @@ In other tools: Claude Code has the `Task` tool for spawning sub-agents; Codex a
 
 **Exercise 1.** Find a task you've been describing to a chatbot in long paragraphs. Replace the description with *"read this file"* or *"look at this screenshot"* and ask the same question. Compare the answers.
 
-**You'll know it worked when** the agent's response references specifics you never typed out — section headings, exact numbers, a phrase from line 47 — proving it actually read the source instead of working from your paraphrase.
+If you don't have a task handy right now, the book repo ships a ready-made one at `examples/ch-11-context/meeting-notes-raw.txt` — a messy 45-line transcript of a product strategy meeting with action items, owners, and deadlines embedded mid-sentence rather than listed. Drop it in front of your agent:
+
+> *"Read `examples/ch-11-context/meeting-notes-raw.txt`. Extract action items, owners, and deadlines. Flag anything where the owner or deadline isn't clear from the text."*
+
+**You'll know it worked when** the agent's response references specifics you never typed out — section headings, exact numbers, a phrase from line 47, or in the meeting-notes case, ownership inferred from context (*"Dev? — ugh, ok"*) — proving it actually read the source instead of working from your paraphrase.
 
 **Exercise 2.** Take a session that has been running for over an hour. Save what matters (a summary of decisions, the file paths you touched), close it, and open a fresh session for the next task. Notice the difference in response quality.
 

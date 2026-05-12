@@ -192,8 +192,8 @@ A Monday-morning marketing manager has at least six distinct workflows in this c
 The book repo ships starter folders so you can run the two highest-leverage exercises against real (mock) data before doing them against your own. Clone the repo and point your agent at the paths below.
 
 1. **Flagship — reconcile invoices against Stripe.** Run the finance-ops flagship against `examples/ch-20-finance-ops/`:
-   > *"Match the invoices in `examples/ch-20-finance-ops/invoices/` against `examples/ch-20-finance-ops/stripe-nov.csv`. Flag any invoice without a matching Stripe transaction, and any Stripe transaction that isn't for an invoice. Write the result as `reconciliation-nov.md` in that folder."*
-   **You'll know it worked when** the report has three sections — matched, unmatched invoices, unmatched Stripe — and the matches survive a quick sanity check (fuzzy vendor names, amounts within a sensible tolerance).
+   > *"Match the invoices in `examples/ch-20-finance-ops/invoices/` against `examples/ch-20-finance-ops/stripe-nov.csv`. Flag any invoice without a matching Stripe transaction, and any Stripe transaction that isn't for an invoice. **State the matching tolerances you're using** (date window, vendor-name fuzziness, sign convention). Write the result as `reconciliation-nov.md` in that folder."*
+   **You'll know it worked when** the report has three sections — matched, unmatched invoices, unmatched Stripe — the agent has written out its tolerances so you can sanity-check them (e.g. *"±2 days, vendor substring/token match, negative Stripe amounts = outflows to vendors"*), and the matches survive a quick spot-check.
 2. **Resume screening.** Run the HR flagship against `examples/ch-20-hr/`:
    > *"Score the CVs in `examples/ch-20-hr/cvs/` against `examples/ch-20-hr/jd.md`. Rank them 1–5 with a one-sentence reason each."*
    **You'll know it worked when** the ranking is defensible — each candidate's reason names a must-have hit or missed, not a vibes-based score.

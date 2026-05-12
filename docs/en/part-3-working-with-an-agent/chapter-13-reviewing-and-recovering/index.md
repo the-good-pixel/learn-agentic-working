@@ -158,11 +158,17 @@ The harder review case is when the diff is large *and correct in places, wrong i
 
 ## Try it yourself
 
-**Exercise 1.** The next time the agent reports back on a batch task, before reading the summary in detail, open the *system* it acted on and look at two of the outputs in full. Then read the summary. Notice whether the summary matched what you saw.
+**Exercise 1.** Hand the agent the planted-error dataset shipped with the book at `examples/ch-13-self-audit/sales-q3.csv` and run the two-step self-audit pattern:
+
+> *"Summarize this CSV. Then re-check your summary against the source: per-customer anomalies, date-format consistency, anything you'd want to double-check before sending this to the boss."*
+
+**You'll know it worked when** the agent's *first* summary reads fine on its own — and the *second* pass catches Halcyon's anomalous $2,750 order (≈2× their typical) and the row with `08/04/2025` instead of ISO format. Both are invisible to a fast first-pass summary; both surface the moment the agent applies a specific audit lens. (If the agent catches them on the first pass without prompting, that's a sharp agent — note that the *technique* still applies to longer, messier real reports.)
+
+**Exercise 2.** The next time the agent reports back on a *real* batch task, before reading the summary in detail, open the system it acted on and look at two of the outputs in full. Then read the summary. Notice whether the summary matched what you saw.
 
 **You'll know it worked when** you catch at least one small discrepancy (a label that didn't quite fit, a sentence that drifted from your tone, a row that was almost-but-not-quite right) that you would have missed by reading the summary alone.
 
-**Exercise 2.** Deliberately let a session go too long until you feel friction. Save the salvageable parts, close the session, and re-run the next task in a fresh one. Time both.
+**Exercise 3.** Deliberately let a session go too long until you feel friction. Save the salvageable parts, close the session, and re-run the next task in a fresh one. Time both.
 
 **You'll know it worked when** the fresh session takes noticeably less wall-clock time than the next step of the long session was about to take.
 
