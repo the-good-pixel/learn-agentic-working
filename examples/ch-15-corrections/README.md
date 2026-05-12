@@ -1,0 +1,9 @@
+# Ch. 15 & 16 — Common Corrections Exercise
+
+`common-corrections.md` lists six plausible repeated corrections someone might give an agent. Use it for either chapter's "Try it yourself" exercise:
+
+**For Ch. 15 (skills vs. slash vs. MCP):** Pick one. Decide which layer fits — *prompt tweak, slash command, skill, or MCP* — and defend your choice in one sentence.
+
+**For Ch. 16 (when to stop re-prompting):** Pick one. Decide whether it's skill-shaped *yet*, or still a one-off that should stay a prompt. Point at which of the three signals (repeating yourself, real branches, a gotcha worth preserving) fired.
+
+The point isn't a single right answer — corrections #2 and #6 are textbook skills, #4 is begging for an MCP, #1 and #5 could go either way depending on how often they recur. Defending the choice is the exercise.

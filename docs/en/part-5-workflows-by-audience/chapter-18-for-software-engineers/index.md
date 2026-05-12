@@ -124,9 +124,13 @@ Engineering exercises work best against your own real code rather than mock data
 1. **Run plan → diff → ship on a real ticket or a real bug.** Either pick a small Linear/Jira ticket from your own board, or clone an open-source repo you've never seen and pick an existing issue from its tracker. Drop the URL straight in:
    > *"Pick up `<your ticket or issue URL>` in `<repo path>`. Plan first, then small diffs, then open a PR — or, if it's a bug hunt, trace it and tell me which file the bug is in and why."*
    **You'll know it worked when** the agent points at a specific file and line with reasoning that holds up, and (for a ticket) the PR title isn't worse than one you'd write.
+
+   *If you don't have a Linear ticket or open-source issue in mind*: the book repo ships a tiny mock repo at `examples/ch-18-mock-repo/` with a planted off-by-one bug and a `BUG.md` ticket. Clone it and run the plan → diff → ship rhythm against it.
 2. **Run a second-pair-of-eyes review** on a PR you already wrote this week. Ask only for security, edge cases, and missing tests. **You'll know it worked when** it flags at least one thing you'd rather have caught before merging.
    If you don't have a PR ready, the book repo ships a mock one at `examples/ch-18-pr-review/` — a small fictional Node.js diff with planted issues (a SQL injection, a committed-looking secret, missing date validation, no integration test for the new route). Run your review-agent against it and see what it catches before peeking at the answer key.
 3. **Capture one skill** from a session where you corrected the agent twice on the same convention. End the session with *"write a skill from this."* Save it. **You'll know it worked when** the correction stops happening on the next session.
+
+   *If you don't have a session like that to mine*: the book repo ships a fake transcript at `examples/ch-17-session-transcript/` with four planted corrections — feed it to a fresh agent and ask it to write the skill.
 
 ## What's next
 

@@ -220,6 +220,8 @@ Cron and explicit schedules still exist, and there are real cases for them (a da
 
 **You'll know it worked when** the work was substantively done and you didn't lose anything by not watching.
 
+*If you can't think of one, try this*: (a) brief the agent to read every README in an open-source repo you've cloned and write a one-paragraph summary of each; (b) brief it to rename and organize the photos in a folder of 100+ images. Both run 10+ minutes and are safe to walk away from.
+
 **Exercise 2.** Take a research question with three independent angles. Spawn three sub-agents, one per angle. Have your main agent synthesize when they return.
 
 If you don't have a real question handy, the book repo ships a ready-made one at `examples/ch-14-parallel/research-brief.md` — a fictional CEO's brief asking for three parallel deep-dives on a Vietnam launch decision (competitive landscape, regulatory, talent). Drop it in front of your agent and let it fan out.

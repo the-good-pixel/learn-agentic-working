@@ -79,10 +79,16 @@ If you forget every specific pattern in this book — sub-agents, worktrees, pla
 
 **You'll know it worked when** the next time that prompt appears, you actually pause and read it — *or* you've already removed it and stopped pretending you were checking.
 
+*If nothing comes to mind, common over-gates other readers catch themselves on*: file-write confirmations, git-commit confirmations, "the agent is about to read a file" prompts. Pick one.
+
 **Two.** Find one workflow where you've been re-prompting the agent more than three times with the same correction. Write the skill. Or — better — ask the agent to write it from the conversation (Ch. 17).
 
 **You'll know it worked when** the next run of that workflow is one command, and you didn't have to make the correction.
 
+*If you can't think of a recurring correction*: common ones — *"stop using contractions in board docs"*, *"stop adding 'feel free to reach out' to every email"*, *"stop reading the venv folder"*. Pick one and turn it into a skill.
+
 **Three.** Close the book. Pick the most annoying recurring task on your plate this week — the one you've been putting off because the SaaS UI is bad, or the form is long, or the report is tedious. Brief the agent. Watch it work. Capture what you learn.
 
 **You'll know it worked when** the agent did the task, *and* you have a one-line note on what to capture as a skill before you do this again.
+
+*If nothing annoying jumps to mind, try one of these*: (a) the monthly expense reimbursement upload; (b) drafting Friday team updates; (c) the weekly competitor-newsletter scan.

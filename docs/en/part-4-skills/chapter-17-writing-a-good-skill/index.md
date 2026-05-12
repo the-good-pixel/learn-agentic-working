@@ -157,6 +157,8 @@ Read what it produces. Tighten the `description` so the trigger phrases match ho
 
 **You'll know it worked when** you can open a fresh session, say the trigger phrase, and watch the agent invoke the skill on its own — without you having to mention the skill's name.
 
+*If you don't have a session of your own to mine*: the book repo ships a fake session transcript at `examples/ch-17-session-transcript/` where the agent got corrected four times while drafting a weekly team update. Drop it into a fresh agent and run *"I just had this session [paste]. Write me a skill that captures what we did, including the corrections."*
+
 ## What's next
 
 Part V picks up the workflow stories by role — engineering, data, PM/design/ops, and personal. Pick the chapter that fits how you work; the patterns reinforce each other across roles.

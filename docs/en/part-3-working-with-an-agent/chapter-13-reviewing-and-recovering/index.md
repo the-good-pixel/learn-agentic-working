@@ -168,9 +168,13 @@ The harder review case is when the diff is large *and correct in places, wrong i
 
 **You'll know it worked when** you catch at least one small discrepancy (a label that didn't quite fit, a sentence that drifted from your tone, a row that was almost-but-not-quite right) that you would have missed by reading the summary alone.
 
+*If you don't have a real batch task waiting*: brief the agent with *"create 5 throwaway Linear tickets in my personal scratch project with realistic-sounding feature requests"*, then spot-check the summary against the tickets it actually created.
+
 **Exercise 3.** Deliberately let a session go too long until you feel friction. Save the salvageable parts, close the session, and re-run the next task in a fresh one. Time both.
 
 **You'll know it worked when** the fresh session takes noticeably less wall-clock time than the next step of the long session was about to take.
+
+*If you can't think of how to trigger the friction*: simulate it — pile 6+ unrelated tasks into one session ("rename these files, then draft this email, then summarize this doc, then refactor this function, then…") and feel the slowdown by the fifth.
 
 ## What's next
 

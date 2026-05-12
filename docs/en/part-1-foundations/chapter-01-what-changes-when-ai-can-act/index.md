@@ -129,6 +129,8 @@ That second line is the chatbot tax. The rest of this book is about handing that
 
 **You'll know it worked when** you can read your "afterward" line and finish the sentence *"…so I should just have the agent do it"* without feeling like a step is missing.
 
+*If you can't think of one, try this*: (a) last week you drafted follow-up emails to 8 conference contacts and copy-pasted each into Gmail; (b) you asked ChatGPT to summarize a long doc, then retyped the bullets into a Slack message; (c) you asked it to draft a status update, then pasted into Notion and reformatted by hand.
+
 ## What's next
 
 The next chapter unpacks the single diagram that makes everything in this book concrete: how the AI model, the orchestrator running on your computer, the tool-connectors (MCPs), and your real apps fit together. If you'd rather skip the architecture and just *do the thing*, jump to **Ch. 4: A 10-minute first win**.

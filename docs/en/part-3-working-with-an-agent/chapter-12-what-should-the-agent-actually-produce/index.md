@@ -129,6 +129,8 @@ A few patterns to watch for:
 
 **You'll know it worked when** you didn't open a single browser tab or paste anything into a UI, and the work landed in the right system on its own.
 
+*If you can't think of one, try this*: (a) imagine you got 5 customer emails today that need replies posted into your CRM — frame the exercise around drafting and writing those directly; (b) imagine you have 3 spreadsheet rows to update from a meeting note, and let the agent write them straight into the sheet.
+
 **Exercise 2.** Take the fictional business update at `examples/ch-12-multi-format/quarterly-update-source.md` (a one-page Brightline Foods Q3 memo) and ask the agent to produce four versions of it: a self-contained HTML report, a print-ready PDF, a channel-appropriate Slack / Linear / Notion draft, and a 30-second voiceover script. Then ask which of the four should be agent-creates-via-MCP vs. agent-hands-you-markdown.
 
 **You'll know it worked when** the four outputs aren't four cosmetic skins of the same text — the channel post is shorter and skimmable, the voiceover reads aloud in 30 seconds, and the agent has an *opinion* about which formats are artifact and which are action.
