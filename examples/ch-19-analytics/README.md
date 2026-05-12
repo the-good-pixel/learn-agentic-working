@@ -12,6 +12,6 @@ Three exercises against `transactions-nov.csv`. Try them in order; each one ratc
 
 ## Exercise 3 — Duplicate detection
 
-> Same file — find any duplicate transactions (same amount, same vendor, within 3 days) and flag them.
+> Same file — find any duplicate transactions (same amount, same vendor, within 3 days). If you find none, say so — don't manufacture flags.
 
 See `expected-output-hint.md` for a sketch of what a good run produces — categorization choices, FX handling, and what should be flagged (or, importantly, not flagged) on the duplicate pass.

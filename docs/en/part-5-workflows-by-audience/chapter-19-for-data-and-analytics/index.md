@@ -139,7 +139,7 @@ Some shapes of skill that pay off for analysts:
 
 ## Try it yourself
 
-If you don't have a real messy file in front of you, the book repo ships one: `examples/ch-19-analytics/transactions-nov.csv` — a fake but realistically messy month of transactions with three currencies, a free-text `memo` column, and a pair of suspicious-looking recurring charges that test the agent's restraint. Clone the repo and point your agent at that folder. The three starter exercises in `examples/ch-19-analytics/README.md` ratchet up the agent's responsibility:
+If you don't have a real messy file in front of you, the book repo ships one: `examples/ch-19-analytics/transactions-nov.csv` — a fake but realistically messy month of transactions with three currencies, a free-text `memo` column, and a few suspicious-looking recurring charges (daily coffee, monthly rent) that test the agent's restraint. Clone the repo and point your agent at that folder. The three starter exercises in `examples/ch-19-analytics/README.md` ratchet up the agent's responsibility:
 
 1. **Categorize and rank.**
    > *"Read `examples/ch-19-analytics/transactions-nov.csv`, decode the memo column into clean categories, and tell me my top 5 categories of **spend** in HKD-equivalent — exclude income (salary deposits) from the totals. State the FX rates you used."*
