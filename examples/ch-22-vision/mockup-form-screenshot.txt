@@ -1,0 +1,51 @@
+Plain-text representation of a screenshot of a confusing benefits-portal
+form. In real use you'd hand the agent the actual screenshot; this is a
+mockup so the exercise runs from the repo.
+
+============================================================
+
+   NORTHWIND BENEFITS PORTAL > Annual Enrollment > Step 4 of 7
+
+   Beneficiary Election Reaffirmation Schedule (Q4-25 amendment)
+
+   ----------------------------------------------------------
+
+   Pursuant to Plan Amendment 2025-Q4-A (Sec. 3.2(b)(iv)), each
+   Participant must reaffirm Primary and Contingent beneficiary
+   designations across all qualifying instruments for which a
+   Reaffirmation Trigger Event has occurred during the Reference
+   Window. See the Plan Document, Article VII, for a list of
+   Reaffirmation Trigger Events.
+
+   Reference Window: 01 Oct 2024 — 30 Sep 2025
+
+   ----------------------------------------------------------
+
+   Instrument                            Status         Action
+
+   [ ] 401(k) — Traditional             Affirmed       Reaffirm?
+   [ ] 401(k) — Roth                    Pending        Reaffirm?
+   [ ] HSA — Family                     N/A             —
+   [ ] Group Term Life (1x salary)      Reaffirm req.   Reaffirm?
+   [ ] Group Term Life (Suppl. 3x)      Reaffirm req.   Reaffirm?
+   [ ] AD&D — Voluntary                 Affirmed       Reaffirm?
+   [ ] Dep. Care FSA                    N/A             —
+
+   ----------------------------------------------------------
+
+   Election:
+
+   ( ) I affirm my existing designations are current and accurate
+       for all instruments above marked "Reaffirm req."
+   ( ) I wish to update my designations (you will be routed to
+       the Beneficiary Update Wizard before continuing)
+   ( ) I decline to designate at this time (acknowledging that
+       statutory default rules in Plan Sec. 7.4(c) will apply)
+
+   [ ] I acknowledge that "Reaffirm req." items left unaddressed
+       at the close of Open Enrollment will be treated under
+       statutory default rules.
+
+                  [ Back ]     [ Save & Continue ]
+
+============================================================

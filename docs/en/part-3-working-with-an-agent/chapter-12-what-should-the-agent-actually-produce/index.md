@@ -125,9 +125,13 @@ A few patterns to watch for:
 
 ## Try it yourself
 
-Take a task from your week that ended with you doing manual data entry — the agent gave you something, and you typed or pasted it into a tool. Re-do the task, but this time install the relevant MCP (Ch. 10) and ask the agent to write *into the tool directly*. Skip the intermediate document.
+**Exercise 1.** Take a task from your week that ended with you doing manual data entry — the agent gave you something, and you typed or pasted it into a tool. Re-do the task, but this time install the relevant MCP (Ch. 10) and ask the agent to write *into the tool directly*. Skip the intermediate document.
 
 **You'll know it worked when** you didn't open a single browser tab or paste anything into a UI, and the work landed in the right system on its own.
+
+**Exercise 2.** Take the fictional business update at `examples/ch-12-multi-format/quarterly-update-source.md` (a one-page Brightline Foods Q3 memo) and ask the agent to produce four versions of it: a self-contained HTML report, a print-ready PDF, a channel-appropriate Slack / Linear / Notion draft, and a 30-second voiceover script. Then ask which of the four should be agent-creates-via-MCP vs. agent-hands-you-markdown.
+
+**You'll know it worked when** the four outputs aren't four cosmetic skins of the same text — the channel post is shorter and skimmable, the voiceover reads aloud in 30 seconds, and the agent has an *opinion* about which formats are artifact and which are action.
 
 ## What's next
 

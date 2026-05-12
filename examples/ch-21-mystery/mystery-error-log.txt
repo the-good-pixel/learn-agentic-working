@@ -1,0 +1,31 @@
+[2026-04-12 06:14:02] INFO  boot: NestThermo-7 v4.2.18 starting
+[2026-04-12 06:14:03] INFO  wifi: associated SSID=HomeNet-5G rssi=-58
+[2026-04-12 06:14:04] INFO  mqtt: connected broker=cloud.nestthermo.example
+[2026-04-12 06:14:05] INFO  sched: loaded 6 schedules, next=06:30 set=21C
+[2026-04-12 06:30:01] INFO  hvac: heat on, target=21.0C measured=18.4C
+[2026-04-12 06:38:22] WARN  WARN_OVERHEAT zone=A coil_temp=78C threshold=72C
+[2026-04-12 06:38:22] INFO  hvac: throttling fan to 60%
+[2026-04-12 06:41:08] WARN  WARN_OVERHEAT zone=A coil_temp=81C threshold=72C
+[2026-04-12 06:41:09] ERROR ERR_42 zone=A code=THERMAL_SAFETY_TRIP, cutting power to coil
+[2026-04-12 06:41:09] INFO  hvac: heat off (safety trip)
+[2026-04-12 06:41:10] INFO  mqtt: publish state=tripped reason=thermal
+[2026-04-12 06:42:00] INFO  user_action: app reset_trip received from user_id=primary
+[2026-04-12 06:42:01] INFO  hvac: heat on, target=21.0C measured=18.9C
+[2026-04-12 06:49:55] WARN  WARN_OVERHEAT zone=A coil_temp=79C threshold=72C
+[2026-04-12 06:51:22] ERROR ERR_42 zone=A code=THERMAL_SAFETY_TRIP, cutting power to coil
+[2026-04-12 06:51:22] INFO  hvac: heat off (safety trip)
+[2026-04-12 06:51:23] WARN  WARN_AIRFLOW return_air_dp=0.04kPa expected>=0.12kPa
+[2026-04-12 06:51:23] HINT  airflow below expected — check return filter / vent blockage
+[2026-04-12 07:02:00] INFO  user_action: app reset_trip received from user_id=primary
+[2026-04-12 07:02:01] INFO  hvac: heat on, target=21.0C measured=18.7C
+[2026-04-12 07:09:14] WARN  WARN_OVERHEAT zone=A coil_temp=80C threshold=72C
+[2026-04-12 07:10:48] ERROR ERR_42 zone=A code=THERMAL_SAFETY_TRIP, cutting power to coil
+[2026-04-12 07:10:48] WARN  WARN_AIRFLOW return_air_dp=0.03kPa expected>=0.12kPa
+[2026-04-12 07:10:48] ERROR ERR_PERSISTENT_FAULT 3 trips in 30min — entering lockout
+[2026-04-12 07:10:49] INFO  mqtt: publish state=lockout reason=persistent_overheat
+[2026-04-12 07:10:49] INFO  display: showing fault code F-42 to user
+[2026-04-12 07:11:02] INFO  user_action: app reset_trip received — IGNORED (in lockout)
+[2026-04-12 07:30:00] INFO  hb: heartbeat
+[2026-04-12 08:00:00] INFO  hb: heartbeat
+[2026-04-12 09:14:30] INFO  user_action: power_cycle detected
+[2026-04-12 09:14:31] INFO  boot: NestThermo-7 v4.2.18 starting

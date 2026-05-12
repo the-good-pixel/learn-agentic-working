@@ -125,6 +125,7 @@ Engineering exercises work best against your own real code rather than mock data
    > *"Pick up `<your ticket or issue URL>` in `<repo path>`. Plan first, then small diffs, then open a PR — or, if it's a bug hunt, trace it and tell me which file the bug is in and why."*
    **You'll know it worked when** the agent points at a specific file and line with reasoning that holds up, and (for a ticket) the PR title isn't worse than one you'd write.
 2. **Run a second-pair-of-eyes review** on a PR you already wrote this week. Ask only for security, edge cases, and missing tests. **You'll know it worked when** it flags at least one thing you'd rather have caught before merging.
+   If you don't have a PR ready, the book repo ships a mock one at `examples/ch-18-pr-review/` — a small fictional Node.js diff with planted issues (a SQL injection, a committed-looking secret, missing date validation, no integration test for the new route). Run your review-agent against it and see what it catches before peeking at the answer key.
 3. **Capture one skill** from a session where you corrected the agent twice on the same convention. End the session with *"write a skill from this."* Save it. **You'll know it worked when** the correction stops happening on the next session.
 
 ## What's next

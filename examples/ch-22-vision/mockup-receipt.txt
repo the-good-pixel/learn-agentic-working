@@ -1,0 +1,48 @@
+Plain-text simulation of what an OCR pass over a phone photo of a receipt
+might produce. Layout, ordering, and the suspicious totals are part of the
+exercise — don't "fix" them.
+
+============================================================
+
+     IZAKAYA TSURUHASHI 鶴橋居酒屋
+        Shop 2A, Causeway Plaza
+        Robson Street, Vancouver
+        TEL 2XXX-XXXX
+        ----------------------
+
+   Table 14            Guests: 3
+   Server: KENJI       2026-03-08 21:47
+
+   ----------------------------------------
+   生ビール（中）Asahi Draft Med x3   168.00
+   枝豆 Edamame                         48.00
+   刺身盛り合わせ Sashimi Platter S    288.00
+   ----------------------------------------
+   SUBTOTAL (drinks + apps)            504.00
+   ----------------------------------------
+   鶏の唐揚げ Karaage chicken           98.00
+   焼き鳥盛り（5本）Yakitori 5pc       128.00
+   うな丼 Unadon                       188.00
+   Service Charge 10%                   91.40
+   親子丼 Oyakodon                     138.00
+   ----------------------------------------
+   牛タン Beef tongue                  178.00
+   茶碗蒸し Chawanmushi                  68.00
+   ----------------------------------------
+
+   Items subtotal                    1,134.00
+   Service (10%, incl. above)           91.40 *
+   ----------------------------------------
+   TOTAL                             1,225.40
+   ----------------------------------------
+
+   PAID VISA **** 7741
+   APPROVAL 044812
+
+   * Service charge has been included in
+     the total above. Tipping is not
+     expected but appreciated.
+
+   Thank you / 多謝光臨 / ありがとうございました
+
+============================================================

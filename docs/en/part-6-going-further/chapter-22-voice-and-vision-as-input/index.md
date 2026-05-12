@@ -107,3 +107,7 @@ Voice-to-text itself is largely a *system-level* choice, not an agent feature. W
 **Two.** Find a screenshot you'd otherwise describe in words — a misaligned layout, a confusing chart, an error dialog, a printout. Drop it into the agent with one sentence: *"what's going on here, and what would you change?"* Don't pre-explain.
 
 **You'll know it worked when** the agent named something you hadn't yet articulated yourself.
+
+**Three.** If you don't have a real screenshot handy, the book repo ships two text mockups of "the kind of thing you'd photograph and hand over" at `examples/ch-22-vision/` — a confusingly-formatted Japanese-restaurant receipt with a buried service charge, and a benefits-portal form full of jargon ("Beneficiary Election Reaffirmation Schedule"). Pick one and hand it to your agent with one sentence: *"explain this to me — what did I pay for / what is it asking me to do?"*
+
+**You'll know it worked when** the agent's answer takes your specifics into account rather than giving a generic explanation of what receipts or benefits forms are. (Note: this is a text-mockup substitute — in real use you'd hand the agent the actual photo or screenshot.)
