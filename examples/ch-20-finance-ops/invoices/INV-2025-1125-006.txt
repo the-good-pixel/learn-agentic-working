@@ -1,0 +1,8 @@
+INVOICE
+Vendor: Northgate Catering Co
+Date: 2025-11-25
+Invoice #: INV-2025-1125-006
+Bill To: Lumen Analytics Inc
+Amount: USD 890.00
+Items: Team offsite lunch (18 pax), beverages, delivery
+Payment terms: Net 7

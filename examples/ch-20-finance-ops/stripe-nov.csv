@@ -1,0 +1,13 @@
+tx_id,date,amount,currency,description,customer
+txn_1NvA01,2025-11-05,-312.40,USD,Payment to Acme Office Supplies,Lumen Analytics Inc
+txn_1NvA02,2025-11-07,-1840.00,USD,Brightline Cloud Services Nov invoice,Lumen Analytics Inc
+txn_1NvA03,2025-11-08,2400.00,USD,Subscription renewal - Pro plan,Cobalt Robotics Ltd
+txn_1NvA04,2025-11-10,990.00,USD,Subscription renewal - Pro plan,Marlowe Studio
+txn_1NvA05,2025-11-12,-4500.00,USD,Halberd Legal LLP - contract review,Lumen Analytics Inc
+txn_1NvA06,2025-11-14,4800.00,USD,Subscription new - Team plan,Quill & Sons Bakery
+txn_1NvA07,2025-11-15,-2200.00,USD,Pinewood Coworking November,Lumen Analytics Inc
+txn_1NvA08,2025-11-17,-240.00,USD,Refund issued to Marlowe Studio,Marlowe Studio
+txn_1NvA09,2025-11-21,-6750.00,USD,Tessera Design Studio brand refresh,Lumen Analytics Inc
+txn_1NvA10,2025-11-22,1200.00,USD,Subscription renewal - Starter,Indigo Press
+txn_1NvA11,2025-11-26,3600.00,USD,Subscription renewal - Team plan,Harborline Freight
+txn_1NvA12,2025-11-28,2400.00,USD,Subscription renewal - Pro plan,Cobalt Robotics Ltd

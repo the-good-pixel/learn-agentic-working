@@ -1,0 +1,23 @@
+Anneli Voss
+Backend Engineer — Berlin
+anneli.voss.fake@example.com
+
+SUMMARY
+7 years of backend engineering, last 3 in payments at a European neobank. Comfortable with on-call. Open to relocation to Singapore.
+
+EXPERIENCE
+
+Senior Backend Engineer — Nordbank Digital (Berlin), 2021–present
+- TypeScript/Node services for card issuing and authorization flows.
+- Worked alongside ledger team; familiar with double-entry concepts but did not own the ledger.
+- On-call rotation, weekly.
+- PostgreSQL, Kafka, GCP (not AWS).
+
+Backend Engineer — Vendaro (Berlin), 2018–2021
+- E-commerce checkout in Node + PostgreSQL.
+
+EDUCATION
+M.Sc. CS, TU Munich, 2018.
+
+SKILLS
+TypeScript, Node, PostgreSQL, Kafka, GCP. Some Go (side projects). German, English.
