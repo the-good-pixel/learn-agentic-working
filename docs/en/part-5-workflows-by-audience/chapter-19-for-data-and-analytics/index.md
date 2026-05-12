@@ -1,6 +1,6 @@
 # 19. For Data & Analytics People
 
-*A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from the author's team and from teams the author has worked with. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
+*A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from working teams the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
 It's Wednesday, and someone in Slack just dropped a CSV with the subject line *"can you take a look? balance keeps dropping and I don't know why."* You open the file. It's 14,000 rows of transactions, three currencies, two date formats, and a column called `memo` that's clearly been used as a dumping ground for whatever the person at the till felt like typing.
 
@@ -59,8 +59,8 @@ The agent-era version:
 
 Three things to notice about that ask:
 
-1. **You name the systems, not the libraries.** You said "the database" and "the sheet" — not "use SQLAlchemy and the Google Sheets API". The agent picks the libraries; you don't care.
-2. **You named the *schedule*.** This is when long-running agents (Ch. 14) earn their keep — recurring data work that previously required an entire BI subscription, now done by a sentence and a cron-like trigger.
+1. **You name the systems, not the libraries.** You said "the database" and "the sheet" — not "use the right Python library and the Google Sheets API". The agent picks the library; you don't care.
+2. **You named the *schedule*.** This is when long-running agents (Ch. 14) earn their keep — recurring data work that previously required an entire BI subscription, now done by a sentence and a recurring run.
 3. **You handed it credentials it can use safely.** Practically, this is where the *scoped read-only* pattern matters: give the agent a database role that can read everything and write nothing. Then you don't have to gate every query; you can let it loose and just look at what it returns.
 
 A practical version of that scoped-credential pattern lives in a skill the agent loads automatically — the skill documents *"here's the read-only connection, here are example questions it's been asked before, here's the schema."* The agent inherits all of that the moment it's invoked. You ask *"do any customers have on-demand reports turned on?"* and it answers in fifteen seconds, with the actual SQL it ran in case you want to verify.
@@ -150,8 +150,3 @@ If you don't have a real messy file in front of you, the book repo ships one: `e
 3. **Duplicate detection.**
    > *"Same file — find any duplicate transactions (same amount, same vendor, within 3 days) and flag them."*
    **You'll know it worked when** the agent flags the planted duplicate and *doesn't* over-flag the legitimately repeated subscription charges.
-
-Then graduate to your own data:
-
-4. **Hand the agent a CSV from your own work** — any messy file you've been avoiding. Ask *"study this and tell me what's weird."* Don't tell it what to look for. **You'll know it worked when** it surfaces something you didn't already know.
-5. **Automate one bit of data plumbing** you do every week or month — a join, a refresh, a cleanup. Ask the agent to do it on a schedule and post the result somewhere visible. **You'll know it worked when** you stop doing it by hand on the next cycle.

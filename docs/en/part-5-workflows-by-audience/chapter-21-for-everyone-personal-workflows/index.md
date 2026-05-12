@@ -1,6 +1,6 @@
 # 21. For Everyone (Personal Workflows)
 
-*A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from the author's own life and from people the author has set up with agents. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
+*A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real personal-workflow cases the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
 It's Sunday afternoon. Your Downloads folder has 1,400 files in it, the oldest from 2019. There's a bank statement on the kitchen table you've been meaning to read for two weeks because something doesn't quite add up. You bought a new router and have no idea where to put it in the apartment. Your mom asked you, again, what's happening with your investments. And you've been thinking — vaguely — that you'd like to learn how to use Blender, but every time you open it you bounce off.
 
@@ -134,5 +134,4 @@ The book repo ships a small fictional bank statement so you can try the flagship
    > *"Read `examples/ch-21-everyone/bank-statement.txt`, summarize the month, group expenses into categories, and flag anything that looks unusual or like a forgotten subscription."*
    **You'll know it worked when** the agent flags the `ABC LIMITED` USD 0.99 charge without being told to look for it — a planted "free trial converted to a real subscription" pattern with a deliberately vague merchant name.
 2. **Hand the agent your own Downloads folder** and ask it to group, propose, and wait for approval before moving anything. **You'll know it worked when** the proposal is specific enough that you can approve or redirect each group separately.
-3. **Hand it your most recent real bank statement** and ask *"what's going on with my spending?"* Push back on its first answer. **You'll know it worked when** it surfaces one thing — a subscription, a duplicate, a category trend — that you didn't already know.
-4. **Pick one tiny "what is this?" question** from your week — a photo, a screenshot, a confusing form. Ask. **You'll know it worked when** the answer takes your specifics into account, not the generic version.
+3. **Pick one tiny "what is this?" question** from your week — a photo, a screenshot, a confusing form. Ask. **You'll know it worked when** the answer takes your specifics into account, not the generic version.

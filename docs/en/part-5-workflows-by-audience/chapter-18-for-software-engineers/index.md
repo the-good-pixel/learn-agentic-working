@@ -1,6 +1,6 @@
 # 18. For Software Engineers
 
-*A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from the author's team and from teams the author has worked with. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
+*A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from working teams the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
 It's Tuesday morning. The Linear board has six tickets with your name on them. There's a flaky test on `main` that's been red since Friday. Someone in #bugs just pinged you about a customer in Malaysia whose inquiry emails aren't being forwarded. And the version of the framework you're on hit end-of-life last week, so somewhere in the back of your head you know there's a migration waiting.
 
@@ -66,6 +66,8 @@ You opened a PR. The AI code-reviewer found four things. Two are real. Two are n
 
 You used to manage all of this manually — push, watch CI, address comments one at a time, push again, watch CI again. Now this whole job is a single skill the agent runs end-to-end: *push → open PR → monitor CI → fix what's real → reply to what isn't (with reasoning, not silent dismissal) → notify when mergeable*.
 
+> *"This PR is green except for the `e2e` job, which is flaking on `auth.spec.ts`. Open the run log at <URL>, find the failing assertion, decide if it's a real bug or a flake, and either fix the test or re-run the job with a note in the PR explaining why."*
+
 The hard rule worth stealing from real teams using this pattern: **every AI-reviewer comment gets a substantive reply**. If the comment is wrong, the agent says *why* it's wrong, in a public PR comment. Silent dismissal is forbidden, because that thread is the audit trail for why a change shipped. It's the same etiquette you'd use with a junior human reviewer.
 
 On a typical week, this turns "PR is up, please babysit it" — a thing that fragmented your afternoon ten times — into *one* notification when it's actually ready to merge.
@@ -73,6 +75,8 @@ On a typical week, this turns "PR is up, please babysit it" — a thing that fra
 ## Security and code review with a second pair of eyes
 
 The agent that wrote the code is the wrong agent to review the code. So run a second one.
+
+> *"Read the diff in this PR as if you were a security reviewer. Flag anything that touches user input, credentials, database queries, or auth tokens. For each flag, say what an attacker would have to do to exploit it, and what the fix looks like."*
 
 The pattern: when a PR is up, fire a sub-agent (Ch. 14) with one job — *"review this PR for security holes, missed edge cases, and missing tests. Don't propose fixes. Just flag."* It comes back with a list. You read the list. You decide.
 
@@ -117,14 +121,11 @@ The compound effect is that month two looks very different from month one, becau
 
 Engineering exercises work best against your own real code rather than mock data, so these point at *real* repos you own. (Other Part V chapters lean on the mock-data starter folders in `examples/` — engineers don't need them.)
 
-1. **Pick a small, real Linear/Jira ticket** from your board, against a real repo you own, and run plan → diff → ship with the agent. Drop the URL in directly:
-   > *"Pick up `<your ticket URL>` in this repo. Plan first, then small diffs, then open a PR."*
-   **You'll know it worked when** the diff lands in under an hour and the PR title isn't worse than one you'd write.
-2. **Clone any open-source repo you've never seen** (pick something off your wishlist) and run the cross-repo bug-hunt prompt against an existing issue in its tracker:
-   > *"Read `<repo path>`. Issue `<URL>` says `<symptom>`. Trace it. Tell me which file the bug is in and why."*
-   **You'll know it worked when** the agent points at a specific file and line and the reasoning holds up.
-3. **Run a second-pair-of-eyes review** on a PR you already wrote this week. Ask only for security, edge cases, and missing tests. **You'll know it worked when** it flags at least one thing you'd rather have caught before merging.
-4. **Capture one skill** from a session where you corrected the agent twice on the same convention. End the session with *"write a skill from this."* Save it. **You'll know it worked when** the correction stops happening on the next session.
+1. **Run plan → diff → ship on a real ticket or a real bug.** Either pick a small Linear/Jira ticket from your own board, or clone an open-source repo you've never seen and pick an existing issue from its tracker. Drop the URL straight in:
+   > *"Pick up `<your ticket or issue URL>` in `<repo path>`. Plan first, then small diffs, then open a PR — or, if it's a bug hunt, trace it and tell me which file the bug is in and why."*
+   **You'll know it worked when** the agent points at a specific file and line with reasoning that holds up, and (for a ticket) the PR title isn't worse than one you'd write.
+2. **Run a second-pair-of-eyes review** on a PR you already wrote this week. Ask only for security, edge cases, and missing tests. **You'll know it worked when** it flags at least one thing you'd rather have caught before merging.
+3. **Capture one skill** from a session where you corrected the agent twice on the same convention. End the session with *"write a skill from this."* Save it. **You'll know it worked when** the correction stops happening on the next session.
 
 ## What's next
 

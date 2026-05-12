@@ -1,6 +1,6 @@
 # 20. For PMs, Designers, and Business / Ops
 
-*A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from the author's team and from teams the author has worked with. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
+*A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from working teams the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
 It's 8:50 AM on a Monday. You're a marketing manager. Your week so far: a competitor launched something on Friday that you have not yet looked at; the welcome email still has last quarter's promo in it; the boss wants a board slide on last month's ad spend by lunch; there's a customer event in nine days that no one has started prepping; and somewhere in the back of your mind you know your Google Ads spend has been wandering.
 
@@ -197,6 +197,4 @@ The book repo ships starter folders so you can run the two highest-leverage exer
 2. **Resume screening.** Run the HR flagship against `examples/ch-20-hr/`:
    > *"Score the CVs in `examples/ch-20-hr/cvs/` against `examples/ch-20-hr/jd.md`. Rank them 1–5 with a one-sentence reason each."*
    **You'll know it worked when** the ranking is defensible — each candidate's reason names a must-have hit or missed, not a vibes-based score.
-3. **Then run it for real** — pick one repetitive marketing or ops task from this week (a recurring report, a template update, a content variant) and hand it to the agent end-to-end. **You'll know it worked when** you don't open the underlying tool's UI at all.
-4. **Run the paid-ads or SEO opening move**: ask *"is there a connector for Shopify? for Google Ads? for our blog? Any pre-built workflows I should install before we start?"* Equip the agent — don't yet start the actual campaign work. **You'll know it worked when** the agent reports what it installed and what's now available.
-5. **Capture one *"how we do it here"* workflow as a reusable skill.** Brand voice, escalation paths, event-launch checklist — anything you'd repeat. End the session by saying *"write a skill from what we just did."* **You'll know it worked when** the next instance of that task is one ask.
+3. **Then run it for real, end to end.** Pick one repetitive marketing or ops task from this week — a recurring report, a template update, a content variant. Start with the equip-first move (*"is there a connector for the system I'm about to touch? any pre-built workflows I should install?"*), then run the task, then close the session by asking *"write a skill from what we just did"* so the next instance is one ask. **You'll know it worked when** you don't open the underlying tool's UI at all *and* you have a named skill you can call next week.

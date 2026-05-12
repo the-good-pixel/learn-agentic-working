@@ -27,7 +27,6 @@ We use **Claude Code** as the main running example because that's what the autho
 | A **software engineer** | Stop typing every line. Delegate feature work, bug hunts, refactors, code review. |
 | A **PM, designer, or analyst** | Turn tickets, meeting notes, and client feedback into shipped artifacts without waiting on a developer for every small thing. |
 | In **operations, finance, HR, marketing** | Automate the spreadsheet/inbox/report grind. Build small tools you'd never have asked a developer to build. |
-| A **team lead** | Set conventions, share skills, roll this out without chaos. |
 | **Curious but new** | Go from "I've used ChatGPT" to "I run agents that do my work" in one weekend. |
 
 **Prerequisites:** you've used a chat AI like ChatGPT, Gemini, or Claude.ai. That's it. We'll cover everything else.
@@ -45,7 +44,7 @@ Reading paths, depending on who you are:
 - **If you're brand new**: read Part I and Part II in order, then jump to the workflow in Part V that matches your role. Skip everything else for now.
 - **If you want to see what an agent can actually do first** (the "convince me before I invest in setup" path): read Part I, then skip ahead to **Part III** and your **Part V** chapter. Loop back to Part II once you're sold.
 - **If you've used Claude Code or Codex a bit**: skim Part I, settle in for Part II (most people miss the setup that makes the rest easy), and treat Parts III–VI as a reference.
-- **If you're a team lead**: Part I, then Ch. 24 (Team Leads + adoption), then come back for the rest.
+- **If you're rolling this out across a small team**: Part I, then Ch. 7 (trust / monitor-don't-block) and Ch. 16–17 (skills as shared institutional knowledge), then come back for the rest.
 
 Every chapter is standalone. Code is copy-pasteable. Examples are real — drawn from actual work, not invented.
 
@@ -216,8 +215,8 @@ The site is rendered with VitePress and is structured for multilingual translati
 
 ## Start here
 
-→ **[Chapter 1: From Chatbot to Agent](part-1-foundations/01-from-chatbot-to-agent.md)**
+→ **[Chapter 1: What changes when AI can act, not just answer?](en/part-1-foundations/chapter-01-what-changes-when-ai-can-act/index.md)**
 
 Or, if you'd rather just *try it*:
 
-→ **[Chapter 4: A 10-minute first win](part-1-foundations/04-first-win.md)**
+→ **[Chapter 4: A 10-minute first win](en/part-1-foundations/chapter-04-a-10-minute-first-win/index.md)**

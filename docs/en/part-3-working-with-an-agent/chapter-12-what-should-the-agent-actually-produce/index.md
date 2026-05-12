@@ -118,7 +118,7 @@ A few patterns to watch for:
 ## The takeaway
 
 - The cardinal question is **artifact or action?** If the work ends in a system with an MCP, the deliverable is the system update, not a document.
-- For artifacts, six forms cover almost everything: Markdown, HTML+CSS, LaTeX→PDF, Video, Image, and Direct action via MCP.
+- For artifacts, six forms cover almost everything: Markdown, HTML, PDF, Video, Image, and Direct action via MCP.
 - Markdown is the right default. Reach for the others when their specific strengths matter.
 - State the deliverable in the brief — name the file, the location, the structure, or the target system.
 - The most common mistake is producing a document for work that should have been a system action.
