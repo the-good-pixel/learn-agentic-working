@@ -7,6 +7,8 @@
 3. Any KPI that moved more than 15% MoM needs a one-line explanation.
 4. No contractions in the closing line.
 
+*(Note: correction #1 actually fires twice in the transcript — first mid-session, then again at the closing line. It's still one rule, not two; a careful skill-from-conversation extraction should recognize the repeat and capture it as a single hard rule.)*
+
 Drop the whole transcript into a fresh agent session and say:
 
 > *"I just had this session — paste below. Write me a skill that captures what we did, especially the corrections I had to give you. Save it as `.claude/skills/weekly-team-update/SKILL.md`."*
