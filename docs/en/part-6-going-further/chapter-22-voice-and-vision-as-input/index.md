@@ -46,7 +46,7 @@ The bigger shift is on the input side. Modern agents can take *images* as part o
 
 A few real cases that fall flat without vision and click with it:
 
-**"What's wrong with this layout?"** You drag a screenshot of the broken page into the chat. The agent reads the rendered pixels — alignment, color, spacing, hierarchy — and tells you what's off, often more accurately than reading the CSS would. Then it fixes the CSS.
+**"What's wrong with this layout?"** You drag a screenshot of the broken page into the chat. The agent reads the rendered pixels — alignment, color, spacing, hierarchy — and tells you what's off, often more accurately than reading the page's style code would. Then it fixes the styling.
 
 **"This bank statement is confusing — what's actually being charged here?"** You snap a photo of the statement. The agent reads the line items, groups them, calls out the recurring charges and the one-time ones, and tells you which fee is new.
 

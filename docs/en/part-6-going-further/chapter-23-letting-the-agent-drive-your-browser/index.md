@@ -16,7 +16,7 @@ Browser-driving splits into two flavors. They feel different and serve different
 
 **Headed real-browser driving.** The agent controls a real browser window — Claude for Chrome (an extension that hands a live tab to the agent), ChatGPT Agent / Operator, or any of the emerging computer-use APIs. You can *watch* the cursor move and the pages flip. It's signed in as you (because it's your browser), so anything that needs your auth Just Works. It's the right mode for *one-off* tasks: investigate a thing on a third-party site, fill in a long auth-gated form, operate a vendor portal that has no API. The downside: it's session-bound. The agent isn't going to repeat this work tomorrow without you re-driving it.
 
-**Headless scripted-browser driving.** The agent writes (and later re-runs) a script — usually Playwright or Puppeteer — that drives a headless browser. There's no live window to watch; the agent reasons over the page's structure and produces a script that can be replayed. This is the mode for anything *repeatable*: making demo videos on a schedule, regression-testing flows, scraping a dashboard nightly, generating screenshots for marketing across viewports. The `demo-video` skill described later in this chapter is this mode at its most polished.
+**Headless scripted-browser driving.** The agent writes (and later re-runs) a script — usually Playwright (a browser-automation framework) or Puppeteer (another browser-automation framework) — that drives a headless browser. There's no live window to watch; the agent reasons over the page's structure and produces a script that can be replayed. This is the mode for anything *repeatable*: making demo videos on a schedule, regression-testing flows, scraping a dashboard nightly, generating screenshots for marketing across viewports. The `demo-video` skill described later in this chapter is this mode at its most polished.
 
 A rough rule: **once you want this to happen more than twice, the scripted mode pays for itself**. Until then, headed mode is faster to get going.
 
@@ -25,7 +25,7 @@ A rough rule: **once you want this to happen more than twice, the scripted mode 
 Whatever mode you're in, the underlying loop is the same and it's worth naming:
 
 1. **Navigate.** The agent goes to a URL.
-2. **Snapshot.** It captures the current page — a screenshot, plus a structured representation of the elements on it (DOM, accessibility tree, or a model-friendly text rendering). Each interactive element gets a stable reference so the agent can point at "the third button" without ambiguity.
+2. **Snapshot.** It captures the current page — a screenshot, plus a structured representation of the elements on it (the DOM — the structured tree the browser builds for a page — the accessibility tree — the same tree a screen reader uses — or a model-friendly text rendering). Each interactive element gets a stable reference so the agent can point at "the third button" without ambiguity.
 3. **Interact.** It clicks, types, scrolls, or waits — pointing at elements by their reference, not by guessing pixel coordinates.
 4. **Re-snapshot.** It takes another snapshot and checks the page actually changed in the way it expected.
 
@@ -37,7 +37,7 @@ This loop is the spine of every browser-driving skill we've shipped. It's also t
 
 ### Making demo videos (the `demo-video` skill)
 
-The cleanest worked example. Our `demo-video` skill, in production on the product, drives a real Playwright browser through a feature, emits a raw video plus a stream of "cursor moved here, click happened there, spotlight this element" events, and then a Remotion pipeline composites brand chrome — opening title, watermark, bottom chyron with sell-the-job-to-be-done copy, end-card CTA — on top of the raw footage.
+The cleanest worked example. Our `demo-video` skill, in production on the product, drives a real Playwright browser through a feature, emits a raw video plus a stream of "cursor moved here, click happened there, spotlight this element" events, and then a Remotion (a video-compositing library) pipeline composites brand chrome — opening title, watermark, bottom chyron with sell-the-job-to-be-done copy, end-card CTA — on top of the raw footage.
 
 What's notable is what the skill *won't* let the agent do, captured as hard rules learned from real user feedback: no spring animations ("feels ancient and old-school"), no chapter indicators ("makes viewers feel stuck on step one"), no separate intro card, chyron must own the full-width bottom band ("corner callouts get missed when the eye is on data"), don't redesign the chrome — copy it from an existing composition. The third demo video we made took one command. (See Ch. 16 for the war story behind why this became a skill, and Ch. 17 for the anatomy.)
 
@@ -51,9 +51,9 @@ Hand the agent your staging URL and a paragraph describing the product. Ask it t
 
 ### Investigating third-party platforms
 
-Real example: a Threads post wasn't rendering a link preview, and Meta's docs were unhelpful. The agent drove a browser to the post, opened the URL it linked to, fetched the page server-side as Meta's crawler would (different User-Agent string), compared the Open Graph tags between what was actually served and what Threads displayed, and identified the missing tag. Twenty minutes, no help thread.
+Real example: a Threads post wasn't rendering a link preview, and Meta's docs were unhelpful. The agent drove a browser to the post, opened the URL it linked to, fetched the page server-side as Meta's crawler would (different User-Agent string — the identifier the browser sends to tell sites what it is), compared the Open Graph tags (the metadata a page provides for link previews) between what was actually served and what Threads displayed, and identified the missing tag. Twenty minutes, no help thread.
 
-The same shape works for "why does Google's preview look wrong", "why does this LinkedIn embed crop my image", "why won't Slack unfurl this URL." The agent is doing what you would do with two browser windows and curl — just faster, and writing notes as it goes.
+The same shape works for "why does Google's preview look wrong", "why does this LinkedIn embed crop my image", "why won't Slack unfurl this URL." The agent is doing what you would do with two browser windows and curl (a command-line tool for making HTTP requests) — just faster, and writing notes as it goes.
 
 ### Filling auth-gated forms
 
@@ -61,7 +61,7 @@ The classic non-engineering case. Your benefits portal makes you re-enter the sa
 
 ### Visual bug repro across viewports
 
-A user reports the navbar overlaps the hero text. You don't know which viewport. The agent loads the page at six common viewport sizes, screenshots each, and tells you which ones reproduce. Then it walks the DOM at the broken viewport and proposes the CSS fix. This used to be twenty minutes of resizing windows. Now it's a paragraph.
+A user reports the navbar overlaps the hero text. You don't know which viewport. The agent loads the page at six common viewport sizes, screenshots each, and tells you which ones reproduce. Then it walks the page structure at the broken viewport and proposes a fix in the page's style code. This used to be twenty minutes of resizing windows. Now it's a paragraph.
 
 ### Operating vendor portals with no API
 
@@ -84,8 +84,8 @@ Only when none of those exist do you drive the browser ad-hoc. And when you do d
 Browser-driving is the most physically *visible* form of agent action — you literally watch the cursor move. That makes the failure modes easier to spot than most.
 
 - **Stale snapshots.** The agent acts on a snapshot from before the page finished loading. Fix: tell it to wait for a specific element ("wait until the dashboard chart renders") instead of waiting a fixed number of seconds.
-- **Hidden state.** Auth lives in IndexedDB, or session storage, or a cookie that expires. The `demo-video` skill's auth gotcha — Firebase login state lives in IndexedDB, not cookies, so Playwright's default `storageState` misses it — is a real one. Capture the failure mode in the skill the first time it bites you.
-- **Selectors that aren't stable.** "The button with text 'Submit'" works until someone changes the copy. Prefer accessibility-tree references and data-test attributes; if you're operating someone else's site, accept that the script will break occasionally and the agent will need to re-walk it.
+- **Hidden state.** Auth lives in IndexedDB (a kind of browser storage), or session storage, or a cookie that expires. The `demo-video` skill's auth gotcha — Firebase login state lives in IndexedDB, not cookies, so Playwright's default saved login state misses it — is a real one. Capture the failure mode in the skill the first time it bites you.
+- **Selectors that aren't stable.** "The button with text 'Submit'" works until someone changes the copy. Prefer accessibility-tree references and data-test attributes (markers developers add to make elements easy to find); if you're operating someone else's site, accept that the script will break occasionally and the agent will need to re-walk it.
 - **Drift from "I'll just watch it once" to "I'll just trust it."** Headed mode lulls you into watching less over time. For high-stakes actions (anything financial, anything irreversible — see Ch. 24), keep a gate even when the agent has done it ten times. For reversible things, let it cook.
 
 ## In other tools
