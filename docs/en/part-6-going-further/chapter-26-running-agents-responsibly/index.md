@@ -1,4 +1,4 @@
-# 25. Running agents responsibly: cost, quality, and what to never feed them
+# 26. Running agents responsibly: cost, quality, and what to never feed them
 
 The agent has been part of your daily work for three months. You've moved past *"can it do this?"* and well into *"it just did three things while I was on a call."* Then three things happen in the same week.
 
@@ -24,7 +24,7 @@ There are four lightweight habits that catch this without spinning up an ML-team
 
 **A/B the change.** When you tweak a skill, a CLAUDE.md, or a prompt template, run the new version and the old version on the same five inputs from your replay set. Read both outputs. The "best" one is the one you'd ship — there's no statistical test, just your judgment. This catches the regression you can't see in a single run, where the new version is subtly worse on a dimension you weren't watching.
 
-**Use one agent to regression-test another.** A real-world `test-assistant-capacity` skill we've seen in production is exactly this pattern: a project-level skill that walks every documented capability of a production AI assistant and verifies it still picks the right tool, gives the right safety-rail wording, and answers within the right bounded scope — because no CI job runs the assistant end-to-end. Agent regression-tests agent. The output is a pass/fail report you can scan in a minute, and it runs on a long-running loop (Ch. 14) so the regression catches itself before a user does.
+**Use one agent to regression-test another.** A real-world `test-assistant-capacity` skill we've seen in production is exactly this pattern: a project-level skill that walks every documented capability of a production AI assistant and verifies it still picks the right tool, gives the right safety-rail wording, and answers within the right bounded scope — because no CI job runs the assistant end-to-end. Agent regression-tests agent. The output is a pass/fail report you can scan in a minute, and it runs on a long-running loop (Ch. 15) so the regression catches itself before a user does.
 
 This is also the simplest answer to *"how do I know if upgrading to the new model broke anything?"* — point your regression-tester at the new model and read the diff.
 

@@ -1,4 +1,4 @@
-# 16. Skills, slash commands, and MCPs — what's the difference?
+# 17. Skills, slash commands, and MCPs — what's the difference?
 
 You open a fresh terminal in your project and ask the agent to ship a PR. It pushes, opens the PR, watches CI, fixes a flaky test, replies to a code-review comment, and pings you when it's green. Forty minutes later you come back and merge.
 
@@ -70,7 +70,7 @@ Skills handle three kinds of things a slash command can't:
 2. **Accumulated gotchas.** The `demo-video` skill on the product's repo includes hard rules like *"no spring animations"* and *"chyron owns the bottom band"* — bits of feedback we had to give the agent twice before turning them into a rule.
 3. **Composing multiple tools.** The agent uses git, the GitHub MCP, the CI checker, and the file system *together*, all inside one skill invocation.
 
-We'll get into when something becomes worth turning into a skill in Ch. 17, and how to write one (or rather, how to let the agent write one *for you*) in Ch. 18.
+We'll get into when something becomes worth turning into a skill in Ch. 18, and how to write one (or rather, how to let the agent write one *for you*) in Ch. 19.
 
 ## MCP: the new tool underneath
 
@@ -105,7 +105,7 @@ Two distinct costs, and only the first is about the LLM.
 
 The practical move is the discipline twin of *equip first, then engage*: **equip deliberately, not aspirationally.** Three MCPs you actually use beats ten you might use. If you need a tool occasionally, leave it uninstalled and add it for the session that needs it. Periodically — every few weeks — audit what you have loaded and uninstall what you haven't reached for. The *"more is more"* intuition from chatbot land does not survive the move to agents.
 
-This is the same finding Ch. 15 made about long sessions, just at the equipment layer. Everything you load up front is competing for the same context window that the agent's *actual work* needs to live in. Watch what you put on the shelf as carefully as you watch what fills the window mid-session.
+This is the same finding Ch. 16 made about long sessions, just at the equipment layer. Everything you load up front is competing for the same context window that the agent's *actual work* needs to live in. Watch what you put on the shelf as carefully as you watch what fills the window mid-session.
 
 ## A worked decision: "I want my agent to always X"
 
@@ -113,7 +113,7 @@ You catch yourself wishing the agent would *always* do something. Walk down the 
 
 1. **Is it a one-time thing?** Just say it in the prompt. Done.
 2. **Is it the same prompt every time?** Slash command. Save the template, give it a name.
-3. **Is it a procedure with steps and lessons learned?** Skill. Let the agent draft the `SKILL.md` from your last session (Ch. 18).
+3. **Is it a procedure with steps and lessons learned?** Skill. Let the agent draft the `SKILL.md` from your last session (Ch. 19).
 4. **Does it need a tool the agent doesn't have?** MCP. Install one if it exists; if not, ask the agent to wrap the API.
 
 Most of the time the right answer is one rung up the ladder from where you started. Don't reach for an MCP when a skill would do; don't reach for a skill when a slash command is enough.
@@ -155,4 +155,4 @@ Why that one:        ____________________
 
 ## What's next
 
-Ch. 17 takes the question one level deeper: out of all the things you do every week, which ones cross the line from "just keep prompting" to "this should be a skill"? A few real stories, drawn from both engineering and non-engineering work, draw the line.
+Ch. 18 takes the question one level deeper: out of all the things you do every week, which ones cross the line from "just keep prompting" to "this should be a skill"? A few real stories, drawn from both engineering and non-engineering work, draw the line.

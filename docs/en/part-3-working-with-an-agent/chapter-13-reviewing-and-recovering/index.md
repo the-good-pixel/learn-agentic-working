@@ -178,4 +178,4 @@ The harder review case is when the diff is large *and correct in places, wrong i
 
 ## What's next
 
-You can review and recover. Now we raise the stakes: Ch. 14 is about letting the agent cook for longer — background tasks, parallel work, multiple agents at once. The trust philosophy you just used here scales up to those patterns, with care.
+You can review and recover. Now we raise the stakes: Ch. 15 is about letting the agent cook for longer — background tasks, parallel work, multiple agents at once. The trust philosophy you just used here scales up to those patterns, with care.

@@ -1,4 +1,4 @@
-# 21. For PMs, Designers, and Business / Ops
+# 22. For PMs, Designers, and Business / Ops
 
 *A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from working teams the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
@@ -82,7 +82,7 @@ The agent searches the vendor sources and community libraries, surfaces what it 
 
 **Step 4 — execute.** *"Create those campaigns in Google Ads. Pause them on creation so I can review before they go live."*
 
-**Step 5 — measure and optimize.** Set this on a recurring schedule (Ch. 14): *"every Monday, pull last week's campaign performance. Tell me what's working and what isn't. Propose budget reallocations and pause anything below threshold X. Do not act on the budget changes until I approve."*
+**Step 5 — measure and optimize.** Set this on a recurring schedule (Ch. 15): *"every Monday, pull last week's campaign performance. Tell me what's working and what isn't. Propose budget reallocations and pause anything below threshold X. Do not act on the budget changes until I approve."*
 
 The agent owns the **full audit → strategize → execute → measure → optimize loop**. You own the approvals on the *bigger* moves — launching, pausing, big budget shifts — and you let the small daily decisions run.
 
@@ -173,15 +173,15 @@ Related asks:
 - *"Read `~/Documents/founder/pricing-plan-v3.md`. Argue against it. Steel-man the case for cutting the middle tier."*
 - *"Draft this month's investor update from `~/Documents/founder/metrics-nov.csv` and the three product wins listed in `~/Documents/founder/nov-wins.md`. Save as `~/Documents/founder/investor-updates/nov-2024.md`."*
 
-The competitor-monitoring one is the strongest case for *long-running agents* (Ch. 14) — set it once, let it run, and you stop forgetting to check.
+The competitor-monitoring one is the strongest case for *long-running agents* (Ch. 15) — set it once, let it run, and you stop forgetting to check.
 
 ## Cross-cutting
 
 Two more things that don't belong to any role but matter to all of them:
 
-**Operating tools that don't have an obvious connector** — vendor portals, internal tools, older platforms. Even when no neat plug-in exists, the agent can *drive your browser* directly (Ch. 24). It opens the page, looks at it, clicks the buttons, fills the form. You watch it work.
+**Operating tools that don't have an obvious connector** — vendor portals, internal tools, older platforms. Even when no neat plug-in exists, the agent can *drive your browser* directly (Ch. 25). It opens the page, looks at it, clicks the buttons, fills the form. You watch it work.
 
-**Long-running recurring reports** — the *"every Friday, email me X"* shape. Long-running agents (Ch. 14) let you build small reports that would never have justified a BI subscription.
+**Long-running recurring reports** — the *"every Friday, email me X"* shape. Long-running agents (Ch. 15) let you build small reports that would never have justified a BI subscription.
 
 ## The takeaway
 

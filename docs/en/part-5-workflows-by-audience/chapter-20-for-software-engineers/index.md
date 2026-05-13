@@ -1,4 +1,4 @@
-# 19. For Software Engineers
+# 20. For Software Engineers
 
 *A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from working teams the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
@@ -44,7 +44,7 @@ Ask the agent before you ask the human:
 
 > *Walk me through this codebase as if I were starting Monday. What are the top-level modules? Where does a request enter? Where do tests live? What's idiomatic here that I should not fight?*
 
-It writes you a map. Then you ask follow-ups: *"how does auth work end-to-end?"*, *"what's `WorkflowDispatcher` actually for?"*, *"why are there two different cron systems?"* (and yes — sometimes there really are two; a good codebase has a skill that documents the choice, see Ch. 18).
+It writes you a map. Then you ask follow-ups: *"how does auth work end-to-end?"*, *"what's `WorkflowDispatcher` actually for?"*, *"why are there two different cron systems?"* (and yes — sometimes there really are two; a good codebase has a skill that documents the choice, see Ch. 19).
 
 You'll arrive at Thursday's onboarding meeting with sharper questions than the senior engineer was expecting. They'll think you read the whole thing over the weekend. You read about 4% of it; the agent read the rest with you.
 
@@ -78,7 +78,7 @@ The agent that wrote the code is the wrong agent to review the code. So run a se
 
 > *"Read the diff in this PR as if you were a security reviewer. Flag anything that touches user input, credentials, database queries, or auth tokens. For each flag, say what an attacker would have to do to exploit it, and what the fix looks like."*
 
-The pattern: when a PR is up, fire a sub-agent (Ch. 14) with one job — *"review this PR for security holes, missed edge cases, and missing tests. Don't propose fixes. Just flag."* It comes back with a list. You read the list. You decide.
+The pattern: when a PR is up, fire a sub-agent (Ch. 15) with one job — *"review this PR for security holes, missed edge cases, and missing tests. Don't propose fixes. Just flag."* It comes back with a list. You read the list. You decide.
 
 This is your **second pair of eyes** and it costs you a sentence to invoke. It catches the *"oh, we never check whether the user owns this resource before deleting it"* class of bug that the writing-agent missed because it was too deep in its own diff.
 
@@ -98,7 +98,7 @@ You don't need this on day one. You'll know you need it the day you stomp on you
 
 You'll notice, over a couple of weeks, that you keep correcting the agent on the same things. *"No, we use `pnpm` here, not `npm`."* *"No, our migrations live in `db/migrations`, not `prisma/migrations`."* *"No, we test with Vitest, not Jest."*
 
-Each repeated correction is a signal. Write it down as a skill (Ch. 17, Ch. 18) — or rather, finish the session and say *"that was useful; write a skill from what we just did."* The agent reads back over the conversation, picks out the corrections and gotchas, and drafts the skill for you. You read it, save it. Next time, the correction isn't needed.
+Each repeated correction is a signal. Write it down as a skill (Ch. 18, Ch. 19) — or rather, finish the session and say *"that was useful; write a skill from what we just did."* The agent reads back over the conversation, picks out the corrections and gotchas, and drafts the skill for you. You read it, save it. Next time, the correction isn't needed.
 
 Some skills worth stealing from real codebases:
 
