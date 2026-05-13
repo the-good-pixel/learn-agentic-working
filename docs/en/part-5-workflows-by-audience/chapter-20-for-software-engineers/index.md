@@ -1,4 +1,4 @@
-# 19. For Software Engineers
+# 20. For Software Engineers
 
 *A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from working teams the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
@@ -44,7 +44,7 @@ Ask the agent before you ask the human:
 
 > *Walk me through this codebase as if I were starting Monday. What are the top-level modules? Where does a request enter? Where do tests live? What's idiomatic here that I should not fight?*
 
-It writes you a map. Then you ask follow-ups: *"how does auth work end-to-end?"*, *"what's `WorkflowDispatcher` actually for?"*, *"why are there two different cron systems?"* (and yes — sometimes there really are two; a good codebase has a skill that documents the choice, see Ch. 18).
+It writes you a map. Then you ask follow-ups: *"how does auth work end-to-end?"*, *"what's `WorkflowDispatcher` actually for?"*, *"why are there two different cron systems?"* (and yes — sometimes there really are two; a good codebase has a skill that documents the choice, see Ch. 19).
 
 You'll arrive at Thursday's onboarding meeting with sharper questions than the senior engineer was expecting. They'll think you read the whole thing over the weekend. You read about 4% of it; the agent read the rest with you.
 
@@ -98,7 +98,7 @@ You don't need this on day one. You'll know you need it the day you stomp on you
 
 You'll notice, over a couple of weeks, that you keep correcting the agent on the same things. *"No, we use `pnpm` here, not `npm`."* *"No, our migrations live in `db/migrations`, not `prisma/migrations`."* *"No, we test with Vitest, not Jest."*
 
-Each repeated correction is a signal. Write it down as a skill (Ch. 17, Ch. 18) — or rather, finish the session and say *"that was useful; write a skill from what we just did."* The agent reads back over the conversation, picks out the corrections and gotchas, and drafts the skill for you. You read it, save it. Next time, the correction isn't needed.
+Each repeated correction is a signal. Write it down as a skill (Ch. 18, Ch. 19) — or rather, finish the session and say *"that was useful; write a skill from what we just did."* The agent reads back over the conversation, picks out the corrections and gotchas, and drafts the skill for you. You read it, save it. Next time, the correction isn't needed.
 
 Some skills worth stealing from real codebases:
 

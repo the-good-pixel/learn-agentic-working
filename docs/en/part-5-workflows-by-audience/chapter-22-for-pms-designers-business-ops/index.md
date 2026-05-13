@@ -1,4 +1,4 @@
-# 21. For PMs, Designers, and Business / Ops
+# 22. For PMs, Designers, and Business / Ops
 
 *A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from working teams the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
@@ -179,7 +179,7 @@ The competitor-monitoring one is the strongest case for *long-running agents* (C
 
 Two more things that don't belong to any role but matter to all of them:
 
-**Operating tools that don't have an obvious connector** — vendor portals, internal tools, older platforms. Even when no neat plug-in exists, the agent can *drive your browser* directly (Ch. 24). It opens the page, looks at it, clicks the buttons, fills the form. You watch it work.
+**Operating tools that don't have an obvious connector** — vendor portals, internal tools, older platforms. Even when no neat plug-in exists, the agent can *drive your browser* directly (Ch. 25). It opens the page, looks at it, clicks the buttons, fills the form. You watch it work.
 
 **Long-running recurring reports** — the *"every Friday, email me X"* shape. Long-running agents (Ch. 14) let you build small reports that would never have justified a BI subscription.
 

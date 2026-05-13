@@ -72,7 +72,7 @@ If the relevant information lives on a public webpage, hand the agent the URL an
 
 This matters for the same reason files matter: paraphrases are lossy. The agent will pick up signal from headings, structure, footnotes, and adjacent paragraphs that you would never think to copy out.
 
-When the source requires authentication or is behind a portal, that's when the **browser MCP** earns its keep — the agent drives a real browser, logs in (with your blessing), and reads the page that way. Ch. 24 is the deep-dive on this.
+When the source requires authentication or is behind a portal, that's when the **browser MCP** earns its keep — the agent drives a real browser, logs in (with your blessing), and reads the page that way. Ch. 25 is the deep-dive on this.
 
 ## The throughline from Ch. 8: persistent context
 
@@ -92,7 +92,7 @@ This is **context bloat**. The context window is finite, and you've packed it wi
 
 Most agent tools handle this with **compaction**: at some threshold, the agent automatically summarizes the older parts of the conversation to make room for new work. Compaction is necessary, but it's also lossy. The summary the agent writes of "what we were doing earlier" may quietly drop a detail you cared about.
 
-The honest cure is not to fight compaction; it's to **start fresh when the task changes**. When you finish a unit of work — a bug fixed, an article drafted, a campaign launched — close the session and open a new one for the next task. Each new session inherits the persistent context (`CLAUDE.md`, memory, skills, MCPs) but starts with a clean working table. Ch. 15 is the working chapter on this: the levers you have inside a session (`/compact`, `/clear`, the handoff file), why position matters more than size, and why every installed MCP or skill is itself loaded context.
+The honest cure is not to fight compaction; it's to **start fresh when the task changes**. When you finish a unit of work — a bug fixed, an article drafted, a campaign launched — close the session and open a new one for the next task. Each new session inherits the persistent context (`CLAUDE.md`, memory, skills, MCPs) but starts with a clean working table. Ch. 15 explains why every installed MCP or skill is itself loaded context — so equipping deliberately matters before the session begins — and Ch. 16 is the working chapter on managing the window once you're inside a session: `/compact`, `/clear`, the handoff file, and why position matters more than size.
 
 Heuristics for "time to start fresh":
 

@@ -1,8 +1,8 @@
-# 15. Managing context
+# 16. Managing context
 
-You're three hours into a session. The agent is referencing a decision you reversed forty minutes ago. The reminder you set on turn one — *"don't touch the billing file"* — is gone in spirit. You've just installed a Shopify MCP and a Google Ads MCP, and you can't quite tell whether they're helping or quietly making the agent dumber. The work is *slowing down* and you can't say why.
+You're three hours into a session. The agent is referencing a decision you reversed forty minutes ago. The reminder you set on turn one — *"don't touch the billing file"* — is gone in spirit. The agent is repeating itself, contradicting things it said an hour ago, and the work is *slowing down* in a way you can't quite name.
 
-Ch. 11 taught you what context *is*. This chapter is the working chapter: how you *manage* the context window across a real session that lasts longer than five prompts. There are levers you actually control — and ignoring them is the single most common reason a promising session goes sideways.
+Ch. 11 taught you what context *is*. Ch. 15 covered the discipline of what to load (and not load) at the start of a session. This chapter is the working chapter for what happens *during* the session: the levers you have when the window starts filling up. Ignoring them is the single most common reason a promising session goes sideways.
 
 ## Why position matters: lost in the middle
 
@@ -20,33 +20,6 @@ So the user-actionable takeaway from the lost-in-the-middle finding is genuinely
 2. **A sub-agent or a separate local agent.** Hand a side-quest (research, a long audit, an investigation) to a fresh agent instance that gets only the partial context it needs to do *that* sub-task. Claude Code's `Task` tool does this; Codex and OpenCode have equivalents. The sub-agent's middle isn't your middle — and when it returns a one-page summary, that summary lands at the *end* of your main context, where attention is high.
 
 Both methods do the same fundamental thing: they sidestep the U-shape rather than try to outwit it.
-
-## The trap of plugins and skills
-
-Ch. 10 asked you to *equip first, then engage* — install the MCPs and skills for the domain before starting the task. That's still right. But it has a cost the earlier chapter glossed over: **every installed MCP server, every skill, every plugin you load costs tokens in the context window from turn zero.** A typical MCP server adds several thousand tokens of tool definitions. Ten installed servers burns 20–30K tokens before the agent has read a single file.
-
-The strategy the industry has chosen is, in principle, reasonable. Rather than train a separate *vertical* model for finance, marketing, ops, or law, vendors ship a general-purpose model and steer it per domain with a stack of instruction files. Skill packs, plugin bundles, "200+ skills in one install" community repos on GitHub — same idea: pile on instructions instead of training a new model. Cheaper, more flexible, in principle sound. **The mismatch is on the model side.** Today's foundational models can't yet navigate many tools, skills, and instructions in a single context window without losing accuracy. The strategy may catch up eventually; right now, the gap is real and *you* wear the cost. Anthropic's own engineering team [says it plainly](https://www.anthropic.com/engineering/writing-tools-for-agents): *"Too many tools or overlapping tools can also distract agents from pursuing efficient strategies."*
-
-The empirical numbers track. The [RAG-MCP paper](https://arxiv.org/abs/2505.03275) (Gan & Sun, May 2025) ran a stress test where the candidate pool of MCP tools grows. Baseline LLM tool-selection accuracy falls to **13.6 %**. With retrieval-augmented tool discovery — i.e. only loading the relevant tool's spec on demand — accuracy jumps to **43.1 %**. The follow-up paper [JSPLIT](https://arxiv.org/abs/2510.14537) (Oct 2025) restates the diagnosis: *"as the number of tools increases, the prompts become longer, leading to high prompt token costs, increased latency, and reduced task success resulting from the selection of tools irrelevant to the prompt."*
-
-There are two distinct costs to this bloat, and only the first is about the LLM.
-
-**Cost one: the agent gets confused.** With thirty installed tools, it picks the wrong one, or doesn't pick one at all, or — the subtler effect — once it has used a particular tool once, that tool sits in recent context and the agent biases toward reusing it on the next sub-task even when a different tool would fit better. Anthropic's *"distract from efficient strategies"* phrasing is the cleanest term for this; in practice you watch the agent reach for the hammer it picked up an hour ago instead of the screwdriver that was always available.
-
-**Cost two: *you* get confused.** Nobody warns you about this one. The more plugins and skills you install, the more *you* have to remember — which command does what, what each is named, which ones overlap. The user becomes the bottleneck. It's the slow regression to Microsoft Office and Adobe Creative Suite: hundreds of features per product, the user knows six, and the rest generate menu clutter. Forty installed skills named `summarize-doc`, `summarize-document`, `quick-summary`, `summarize-pdf` — and you can't remember which fires on what input. That's the failure mode agents were supposed to rescue you from.
-
-The practical move is the discipline twin of *equip first, then engage*: **equip deliberately, not aspirationally.** Three MCPs you actually use beats ten you might use. If you need a tool occasionally, leave it uninstalled and add it for the session that needs it. Periodically — every few weeks — audit what you have loaded and uninstall what you haven't reached for.
-
-There's a better alternative to the install-everything-from-GitHub habit, and the rest of this book is built on it: **grow your own skills organically, from work you've actually done.** Ch. 17 and Ch. 18 are the full treatment, but the pattern is short enough to name here:
-
-1. Pick a real task. Ask the agent to do it from scratch, with no skill installed. Brief it well; let it work.
-2. The first attempt may hit walls. The agent may go down a wrong path. Correct it. Get the workflow right.
-3. The moment it produces the correct result by the right workflow — before the session ends — say: *"package what we just did into a skill."* The agent reads the conversation back, picks out the steps and corrections, and writes the `SKILL.md` for you.
-4. If your agent tool doesn't support skills yet, fall back to long-term memory: *"remember this workflow for next time."* Same idea, different storage layer.
-
-And what about GitHub skills that *do* look useful? Remember what most of them actually are — a `SKILL.md` plus a handful of code snippets, not real packages with dependencies. Don't install blindly. Paste the URL into your agent and ask it to **read the repo, extract the parts you actually need, and rebuild them locally as your own skill.** Two wins: you get the slice that matters rather than the whole bundle, *and* you've reviewed the code before it touches your machine. Supply-chain attacks on skill and plugin marketplaces are a real and growing concern — a popular repo is a fast path for a prompt injection or malicious post-install script straight into your agent's privileged context. Reading first is cheap insurance the agent does for you.
-
-Skills built either way — organically, or extracted from someone else's repo — capture *your* corrections and *your* working patterns. The kit grows as you grow into it.
 
 ## The four levers you control
 
@@ -107,7 +80,6 @@ The mechanics are similar across the major agent tools, though the slash command
 ## The takeaway
 
 - Position matters more than size: the U-shaped recall curve is real, and long context degrades performance even with perfect retrieval.
-- The skill/plugin shelf is a trap — every install costs tokens *and* the user becomes the bottleneck. Grow your own skills organically from work you've actually done (Ch. 17–18).
 - You have four levers in escalating order: **load, prune, compact, clear**. Reach for the cheapest one that does the job.
 - `/compact` preserves continuity; `/clear` resets to your persistent setup. New session beats both when the task changes.
 - Watch the meter; 60–70 % is wrap-up time. Don't trust the agent's self-report.
@@ -119,14 +91,14 @@ The mechanics are similar across the major agent tools, though the slash command
 
 **You'll know it worked when** the agent's recall is visibly less precise than the original — usually a paraphrase that softens or generalizes a constraint you had stated precisely.
 
-**Exercise 2.** Audit your installed MCPs and skills right now. For each one, ask: *did I use this in the last two weeks?* Uninstall everything that fails that test. Open a fresh session and notice the difference — both in the perceived "alertness" of the agent and in the meter.
-
-**You'll know it worked when** at least one of the uninstalled tools turns out to be something you don't miss for a full week.
-
-**Exercise 3.** At the end of your next real working session, ask the agent: *"Write a one-page `handoff.md` capturing what we decided, what we tried and rejected, what files we touched, and what the next concrete step is."* Save it. Open a new session a day later with *"Read `handoff.md` and continue from the next step."*
+**Exercise 2.** At the end of your next real working session, ask the agent: *"Write a one-page `handoff.md` capturing what we decided, what we tried and rejected, what files we touched, and what the next concrete step is."* Save it. Open a new session a day later with *"Read `handoff.md` and continue from the next step."*
 
 **You'll know it worked when** the second session picks up the work at the same level of context the first one ended at, without you having to re-explain anything.
 
+**Exercise 3.** Run a session deliberately past 70 % of the context meter. Then ask the agent to recall a specific decision from the first ten minutes of the session, verbatim. Compare that to running `/compact` and asking the same question, and then to opening a fresh session and giving it a one-line summary of the decision. Which produces the sharpest follow-on answer?
+
+**You'll know it worked when** you can articulate, from your own experiment, when `/compact` is worth it and when starting fresh is genuinely better.
+
 ## What's next
 
-Part IV opens at Ch. 16 with the layer above all of this — when you notice yourself re-prompting the same correction over and over, that's the signal to capture the workflow as a *skill*.
+Part IV opens at Ch. 17 with the definitional ground for the skills, slash commands, and MCPs we've been referring to throughout — followed by when to write your own (Ch. 18) and how (Ch. 19).

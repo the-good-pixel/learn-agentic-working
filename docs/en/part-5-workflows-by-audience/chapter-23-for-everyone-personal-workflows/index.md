@@ -1,4 +1,4 @@
-# 22. For Everyone (Personal Workflows)
+# 23. For Everyone (Personal Workflows)
 
 *A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real personal-workflow cases the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
@@ -115,7 +115,7 @@ You used to Google it, click five results, and form your own conclusion. Now you
 
 ## When personal becomes worth a skill
 
-If you find yourself making the same ask once a week — *"sort my Downloads folder again"*, *"summarize this week's bank statement"*, *"run my Monday-morning portfolio digest"* — that's the signal to capture it as a *skill*: a reusable workflow with a name, that the agent can invoke later from a one-word prompt. You don't write it; you finish the session, ask the agent *"write a skill that captures what we just did"*, and it drafts the whole thing from the conversation. Ch. 17 covers when to do this; Ch. 18 covers how.
+If you find yourself making the same ask once a week — *"sort my Downloads folder again"*, *"summarize this week's bank statement"*, *"run my Monday-morning portfolio digest"* — that's the signal to capture it as a *skill*: a reusable workflow with a name, that the agent can invoke later from a one-word prompt. You don't write it; you finish the session, ask the agent *"write a skill that captures what we just did"*, and it drafts the whole thing from the conversation. Ch. 18 covers when to do this; Ch. 19 covers how.
 
 A personal skill library forms surprisingly fast. After three or four months you'll have a small toolkit — your downloads-sorter, your statement-decoder, your portfolio-digest, your trip-planner-with-your-preferences-baked-in — that nobody else has. It's yours, written *by* the agent *from* your conversations, and it makes the agent feel like *your* assistant, not a generic one.
 

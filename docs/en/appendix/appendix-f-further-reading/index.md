@@ -70,7 +70,7 @@ The most genuinely uncertain corner of the field as of May 2026. The honest read
 
 ## Browser and computer-use
 
-- **Anthropic's "Introducing computer use" post** (October 2024) and the follow-on technical writeups. Search `anthropic.com` for "computer use". Read these before Ch. 24.
+- **Anthropic's "Introducing computer use" post** (October 2024) and the follow-on technical writeups. Search `anthropic.com` for "computer use". Read these before Ch. 25.
 - **Claude for Chrome announcements.** Search `anthropic.com` for "Claude for Chrome". This is the cleanest example of headed browser driving as a product.
 - **ChatGPT Agent / Operator launch coverage.** OpenAI's Operator launched in early 2025; the product has been renamed and rescoped since. Search "ChatGPT Agent" and "OpenAI Operator" for current state. Simon Willison's coverage is reliable.
 - **Playwright documentation** — `playwright.dev`. Even if your agent drives the browser for you, knowing what Playwright can do tells you what to ask for.
@@ -81,7 +81,7 @@ The most genuinely uncertain corner of the field as of May 2026. The honest read
 
 The corner of this field that's most under-developed in the public literature, and probably most important if you're rolling agents out at a company.
 
-- **Anthropic's posts on evals.** Search `anthropic.com/engineering` for "evals" and "evaluation". They've published the clearest writing on lightweight evals for non-researchers — directly relevant to Ch. 25.
+- **Anthropic's posts on evals.** Search `anthropic.com/engineering` for "evals" and "evaluation". They've published the clearest writing on lightweight evals for non-researchers — directly relevant to Ch. 26.
 - **Inspect AI** — search GitHub for "inspect AI" (the UK AI Safety Institute's framework). One of the more thoughtful open-source eval frameworks. The exact repo path has moved; search rather than trusting a URL I might get wrong.
 - **OpenEvals** — search GitHub for "OpenEvals". A lighter-weight community eval framework. Worth a look if Inspect feels heavy.
 - **Braintrust, Langfuse, Helicone.** Three commercial observability platforms for agent / LLM workflows. Search each by name. Their docs are useful reading even if you don't buy — they tell you what production teams actually instrument.

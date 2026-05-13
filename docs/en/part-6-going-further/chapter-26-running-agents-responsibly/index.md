@@ -1,4 +1,4 @@
-# 25. Running agents responsibly: cost, quality, and what to never feed them
+# 26. Running agents responsibly: cost, quality, and what to never feed them
 
 The agent has been part of your daily work for three months. You've moved past *"can it do this?"* and well into *"it just did three things while I was on a call."* Then three things happen in the same week.
 
