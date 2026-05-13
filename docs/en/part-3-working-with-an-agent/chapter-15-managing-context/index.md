@@ -98,17 +98,22 @@ The mechanics are similar across the major agent tools, though the slash command
 
 ## Try it yourself
 
-**Exercise 1.** Spend ~30 % of your context on a deliberate detour — read a long file, fetch a long web page, run a noisy command. Then ask the agent to recall, *verbatim*, a specific rule you set near the top of the conversation. Did it quote it exactly, or paraphrase? That's lost-in-the-middle in action.
+**Exercise 1: Watch the U-shape happen.** Set a precise, quotable constraint at the top of a fresh session — something specific like *"never start an email with 'In today's fast-paced…'"* or *"all dollar amounts in any output must round to the nearest cent."* Then spend 20–30 minutes on unrelated work that fills the window (open long files, fetch a long web page, do a noisy investigation). Now ask the agent: *"What's the exact rule I set at the start of this session? Quote it back to me word-for-word."*
 
-**You'll know it worked when** the agent's recall is visibly less precise than the original — usually a paraphrase that softens or generalizes a constraint you had stated precisely.
+**You'll know it worked when** the agent paraphrases the rule instead of quoting it — or has lost its specifics entirely. That's the chapter's claim turned into a fact you can see.
 
-**Exercise 2.** At the end of your next real working session, ask the agent: *"Write a one-page `handoff.md` capturing what we decided, what we tried and rejected, what files we touched, and what the next concrete step is."* Save it. Open a new session a day later with *"Read `handoff.md` and continue from the next step."*
+**Exercise 2: Cold-dive vs warm-up.** Pick a real task you'd normally hand the agent — *"add a logout button to the settings page,"* *"draft a one-page summary of the Acme contract,"* *"reconcile last month's Stripe receipts against the invoices folder."* Try it twice in two fresh sessions:
 
-**You'll know it worked when** the second session picks up the work at the same level of context the first one ended at, without you having to re-explain anything.
+- **Session A:** open fresh, first prompt is the task itself.
+- **Session B:** open fresh, first prompt is an abstract warm-up question that forces the agent to read the actual material — *"read the relevant files in `src/settings/` and tell me how the page is structured,"* *"read `acme-contract.pdf` and tell me the three biggest commitments,"* *"look at `stripe-nov.csv` and the `invoices-nov/` folder and tell me how the data is shaped"* — then the same task as Session A.
 
-**Exercise 3.** Run a session deliberately past 70 % of the context meter. Then ask the agent to recall a specific decision from the first ten minutes of the session, verbatim. Compare that to running `/compact` and asking the same question, and then to opening a fresh session and giving it a one-line summary of the decision. Which produces the sharpest follow-on answer?
+Compare quality. How many corrections did you have to make in each?
 
-**You'll know it worked when** you can articulate, from your own experiment, when `/compact` is worth it and when starting fresh is genuinely better.
+**You'll know it worked when** Session B produces a noticeably better first attempt — fewer guesses, fewer corrections, the agent isn't asking *"which column is the gross amount?"* because it already read the column header.
+
+**Exercise 3: A `handoff.md` across sessions.** At the end of your next real working session, ask the agent: *"Write a one-page `handoff.md` capturing what we decided, what we tried and rejected, what files we touched, and what the next concrete step is."* Save it. Open a new session a day later with *"Read `handoff.md` and continue from the next step."*
+
+**You'll know it worked when** the second session picks up the work at the same level of context the first one ended at, without you having to re-explain anything — and especially when a teammate could do the same, because the handoff is plain Markdown.
 
 ## What's next
 
