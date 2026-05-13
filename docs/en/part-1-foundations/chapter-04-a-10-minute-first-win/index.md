@@ -10,6 +10,13 @@ No theory. No diagrams. We did that in the last two chapters. This one is just t
 
 *Experienced terminal users: skip this section.* If you've never opened a terminal before, the next five paragraphs are everything you actually need. The rest of the chapter assumes them.
 
+**Important framing**: terminal proficiency is **not what this book is about**. We're giving you the bare minimum to run an agent and have a conversation with it — nothing more. If after these five paragraphs the terminal still feels alien, **invest 15–30 minutes in a real tutorial before continuing** — you'll get far more out of the rest of the book. Two recommendations:
+
+- **MDN's [Command line crash course](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line)** — text-based, ~20 minutes, the right depth for this book.
+- **Any 10–15 minute YouTube video** searching *"terminal basics for beginners macOS"* or *"…Windows"* — dozens of good free ones; pick one with recent views.
+
+Then come back. The five paragraphs below are the survival kit; the tutorial above is the foundation.
+
 **What a terminal is.** A terminal — also called the command line, or the shell — is that black (or white) window with text in it that you've seen over someone's shoulder. It exists because before there were buttons and icons, the way you told a computer to do something was by typing the instruction and pressing Enter. It's still there because, for a lot of tasks, typing is faster and more precise than clicking. You are *not* going to "code" in it for this book. You'll mostly type sentences in English to an agent and read what comes back. The terminal is just the room where that conversation happens.
 
 **How to open one.** On macOS, hit Cmd-Space to open Spotlight, type *Terminal*, press Enter — a window opens. On Windows, the smoothest path is to install [Windows Terminal](https://aka.ms/terminal) from the Microsoft Store; if you can't install software, Command Prompt (search *cmd* in the Start menu) works for now. On Linux, your distribution ships one — GNOME Terminal, Konsole, or similar; it's in your applications menu under *Terminal*.

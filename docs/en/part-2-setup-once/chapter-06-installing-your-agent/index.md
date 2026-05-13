@@ -26,7 +26,15 @@ You can also run two side-by-side later. It's normal — many people run Claude 
 
 ## The one install you do by hand
 
-Pick one of the three. Then run *its* install command. That's it. Everything in this section is something you'd find on the vendor's install page; we include it so you have it in one place.
+Pick one of the three. Then run *its* install command. That's it.
+
+**A note on what this section is and isn't.** Install instructions go stale faster than book chapters can be reprinted. The vendor's docs are always more current than what's below. **Treat the snippets here as orientation, not authoritative;** when the command we list doesn't match what you see on the vendor site, follow the vendor. Quick links to the official getting-started pages — bookmark whichever one matches the agent you're picking:
+
+- **Claude Code** → [docs.claude.com/en/docs/claude-code/quickstart](https://docs.claude.com/en/docs/claude-code/quickstart)
+- **Codex** → [developers.openai.com/codex](https://developers.openai.com/codex) (or the [openai/codex](https://github.com/openai/codex) GitHub repo)
+- **OpenCode** → [opencode.ai](https://opencode.ai)
+
+Install commands as of writing (May 2026):
 
 **Claude Code.** You need Node.js 18+ on your machine. If you have it: `npm install -g @anthropic-ai/claude-code`, then run `claude` in any project folder and log in. If you don't have Node — and you genuinely don't know — open your terminal (on macOS: Spotlight → "Terminal"; on Windows: install Windows Terminal from the Store) and type `node --version`. If it errors, install Node first via [nodejs.org](https://nodejs.org) (LTS version) or `brew install node` on a Mac with Homebrew.
 
@@ -34,9 +42,9 @@ Pick one of the three. Then run *its* install command. That's it. Everything in 
 
 **OpenCode.** `npm install -g opencode-ai` (or follow the install snippet on [opencode.ai](https://opencode.ai)). Then `opencode` in a project folder. Point it at the model provider whose API key you have.
 
-That's the entire manual portion. If you're a non-technical reader, here's the truth nobody tells you: you can copy each of those three commands without understanding them. They're install instructions, not code you have to read. Paste, hit enter, follow the login prompt.
+That's the entire manual portion. **Installing software is not the focus of this book** — we just need you past it. If you're a non-technical reader, here's the truth nobody tells you: you can copy each of those commands without understanding them. They're install instructions, not code you have to read. Paste, hit enter, follow the login prompt.
 
-If something fails — wrong Node version, weird permission error, "command not found" — *don't try to fix it yourself*. You're about to have an agent that's better at debugging your machine than you are. As soon as one is running (even an older one), the rest of this chapter is its job, not yours.
+If something fails — wrong Node version, weird permission error, "command not found" — *don't try to fix it yourself*. Two equally good moves: open the official quickstart link above and follow it step-by-step (those pages get updated when things change; this book doesn't), or — as soon as *any* agent is running on your machine, even one you installed years ago — let *it* debug the install of the others. You're about to have an agent that's better at debugging your machine than you are. The rest of this chapter is its job, not yours.
 
 ## "Set yourself up nicely for me"
 
