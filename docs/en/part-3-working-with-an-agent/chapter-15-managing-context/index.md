@@ -104,22 +104,30 @@ The mechanics are similar across the major agent tools, though the slash command
 
 ## Try it yourself
 
-**Exercise 1: Watch the U-shape happen.** Set a precise, quotable constraint at the top of a fresh session — something specific like *"never start an email with 'In today's fast-paced…'"* or *"all dollar amounts in any output must round to the nearest cent."* Then spend 20–30 minutes on unrelated work that fills the window (open long files, fetch a long web page, do a noisy investigation). Now ask the agent: *"What's the exact rule I set at the start of this session? Quote it back to me word-for-word."*
+*Work through these in order. They're not isolated experiments — each one builds on the last, and you should see the agent's output getting visibly sharper at every step.*
 
-**You'll know it worked when** the agent paraphrases the rule instead of quoting it — or has lost its specifics entirely. That's the chapter's claim turned into a fact you can see.
+**Exercise 1: See the problem firsthand.** Set a precise, quotable constraint at the top of a fresh session — something specific like *"never start an email with 'In today's fast-paced…'"* or *"all dollar amounts in any output must round to the nearest cent."* Spend 20–30 minutes on unrelated work that fills the window. Now ask: *"What's the exact rule I set at the start of this session? Quote it back to me word-for-word."*
 
-**Exercise 2: Cold-dive vs warm-up.** Pick a real task you'd normally hand the agent — *"add a logout button to the settings page,"* *"draft a one-page summary of the Acme contract,"* *"reconcile last month's Stripe receipts against the invoices folder."* Try it twice in two fresh sessions:
+**You'll know it worked when** the agent paraphrases the rule instead of quoting it — or has lost its specifics entirely. The U-shape, turned into a fact you can see.
+
+**Exercise 2: The cheapest fix — start over.** Take a session you've been running for an hour or more that's starting to feel off (repeats itself, references things you reversed, just feels slower). Note its quality on the current task. Now open a brand-new session, brief it on the same task, and compare.
+
+**You'll know it worked when** the fresh session is visibly sharper on the same task — fewer confidently-wrong assertions, fewer corrections needed. *This is the cheapest quality lever you have.*
+
+**Exercise 3: Make the restart durable with a `handoff.md`.** At the end of your next real working session, ask: *"Write a one-page `handoff.md` capturing what we decided, what we tried and rejected, what files we touched, and what the next concrete step is."* Save it. Open a new session a day later with *"Read `handoff.md` and continue from the next step."*
+
+**You'll know it worked when** the second session picks up at the same level of context the first one ended at, without you re-explaining anything — and a teammate could do the same, because the handoff is plain Markdown.
+
+**Exercise 4: Sharpen the restart with a warm-up.** Pick a real task — *"add a logout button to the settings page,"* *"draft a one-page summary of the Acme contract,"* *"reconcile last month's Stripe receipts against the invoices folder."* Try it twice in two fresh sessions:
 
 - **Session A:** open fresh, first prompt is the task itself.
 - **Session B:** open fresh, first prompt is a warm-up question from one of the three categories above — a **why** question (*"why did we structure the settings page this way? Check the file and the last few PRs"*), a **how-does-X-actually-work** question (*"walk me through the Acme contract's major commitments and any exceptions"*), or a **review-for-quality** question (*"read `stripe-nov.csv` and the invoices folder — what's clean, what looks off, what's hard to reconcile by hand?"*) — *then* the same task as Session A.
 
-Compare quality. How many corrections did you have to make in each? How many times did the agent stop to ask you something it could have known if it had just read the material first?
+Compare. How many corrections did you have to make in each? How many times did the agent stop to ask something it could have known if it had just read the material first?
 
-**You'll know it worked when** Session B produces a noticeably better first attempt — fewer guesses, fewer corrections, the agent isn't asking *"which column is the gross amount?"* because it already read the column header. The bigger the project's archaeology (more PRs, more emails, more old decisions), the larger the gap will be.
+**You'll know it worked when** Session B produces a noticeably better first attempt — fewer guesses, fewer corrections, the agent isn't asking *"which column is the gross amount?"* because it already read the column header.
 
-**Exercise 3: A `handoff.md` across sessions.** At the end of your next real working session, ask the agent: *"Write a one-page `handoff.md` capturing what we decided, what we tried and rejected, what files we touched, and what the next concrete step is."* Save it. Open a new session a day later with *"Read `handoff.md` and continue from the next step."*
-
-**You'll know it worked when** the second session picks up the work at the same level of context the first one ended at, without you having to re-explain anything — and especially when a teammate could do the same, because the handoff is plain Markdown.
+If you work through all four, you've moved from *"watching the U-shape eat my rule"* to *"the agent picks up where I left off and starts sharper than it ended."* That's the whole chapter, made into muscle memory.
 
 ## What's next
 
