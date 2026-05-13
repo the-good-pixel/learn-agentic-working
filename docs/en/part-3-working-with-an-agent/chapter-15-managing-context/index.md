@@ -111,11 +111,11 @@ The mechanics are similar across the major agent tools, though the slash command
 **Exercise 2: Cold-dive vs warm-up.** Pick a real task you'd normally hand the agent — *"add a logout button to the settings page,"* *"draft a one-page summary of the Acme contract,"* *"reconcile last month's Stripe receipts against the invoices folder."* Try it twice in two fresh sessions:
 
 - **Session A:** open fresh, first prompt is the task itself.
-- **Session B:** open fresh, first prompt is an abstract warm-up question that forces the agent to read the actual material — *"read the relevant files in `src/settings/` and tell me how the page is structured,"* *"read `acme-contract.pdf` and tell me the three biggest commitments,"* *"look at `stripe-nov.csv` and the `invoices-nov/` folder and tell me how the data is shaped"* — then the same task as Session A.
+- **Session B:** open fresh, first prompt is a warm-up question from one of the three categories above — a **why** question (*"why did we structure the settings page this way? Check the file and the last few PRs"*), a **how-does-X-actually-work** question (*"walk me through the Acme contract's major commitments and any exceptions"*), or a **review-for-quality** question (*"read `stripe-nov.csv` and the invoices folder — what's clean, what looks off, what's hard to reconcile by hand?"*) — *then* the same task as Session A.
 
-Compare quality. How many corrections did you have to make in each?
+Compare quality. How many corrections did you have to make in each? How many times did the agent stop to ask you something it could have known if it had just read the material first?
 
-**You'll know it worked when** Session B produces a noticeably better first attempt — fewer guesses, fewer corrections, the agent isn't asking *"which column is the gross amount?"* because it already read the column header.
+**You'll know it worked when** Session B produces a noticeably better first attempt — fewer guesses, fewer corrections, the agent isn't asking *"which column is the gross amount?"* because it already read the column header. The bigger the project's archaeology (more PRs, more emails, more old decisions), the larger the gap will be.
 
 **Exercise 3: A `handoff.md` across sessions.** At the end of your next real working session, ask the agent: *"Write a one-page `handoff.md` capturing what we decided, what we tried and rejected, what files we touched, and what the next concrete step is."* Save it. Open a new session a day later with *"Read `handoff.md` and continue from the next step."*
 
