@@ -33,7 +33,7 @@ There are two distinct costs to this bloat, and only the first is about the LLM.
 
 **Cost one: the agent gets confused.** With thirty installed tools, it picks the wrong one, or doesn't pick one at all, or — the subtler effect — once it has used a particular tool once, that tool sits in recent context and the agent biases toward reusing it on the next sub-task even when a different tool would fit better. Anthropic's *"distract from efficient strategies"* phrasing is the cleanest term for this; in practice you watch the agent reach for the hammer it picked up an hour ago instead of the screwdriver that was always available.
 
-**Cost two: *you* get confused.** This is the one nobody warns you about. The more plugins and skills you install, the more *you* have to remember — which command invokes which, what each is named, which ones overlap. The user becomes the bottleneck. It's the slow regression to Microsoft Office and Adobe Creative Suite: hundreds of features per product, the user knows six, and the rest sit there generating menu clutter. Forty installed skills with names like `summarize-doc`, `summarize-document`, `quick-summary`, `summarize-pdf` — and you can't remember which one fires on what input. That's exactly the failure mode agents were supposed to rescue you from.
+**Cost two: *you* get confused.** Nobody warns you about this one. The more plugins and skills you install, the more *you* have to remember — which command does what, what each is named, which ones overlap. The user becomes the bottleneck. It's the slow regression to Microsoft Office and Adobe Creative Suite: hundreds of features per product, the user knows six, and the rest generate menu clutter. Forty installed skills named `summarize-doc`, `summarize-document`, `quick-summary`, `summarize-pdf` — and you can't remember which fires on what input. That's the failure mode agents were supposed to rescue you from.
 
 The practical move is the discipline twin of *equip first, then engage*: **equip deliberately, not aspirationally.** Three MCPs you actually use beats ten you might use. If you need a tool occasionally, leave it uninstalled and add it for the session that needs it. Periodically — every few weeks — audit what you have loaded and uninstall what you haven't reached for.
 
@@ -44,7 +44,9 @@ There's a better alternative to the install-everything-from-GitHub habit, and th
 3. The moment the agent has produced the correct result by the right workflow — before the session ends — say: *"package what we just did into a skill."* The agent reads back over the conversation, picks out the steps and the corrections you gave it along the way, and writes the `SKILL.md` for you.
 4. If your agent tool doesn't support skills yet, fall back to long-term memory: *"remember this workflow for next time."* Same idea, different storage layer.
 
-The skills built this way capture *your* corrections and *your* working patterns. They install only the tools you actually used. And there's exactly one of each because you only made it once. That's the inverse of the trap: the kit grows as you grow into it, not as a bundle someone else thought you might need.
+And what about GitHub skills that *do* look useful? Remember what most of them actually are — a `SKILL.md` plus a handful of code snippets, not real packages with dependencies. Don't install blindly. Paste the URL into your agent and ask it to **read the repo, extract the parts you actually need, and rebuild them locally as your own skill.** Two wins: you get the slice that matters rather than the whole bundle, *and* you've reviewed the code before it touches your machine. Supply-chain attacks on skill and plugin marketplaces are a real and growing concern — a popular repo is a fast path for a prompt injection or malicious post-install script straight into your agent's privileged context. Reading first is cheap insurance, and the agent does the reading for you.
+
+Skills built either way — organically from your own work, or extracted from someone else's repo — capture *your* corrections and *your* working patterns. The kit grows as you grow into it, not as a bundle someone else thought you might need.
 
 ## The four levers you control
 
@@ -76,7 +78,7 @@ A working heuristic: **at 60–70 % full, wrap up or compact**. At 80 %+, the ag
 
 When you genuinely need to span sessions — a project that takes days, an investigation that pauses for a meeting — don't trust the long-running session to remember. Write a **handoff file**. One page of markdown: *what was decided, what was tried and rejected, which files were touched, what the next concrete step is.* Save it as `handoff.md` or `plan.md` in the project. The next session reads it first, before anything else. *"Read `handoff.md`. Continue from step 4."*
 
-Two benefits beyond the obvious one. First, writing the handoff forces you to articulate what was *actually* decided, which surfaces the parts that were still vague. Second, the handoff is durable in a way the session isn't — a teammate can pick it up, you can pick it up a week later, the agent reads it identically each time. It is the only mechanism that genuinely scales context beyond a single working window.
+Two benefits beyond the obvious one: writing the handoff forces you to articulate what was *actually* decided (which surfaces the parts that were still vague), and the handoff is durable in a way the session isn't — a teammate or future-you can pick it up, and the agent reads it identically each time.
 
 ## When to start fresh
 
@@ -127,4 +129,4 @@ The mechanics are similar across the major agent tools, though the slash command
 
 ## What's next
 
-You now have the full working loop — equip (Ch. 10), brief and context (Ch. 11), output (Ch. 12), review (Ch. 13), long work (Ch. 14), and managing the window across all of it (this chapter). Part IV opens at Ch. 16 with the layer above all of this: when you notice yourself re-prompting the same correction over and over, that's the signal to capture the workflow as a *skill*.
+Part IV opens at Ch. 16 with the layer above all of this — when you notice yourself re-prompting the same correction over and over, that's the signal to capture the workflow as a *skill*.
