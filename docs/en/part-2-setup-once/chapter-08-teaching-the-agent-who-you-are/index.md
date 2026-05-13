@@ -27,7 +27,7 @@ The shape that works:
 - **Where the bodies are buried.** Project-specific traps. *"`yarn dev` doesn't work in worktrees — there's a known issue with symlinked `node_modules`."* *"Our `staging` env is actually production traffic mirrored; treat it as prod."*
 - **Tool and skill pointers.** *"Use the `gemini-chat-and-search` skill for any research that involves checking facts online."* *"The Shopify MCP is installed; use it for any product-catalog question."*
 
-Not what goes in it: a wall of text trying to anticipate every situation. The file is a *brief*, not a manual. A page is plenty; two is a lot. If you find yourself writing the third page, stop — that material probably belongs in a **skill** (Ch. 17), which is the right place to teach the agent a specific *procedure*.
+Not what goes in it: a wall of text trying to anticipate every situation. The file is a *brief*, not a manual. A page is plenty; two is a lot. If you find yourself writing the third page, stop — that material probably belongs in a **skill** (Ch. 18), which is the right place to teach the agent a specific *procedure*.
 
 ## The five-minute conversation
 
@@ -61,7 +61,7 @@ There are two places this file can live, and you'll likely have both.
 
 Project-level overrides and *extends* user-level for that session. You don't have to think about the priority rules; the agent handles them. You just keep each file scoped to what it should say.
 
-If you work on a team, project-level files get **committed to the repo**, the same way you'd commit a README. Your teammate clones the repo, their agent reads the same `CLAUDE.md`, and now both agents work the same way. This is how team standards spread — one file, version-controlled, evolving with the codebase. Ch. 24 goes into team adoption; for now, just know that this is the surface where it happens.
+If you work on a team, project-level files get **committed to the repo**, the same way you'd commit a README. Your teammate clones the repo, their agent reads the same `CLAUDE.md`, and now both agents work the same way. This is how team standards spread — one file, version-controlled, evolving with the codebase. Ch. 25 goes into team adoption; for now, just know that this is the surface where it happens.
 
 ## Cross-tool: `CLAUDE.md`, `AGENTS.md`, and the convergence
 

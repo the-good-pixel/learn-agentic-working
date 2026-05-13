@@ -20,7 +20,7 @@ That reflex needs to be replaced with a new one:
 
 This is the single most important habit change the book asks for. It's a small move at the front of every task. It costs you one extra prompt. And it changes the quality of the work the agent does for the rest of the session — because instead of improvising against a tool it has never seen, it inherits *accumulated knowledge* of how that tool actually behaves and how your team uses it.
 
-We named these connectors and workflows in earlier chapters. An **MCP** (Ch. 9) is an app installed on the agent's phone — a connector that gives it a new tool, like "talk to Shopify" or "talk to Google Ads". A **skill** (preview from Ch. 9, full treatment in Ch. 15–17) is a saved procedure — a war-story or a team SOP captured as a reusable named workflow.
+We named these connectors and workflows in earlier chapters. An **MCP** (Ch. 9) is an app installed on the agent's phone — a connector that gives it a new tool, like "talk to Shopify" or "talk to Google Ads". A **skill** (preview from Ch. 9, full treatment in Ch. 16–17) is a saved procedure — a war-story or a team SOP captured as a reusable named workflow.
 
 The Monday morning move is: **before you start the task, check whether either exists for the platforms you're about to touch. If they do, install them. *Then* brief the agent.**
 

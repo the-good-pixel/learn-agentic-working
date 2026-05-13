@@ -102,7 +102,7 @@ Rough sense, at time of writing:
 - A daily heavy user — multiple long sessions, big codebases, lots of tool calls — wants Claude Max ($100–$200/month) or equivalent. Heavy users routinely report the top tier feels cheap relative to the time saved.
 - OpenCode against your own API key gives you fine-grained cost visibility at the price of doing the math yourself. Useful if you're cost-sensitive or running for a team.
 
-Ch. 24 goes deep on cost, quality, and the question of "am I overpaying?". Don't optimize this now. Pick a tier, run for a week, then decide.
+Ch. 25 goes deep on cost, quality, and the question of "am I overpaying?". Don't optimize this now. Pick a tier, run for a week, then decide.
 
 ## A checklist for the end of this chapter
 

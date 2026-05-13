@@ -1,4 +1,4 @@
-# 17. Writing a good skill (and letting the agent write it for you)
+# 18. Writing a good skill (and letting the agent write it for you)
 
 You've decided you want a skill for the thing you keep redoing. Now what?
 
@@ -149,7 +149,7 @@ That's it. You're done.
 
 ## Try it yourself
 
-Take the skill candidate you identified at the end of Ch. 16. In a session where you just did the task (or a fresh session after recreating it), say:
+Take the skill candidate you identified at the end of Ch. 17. In a session where you just did the task (or a fresh session after recreating it), say:
 
 > *"Write me a skill that captures what we just did. Include the corrections I had to give you, and add a 'when not to use this' section. Save it as `.claude/skills/<name>/SKILL.md`."*
 

@@ -102,7 +102,7 @@ Five boxes. One loop. Eight emails out the door.
 
 Every advanced pattern in this book is a variation on this diagram:
 
-- A **skill** (Ch. 15–17) is a named, reusable *recipe* that lives in the orchestrator and tells it "when the user asks for X, run this sequence of model + tool steps." It is the orchestrator's playbook.
+- A **skill** (Ch. 16–17) is a named, reusable *recipe* that lives in the orchestrator and tells it "when the user asks for X, run this sequence of model + tool steps." It is the orchestrator's playbook.
 - A **sub-agent** (Ch. 14) is a second copy of the loop, spun up alongside the first, doing its own model-plus-tools work in parallel.
 - A **long-running agent** (Ch. 14) is the same loop, left to run on its own for an extended task.
 - A **hook** is a rule in the orchestrator that says "when X happens in the loop, also run Y."

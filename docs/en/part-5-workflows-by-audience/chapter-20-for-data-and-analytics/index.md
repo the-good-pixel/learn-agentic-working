@@ -1,4 +1,4 @@
-# 19. For Data & Analytics People
+# 20. For Data & Analytics People
 
 *A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from working teams the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
@@ -121,7 +121,7 @@ A few jobs are still yours, even in the agent era:
 
 ## When to write it down as a skill
 
-If your agent successfully traced a weird-data thing once, the *next* time someone hands you a similar file, you don't want to re-explain how to look at it. Capture the procedure as a skill (Ch. 16, Ch. 17): "given a transactions CSV, here's how to load it, here's how to dedupe, here's how to categorize, here's what we always check first." Next month's mystery CSV is half the work.
+If your agent successfully traced a weird-data thing once, the *next* time someone hands you a similar file, you don't want to re-explain how to look at it. Capture the procedure as a skill (Ch. 17, Ch. 18): "given a transactions CSV, here's how to load it, here's how to dedupe, here's how to categorize, here's what we always check first." Next month's mystery CSV is half the work.
 
 Some shapes of skill that pay off for analysts:
 

@@ -115,7 +115,7 @@ You will be tempted to do a few things. Don't. Not today.
 
 - **Don't install five MCPs at once.** You won't need any beyond what ships built-in for this first task. Ch. 9 walks through the day-one MCP set.
 - **Don't write a `CLAUDE.md`.** That's the next investment after a few sessions (Ch. 8). On a first run, the conversation itself is enough context.
-- **Don't write a skill.** A skill is your reaction *to* a repeated task. You haven't repeated anything yet (Ch. 15–17).
+- **Don't write a skill.** A skill is your reaction *to* a repeated task. You haven't repeated anything yet (Ch. 16–17).
 - **Don't open three terminals and try parallel runs.** One agent, one task, one window today.
 - **Don't watch a YouTube tour first.** The fastest way to get good at this is to use it badly on a real task, not to consume more setup content.
 

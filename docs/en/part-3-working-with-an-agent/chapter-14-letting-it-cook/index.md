@@ -136,7 +136,7 @@ The fix is that each worktree has its own cache because it has its own working t
 
 ### 6. Browser session state
 
-If the agent drives a real browser (Ch. 23), two worktrees both opening Chrome with the same profile will share cookies, localStorage, and login state. Worktree A logs in as the test user; worktree B's test now thinks it's also that test user.
+If the agent drives a real browser (Ch. 24), two worktrees both opening Chrome with the same profile will share cookies, localStorage, and login state. Worktree A logs in as the test user; worktree B's test now thinks it's also that test user.
 
 The fix is a per-worktree browser profile directory. Modern browser-automation tools support this with a single flag.
 
@@ -152,7 +152,7 @@ You don't have to solve all eight of the problems above by hand. The right move,
 
 > *"The worktree dev-server collisions described above — write me a `local-dev` skill in this repo that picks free ports automatically, won't kill ports owned by other repos, and warns me before doing anything to `node_modules`. Document the symlink-`node_modules`-breaks-Vite gotcha so future-me doesn't fall into it again."*
 
-Once written, every future worktree session in this repo just calls the skill instead of debugging collisions from scratch. The skill turns into the living memory of every collision you've already paid for once. (Ch. 15 unpacks skills in detail — this is a worked-in-advance preview of why you'll want them.)
+Once written, every future worktree session in this repo just calls the skill instead of debugging collisions from scratch. The skill turns into the living memory of every collision you've already paid for once. (Ch. 16 unpacks skills in detail — this is a worked-in-advance preview of why you'll want them.)
 
 ### Launching Claude Code against a specific worktree
 
@@ -230,4 +230,4 @@ If you don't have a real question handy, the book repo ships a ready-made one at
 
 ## What's next
 
-The agent ran for fifteen minutes. Part IV picks up the next layer: when you notice yourself re-prompting the same correction over and over, that's the signal to capture the workflow as a *skill*. Ch. 15 starts there — skills vs. slash commands vs. MCPs, and when to reach for each.
+The agent ran for fifteen minutes. Part IV picks up the next layer: when you notice yourself re-prompting the same correction over and over, that's the signal to capture the workflow as a *skill*. Ch. 16 starts there — skills vs. slash commands vs. MCPs, and when to reach for each.

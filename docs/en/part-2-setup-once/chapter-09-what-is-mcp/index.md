@@ -86,7 +86,7 @@ Regardless of your role, install a starter set. They cover the surfaces almost e
 
 - **Gmail / Google Workspace** — read and send email; read Calendar; read Drive; read and edit Sheets and Docs. If your work email lives in Google, this is the highest-leverage single install.
 - **Outlook / Microsoft 365** — the equivalent for the Microsoft side.
-- **Browser** — let the agent open pages, click, fill forms, take screenshots. Ch. 23 goes deep on browser-driving; for now, install it. The two big options are *Playwright* (headless, scripted) and the headed real-browser tools (Claude for Chrome, computer-use APIs). You can have both.
+- **Browser** — let the agent open pages, click, fill forms, take screenshots. Ch. 24 goes deep on browser-driving; for now, install it. The two big options are *Playwright* (headless, scripted) and the headed real-browser tools (Claude for Chrome, computer-use APIs). You can have both.
 - **GitHub** — for anyone who touches code or even reads a repo. Open PRs, read issues, comment.
 - **Linear** or **Jira** — whichever your team uses for tickets. Create, read, update, transition.
 - **Notion** — read pages, create pages, search.
@@ -131,7 +131,7 @@ New readers conflate these. They're not the same shape; they sit at different la
 
 Said another way: **an MCP adds a tool; a skill adds a procedure**. The Gmail MCP lets your agent read email. A skill called `triage-inbox` uses the Gmail MCP, plus the Linear MCP, plus your own house rules, to *triage* the inbox according to how you actually work.
 
-Ch. 15 lays out the four layers — prompt → slash command → skill → MCP — and when to reach for each. For now, the rule of thumb: **if the agent can't reach a system at all, you need an MCP. If it can reach the system but keeps doing the workflow wrong, you need a skill.** Ch. 10 picks this up with *equip first, then engage*.
+Ch. 16 lays out the four layers — prompt → slash command → skill → MCP — and when to reach for each. For now, the rule of thumb: **if the agent can't reach a system at all, you need an MCP. If it can reach the system but keeps doing the workflow wrong, you need a skill.** Ch. 10 picks this up with *equip first, then engage*.
 
 ## A checklist for the end of this chapter
 
@@ -140,7 +140,7 @@ You should now have:
 - [ ] At least one MCP installed beyond the built-in filesystem — Gmail, Linear, GitHub, or whichever is closest to your daily work.
 - [ ] Watched the agent perform one round-trip through an MCP (read your email, fetch a ticket, list your repos) and seen the streamed tool calls.
 - [ ] Tried the discovery prompt at least once — *"is there an MCP for [a tool I use]?"* — even if you didn't install the result yet.
-- [ ] An intuitive feel for the difference between *"the agent can't reach this"* (need an MCP) and *"the agent reaches it but does the wrong thing"* (need a skill, Ch. 15–17).
+- [ ] An intuitive feel for the difference between *"the agent can't reach this"* (need an MCP) and *"the agent reaches it but does the wrong thing"* (need a skill, Ch. 16–17).
 
 ## In other tools
 
