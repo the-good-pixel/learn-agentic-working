@@ -21,17 +21,30 @@ So the user-actionable takeaway from the lost-in-the-middle finding is genuinely
 
 Both methods do the same fundamental thing: they sidestep the U-shape rather than try to outwit it.
 
-## Equipped isn't free — every installed tool is context
+## The trap of plugins and skills
 
 Ch. 10 asked you to *equip first, then engage* — install the MCPs and skills for the domain before starting the task. That's still right. But it has a cost the earlier chapter glossed over: **every installed MCP server, every skill, every plugin you load costs tokens in the context window from turn zero.** A typical MCP server adds several thousand tokens of tool definitions. Ten installed servers burns 20–30K tokens before the agent has read a single file.
 
-Anthropic's own engineering team [says it plainly](https://www.anthropic.com/engineering/writing-tools-for-agents) in the official tool-writing guide: *"Too many tools or overlapping tools can also distract agents from pursuing efficient strategies."*
+And the industry is currently pushing the wrong direction. Model vendors keep releasing skill packs and plugin bundles — finance skills, marketing skills, "200+ skills in one install" — and the most-starred community repos on GitHub follow the same trend. The implication is always *more is better*: bigger window, more tools, richer kit. It isn't. Anthropic's own engineering team [says it plainly](https://www.anthropic.com/engineering/writing-tools-for-agents) in the official tool-writing guide: *"Too many tools or overlapping tools can also distract agents from pursuing efficient strategies."*
 
 The empirical numbers track. The [RAG-MCP paper](https://arxiv.org/abs/2505.03275) (Gan & Sun, May 2025) ran a stress test where the candidate pool of MCP tools grows. Baseline LLM tool-selection accuracy falls to **13.6 %**. With retrieval-augmented tool discovery — i.e. only loading the relevant tool's spec on demand — accuracy jumps to **43.1 %**. The follow-up paper [JSPLIT](https://arxiv.org/abs/2510.14537) (Oct 2025) restates the diagnosis: *"as the number of tools increases, the prompts become longer, leading to high prompt token costs, increased latency, and reduced task success resulting from the selection of tools irrelevant to the prompt."*
 
-There's a quieter second effect, harder to measure but easy to feel. Once the agent has used a particular tool in the session, that tool call sits in recent context — exactly the region the model attends to most. The agent then biases toward reusing the same tool on the next sub-task, even when a different tool would be a better fit, because the alternative is buried mid-context and the recently-used one is right there. Anthropic's "distract from efficient strategies" phrasing is the cleanest term for this; in practice you watch the agent reach for the hammer it picked up an hour ago instead of the screwdriver that was always available. The empirical literature hasn't measured this directly yet, but the attention findings predict it and a long session demonstrates it.
+There are two distinct costs to this bloat, and only the first is about the LLM.
 
-The practical move is the discipline twin of *equip first, then engage*: **equip deliberately, not aspirationally.** Three MCPs you actually use beats ten you might use. If you need a tool occasionally, leave it uninstalled and add it for the session that needs it. And periodically — every few weeks — audit what you have loaded and uninstall what you haven't reached for. The "more is more" intuition from chatbot land does not survive the move to agents.
+**Cost one: the agent gets confused.** With thirty installed tools, it picks the wrong one, or doesn't pick one at all, or — the subtler effect — once it has used a particular tool once, that tool sits in recent context and the agent biases toward reusing it on the next sub-task even when a different tool would fit better. Anthropic's *"distract from efficient strategies"* phrasing is the cleanest term for this; in practice you watch the agent reach for the hammer it picked up an hour ago instead of the screwdriver that was always available.
+
+**Cost two: *you* get confused.** This is the one nobody warns you about. The more plugins and skills you install, the more *you* have to remember — which command invokes which, what each is named, which ones overlap. The user becomes the bottleneck. It's the slow regression to Microsoft Office and Adobe Creative Suite: hundreds of features per product, the user knows six, and the rest sit there generating menu clutter. Forty installed skills with names like `summarize-doc`, `summarize-document`, `quick-summary`, `summarize-pdf` — and you can't remember which one fires on what input. That's exactly the failure mode agents were supposed to rescue you from.
+
+The practical move is the discipline twin of *equip first, then engage*: **equip deliberately, not aspirationally.** Three MCPs you actually use beats ten you might use. If you need a tool occasionally, leave it uninstalled and add it for the session that needs it. Periodically — every few weeks — audit what you have loaded and uninstall what you haven't reached for.
+
+There's a better alternative to the install-everything-from-GitHub habit, and the rest of this book is built on it: **grow your own skills organically, from work you've actually done.** Ch. 17 and Ch. 18 are the full treatment, but the pattern is short enough to name here:
+
+1. Pick a real task. Ask the agent to do it from scratch, with no skill installed. Brief it well; let it work.
+2. The first attempt may hit walls. The agent may go down a wrong path. Correct it. Get the workflow right.
+3. The moment the agent has produced the correct result by the right workflow — before the session ends — say: *"package what we just did into a skill."* The agent reads back over the conversation, picks out the steps and the corrections you gave it along the way, and writes the `SKILL.md` for you.
+4. If your agent tool doesn't support skills yet, fall back to long-term memory: *"remember this workflow for next time."* Same idea, different storage layer.
+
+The skills built this way capture *your* corrections and *your* working patterns. They install only the tools you actually used. And there's exactly one of each because you only made it once. That's the inverse of the trap: the kit grows as you grow into it, not as a bundle someone else thought you might need.
 
 ## The four levers you control
 
@@ -65,30 +78,34 @@ When you genuinely need to span sessions — a project that takes days, an inves
 
 Two benefits beyond the obvious one. First, writing the handoff forces you to articulate what was *actually* decided, which surfaces the parts that were still vague. Second, the handoff is durable in a way the session isn't — a teammate can pick it up, you can pick it up a week later, the agent reads it identically each time. It is the only mechanism that genuinely scales context beyond a single working window.
 
-## Sub-agents and starting fresh
+## When to start fresh
 
-Two more techniques worth naming.
+The lost-in-the-middle section named the *two ways* to get a fresh context: a new session (or `/clear`), or a sub-agent that takes only the partial context it needs. The harder question is *when*. Some practical triggers:
 
-**Sub-agents** are how you keep noisy side-quests out of the main thread. *"Research the difference between SQS standard and FIFO queues."* *"Audit every file under `lib/` for deprecated API usage."* *"Find me three vendors offering this thing."* Each of those is a research detour that could burn 30 % of your main session's context. Hand it to a fresh sub-agent (Claude Code's `Task` tool; analogues exist in Codex and OpenCode), let it burn its own context, and it comes back with a one-page report. Your main thread stays clean.
+- You finished a unit of work and the next task isn't a direct continuation.
+- You've corrected the agent on the same misunderstanding twice.
+- The agent is referencing files or decisions in a way that feels off.
+- You're more than ninety minutes in and the work has wandered.
+- The context meter is past 60–70 %.
 
-**Starting fresh** is the move most readers under-use because it feels wasteful. It isn't. When you finish a unit of work — a bug fixed, an article shipped, a campaign launched — close the session and open a new one for the next task. You inherit `CLAUDE.md`, your skills, your MCPs. You lose the cruft. Each new session is sharper than the one it replaced.
+Sub-agents are the right move for noisy side-quests in particular — *"research X for me,"* *"audit every file under `lib/` for deprecated APIs,"* *"find me three vendors that offer Y."* Any of those could burn 30 % of your main session's context. Handed to a fresh sub-agent, the work runs in an isolated window and returns a short summary that lands at the *end* of your main context, where attention is reliably high.
 
-Heuristics for "time to start fresh": you've corrected the agent on the same misunderstanding twice; you're more than ninety minutes in and the work has wandered; the agent is referencing files or decisions in a way that feels off; or — flatly — you just finished one task and the next one isn't a continuation. Cheap, fast, no penalty.
+Starting fresh feels wasteful and isn't. Your `CLAUDE.md`, your skills, your MCPs, and your `handoff.md` (if you wrote one) all survive. Only the cruft is gone.
 
 ## In other tools
 
 The mechanics are similar across the major agent tools, though the slash commands differ.
 
-- **Codex CLI** has its own `/compact` and `/clear` equivalents and surfaces context usage at the prompt; the lost-in-the-middle behavior is the underlying model's, so it shows up identically regardless of harness.
-- **OpenCode** offers manual context trimming and per-session reset; the discipline of pruning aggressively is the same.
-- **Cursor** auto-summarizes in long agent threads; treat its summaries with the same skepticism you'd apply to `/compact`.
-- **Gemini CLI** has a famously long raw context window — but long isn't the same as attended-to, and Du et al.'s "performance degrades even with perfect retrieval" result applies just as much there as it does to Claude or GPT.
-- **Anthropic's own prescription** in [Effective Context Engineering for AI Agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) (Sept 2025) lines up exactly with this chapter: a *"smallest possible set of high-signal tokens"* plus *progressive disclosure* (load context just-in-time rather than up front). The vocabulary differs slightly across vendors; the underlying advice is the same.
+- **Codex CLI**: `/compact` and `/clear` equivalents; context-usage indicator at the prompt. The lost-in-the-middle behavior is the underlying model's, so it shows up identically regardless of harness.
+- **OpenCode**: manual context trimming and per-session reset. Same pruning discipline applies.
+- **Cursor**: auto-summarizes long agent threads. Treat its summaries with the same skepticism as `/compact`.
+- **Gemini CLI**: famously long raw window — but long isn't the same as attended-to. Du et al.'s "even with perfect retrieval" result applies there too.
+- **Anthropic's own prescription** in [Effective Context Engineering for AI Agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) (Sept 2025) names the same advice: *"smallest possible set of high-signal tokens"* plus *progressive disclosure*.
 
 ## The takeaway
 
 - Position matters more than size: the U-shaped recall curve is real, and long context degrades performance even with perfect retrieval.
-- Equipped isn't free — every MCP and skill costs tokens from turn zero. Install deliberately, audit periodically.
+- The skill/plugin shelf is a trap — every install costs tokens *and* the user becomes the bottleneck. Grow your own skills organically from work you've actually done (Ch. 17–18).
 - You have four levers in escalating order: **load, prune, compact, clear**. Reach for the cheapest one that does the job.
 - `/compact` preserves continuity; `/clear` resets to your persistent setup. New session beats both when the task changes.
 - Watch the meter; 60–70 % is wrap-up time. Don't trust the agent's self-report.
