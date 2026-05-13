@@ -53,6 +53,28 @@ When you genuinely need to span sessions — a project that takes days, an inves
 
 Two benefits beyond the obvious one: writing the handoff forces you to articulate what was *actually* decided (which surfaces the parts that were still vague), and the handoff is durable in a way the session isn't — a teammate or future-you can pick it up, and the agent reads it identically each time.
 
+## Warming up a fresh context
+
+The handoff file is what you leave for the next session. The sibling technique is what you do *at the start* of the next session — and it's the move most people skip.
+
+Humans don't sit down at a project they haven't touched in three weeks and start coding immediately. They spend the first ten minutes re-reading the last few commits, glancing at open PRs, looking at whatever note they left themselves. That's not avoiding work; that's loading the relevant context into their own head so the work, when it starts, is good. Call it context-switching, call it warming up — it's the same move.
+
+The agent benefits from the same warm-up, for the same reason. A fresh session — or one that has just been compacted — has the right *persistent* context (your `CLAUDE.md`, your skills, your MCPs) but no *working* context for the task at hand. If your first prompt is *"fix the bug in the checkout flow,"* the agent has no idea what your checkout flow looks like, so it guesses. The guess is usually wrong in subtle ways that take you twenty minutes to correct.
+
+The warm-up move is to lead with an **abstract enough question that the agent has to go look at the actual material to answer it**. Patterns that work:
+
+- *"Read the README and the main entry point. In two paragraphs, what does this project do and how is it organized?"*
+- *"Where would I start if I wanted to understand the data flow from a customer order to a fulfillment ticket?"*
+- *"Look at the last five PRs that landed on `main`. What's the team working on right now?"*
+- *"Read `handoff.md`. What were we in the middle of, and what's the next concrete step?"*
+- For non-engineering work: *"Read the last three emails in the Acme thread. What does the customer actually want?"*
+
+What you get back is the agent's own summary of the relevant material — and that summary now lives in the agent's recent context, where attention is reliable (per the U-shape from earlier in this chapter). The actual task you wanted to do becomes a *follow-up* to the warm-up, which means the agent isn't guessing anymore.
+
+The same move is even more valuable **right after a compaction**. The compacted summary is a model-written paraphrase of an old session; warming up forces the agent to re-ground itself in primary sources rather than trust the paraphrase.
+
+A useful instinct: if your first prompt of a session feels like the actual task, slow down. Ask the agent to go *look at the thing* first. The work that follows will be sharper for the two minutes it cost.
+
 ## In other tools
 
 The mechanics are similar across the major agent tools, though the slash commands differ.
@@ -70,6 +92,7 @@ The mechanics are similar across the major agent tools, though the slash command
 - `/compact` preserves continuity; `/clear` resets to your persistent setup. New session beats both when the task changes.
 - Watch the meter; 60–70 % is wrap-up time. Don't trust the agent's self-report.
 - A `handoff.md` is the only thing that reliably spans sessions.
+- **Warm up a fresh (or just-compacted) context** before diving in. Lead with an abstract question that forces the agent to look at the relevant material — its summary now lives where attention is reliable.
 
 ## Try it yourself
 
