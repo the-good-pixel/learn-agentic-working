@@ -53,20 +53,6 @@ When you genuinely need to span sessions — a project that takes days, an inves
 
 Two benefits beyond the obvious one: writing the handoff forces you to articulate what was *actually* decided (which surfaces the parts that were still vague), and the handoff is durable in a way the session isn't — a teammate or future-you can pick it up, and the agent reads it identically each time.
 
-## When to start fresh
-
-The lost-in-the-middle section named the *two ways* to get a fresh context: a new session (or `/clear`), or a sub-agent that takes only the partial context it needs. The harder question is *when*. Some practical triggers:
-
-- You finished a unit of work and the next task isn't a direct continuation.
-- You've corrected the agent on the same misunderstanding twice.
-- The agent is referencing files or decisions in a way that feels off.
-- You're more than ninety minutes in and the work has wandered.
-- The context meter is past 60–70 %.
-
-Sub-agents are the right move for noisy side-quests in particular — *"research X for me,"* *"audit every file under `lib/` for deprecated APIs,"* *"find me three vendors that offer Y."* Any of those could burn 30 % of your main session's context. Handed to a fresh sub-agent, the work runs in an isolated window and returns a short summary that lands at the *end* of your main context, where attention is reliably high.
-
-Starting fresh feels wasteful and isn't. Your `CLAUDE.md`, your skills, your MCPs, and your `handoff.md` (if you wrote one) all survive. Only the cruft is gone.
-
 ## In other tools
 
 The mechanics are similar across the major agent tools, though the slash commands differ.
