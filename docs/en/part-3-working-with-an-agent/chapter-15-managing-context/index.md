@@ -61,15 +61,21 @@ Humans don't sit down at a project they haven't touched in three weeks and start
 
 The agent benefits from the same warm-up, for the same reason. A fresh session — or one that has just been compacted — has the right *persistent* context (your `CLAUDE.md`, your skills, your MCPs) but no *working* context for the task at hand. If your first prompt is *"fix the bug in the checkout flow,"* the agent has no idea what your checkout flow looks like, so it guesses. The guess is usually wrong in subtle ways that take you twenty minutes to correct.
 
-The warm-up move is to lead with an **abstract enough question that the agent has to go look at the actual material to answer it**. Patterns that work:
+The warm-up move is to lead with a question the agent **can't answer without doing real investigation**. Skip the shallow *"summarize this project"* prompts — those produce shallow summaries. Reach instead for questions that drag the agent across multiple sources. Three patterns that work well:
 
-- *"Read the README and the main entry point. In two paragraphs, what does this project do and how is it organized?"*
-- *"Where would I start if I wanted to understand the data flow from a customer order to a fulfillment ticket?"*
-- *"Look at the last five PRs that landed on `main`. What's the team working on right now?"*
-- *"Read `handoff.md`. What were we in the middle of, and what's the next concrete step?"*
-- For non-engineering work: *"Read the last three emails in the Acme thread. What does the customer actually want?"*
+- **"Why" questions** — force the agent to reconstruct *intent* from evidence scattered across files, history, and threads.
+  - *"Why did we structure the checkout flow this way? Look at the files involved and the last few PRs that touched it."* (engineering)
+  - *"Why did we reply to the Acme customer that way last week? Read the email thread and any internal Slack context."* (customer-facing)
+  - *"Why does our refund policy carry those specific exceptions? Check the help docs and recent escalations."* (ops / policy)
+- **"How does X actually work, end to end" questions** — force synthesis across scattered pieces.
+  - *"How does authentication work in this codebase? Walk me through it."* (engineering)
+  - *"How does our onboarding email sequence trigger? Read the templates and the trigger conditions."* (marketing / lifecycle)
+  - *"How does month-end reconciliation actually happen here? Find the script, the spreadsheet, and any notes I left."* (finance / ops)
+- **"Review this for quality" questions** — force critical reading and judgment, not just summarization.
+  - *"Read yesterday's `handoff.md` and tell me what we decided well, what stalled, and what was left vague."*
+  - *"Look at the last three drafts of the Q3 investor update — which sections got sharper, which got worse, and why?"*
 
-What you get back is the agent's own summary of the relevant material — and that summary now lives in the agent's recent context, where attention is reliable (per the U-shape from earlier in this chapter). The actual task you wanted to do becomes a *follow-up* to the warm-up, which means the agent isn't guessing anymore.
+The common feature: the agent can't shortcut any of these with a glance at one file. Each drags it across multiple sources, and the summary it produces is dense, project-specific, and **now lives in the agent's recent context, where attention is reliable** (per the U-shape from earlier in this chapter). The actual task you wanted to do becomes a *follow-up* to the warm-up — which means the agent isn't guessing anymore.
 
 The same move is even more valuable **right after a compaction**. The compacted summary is a model-written paraphrase of an old session; warming up forces the agent to re-ground itself in primary sources rather than trust the paraphrase.
 
