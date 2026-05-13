@@ -10,6 +10,10 @@ It's worth slowing down and pulling that apart, because the rest of this book le
 
 Here's the entire model. Burn this into your head, because it is the only diagram you really need:
 
+![The agentic architecture: User → AI Model → Orchestrator → MCP servers → Real tools (Gmail, browser, sheets, project trackers, notes)](../../../../assets/architecture.png)
+
+In one line:
+
 ```
 You  →  the Model  →  the Orchestrator  →  the Connectors (MCPs)  →  your real apps
 ```
