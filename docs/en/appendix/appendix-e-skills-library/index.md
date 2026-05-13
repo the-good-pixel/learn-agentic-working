@@ -1,6 +1,6 @@
 # Appendix E — A Library of Real Skills
 
-The skill-writing chapters (Ch. 17 and Ch. 19) make a claim that's hard to believe until you see it: most of the skills you'll use in a year of agentic working aren't elaborate. They're a page of opinions, dropped into `.claude/skills/<name>/SKILL.md`, that turns "ask the agent to figure it out" into "ask the agent and the right thing happens." The hard part isn't the YAML. The hard part is knowing *what rules a skill should contain*, and that only comes from watching real ones.
+The skill-writing chapters (Ch. 16 and Ch. 18) make a claim that's hard to believe until you see it: most of the skills you'll use in a year of agentic working aren't elaborate. They're a page of opinions, dropped into `.claude/skills/<name>/SKILL.md`, that turns "ask the agent to figure it out" into "ask the agent and the right thing happens." The hard part isn't the YAML. The hard part is knowing *what rules a skill should contain*, and that only comes from watching real ones.
 
 This appendix collects seven skills you can copy into your own setup today. Three are written for engineers (`ship-pr`, `local-dev`, `demo-video`). Three are written for non-technical work (`reconcile-stripe`, `brand-voice`, `weekly-team-update`). One — `gemini-chat-and-search` — is useful to everyone. Each one is a `SKILL.md` file in full, with no missing pieces. You can paste it into `~/.claude/skills/<name>/SKILL.md` (user-level, available across all your projects) or `.claude/skills/<name>/SKILL.md` (project-level, committed to a repo so your team inherits it) and it will work on the first invocation.
 
@@ -631,7 +631,7 @@ Return the draft and a short note listing any KPI moves over 15% the user might 
 
 ## Writing your own from scratch
 
-Chapter 19 gives you two flows for getting to a new skill, and they're worth remembering at the bottom of this appendix because the seven skills above might tempt you to think writing one is a big deal. It isn't.
+Chapter 18 gives you two flows for getting to a new skill, and they're worth remembering at the bottom of this appendix because the seven skills above might tempt you to think writing one is a big deal. It isn't.
 
 **Search first.** Before you write anything, ask the agent: "Is there an existing skill for X? Check the Anthropic skills registry, my user-level skills, the project's skill directory, and `awesome-claude-skills` on GitHub." Skills are usually published as a single Markdown file in a repo, so they're easy to find and easy to copy. The seven in this appendix are a starting library, but the ecosystem is much larger and growing weekly. If someone has already paid the tax of writing the skill you need — for Shopify, for Linear, for HubSpot, for your specific build tool — inherit their work.
 

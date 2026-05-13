@@ -1,8 +1,8 @@
-# 16. Managing context
+# 15. Managing context
 
 You're three hours into a session. The agent is referencing a decision you reversed forty minutes ago. The reminder you set on turn one — *"don't touch the billing file"* — is gone in spirit. The agent is repeating itself, contradicting things it said an hour ago, and the work is *slowing down* in a way you can't quite name.
 
-Ch. 11 taught you what context *is*. Ch. 15 covered the discipline of what to load (and not load) at the start of a session. This chapter is the working chapter for what happens *during* the session: the levers you have when the window starts filling up. Ignoring them is the single most common reason a promising session goes sideways.
+Ch. 11 taught you what context *is*. This chapter is the working chapter for what happens *during* the session: the levers you have when the window starts filling up. Ch. 16 (the first chapter of Part IV) picks up the sibling discipline — what to load (and *not* load) *before* the session begins, since every installed MCP and skill is itself loaded context.
 
 ## Why position matters: lost in the middle
 
@@ -101,4 +101,4 @@ The mechanics are similar across the major agent tools, though the slash command
 
 ## What's next
 
-Part IV opens at Ch. 17 with the definitional ground for the skills, slash commands, and MCPs we've been referring to throughout — followed by when to write your own (Ch. 18) and how (Ch. 19).
+Part IV opens at Ch. 16 with the definitional ground for the skills, slash commands, and MCPs we've been referring to throughout — followed by when to write your own (Ch. 17) and how (Ch. 18).

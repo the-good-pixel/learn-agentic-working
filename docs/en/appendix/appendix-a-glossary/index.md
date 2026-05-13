@@ -35,7 +35,7 @@ Letting the agent work on something while you do something else — either by st
 ### **Browser agent / computer use**
 
 An agent that drives a real browser (or, in the more general case, a real computer) — navigating to pages, clicking buttons, filling forms, taking screenshots, and reading what's on screen. Useful when a system has no API or MCP and the only way in is the same interface a human would use: a vendor portal, an internal admin tool, an analytics dashboard. The canonical loop is **navigate → snapshot → interact → re-snapshot**. Examples in current use: Claude for Chrome, the computer-use APIs from Anthropic and OpenAI, ChatGPT Agent / Operator, and headless-browser skills built on Playwright or Puppeteer. The browser is the most universal action surface in business; teaching the agent to drive it is a force multiplier.
-*→ Ch. 25*
+*→ Ch. 24*
 
 ### **Chatbot tax**
 
@@ -140,13 +140,13 @@ A mode in Claude Code (with rough equivalents in other tools) where the agent th
 
 What you type to the agent — the instruction, the question, the description of the task. A prompt can be one sentence ("summarize this PDF") or several paragraphs (a full brief with files, links, constraints, and acceptance criteria). The single most consequential skill in working with agents is writing prompts that include the *right* context: the actual files, the actual data, the actual links — not vague descriptions of them. *"Match the invoices in `~/Documents/invoices-Nov/` against `stripe-nov.csv` in the same folder"* beats *"match my invoices against Stripe"* by orders of magnitude in the quality of the result.
 *See also: Re-prompting.*
-*→ Ch. 18*
+*→ Ch. 17*
 
 ### **Re-prompting**
 
 Following up on the agent's previous response with a new instruction, correction, or clarification. Re-prompting is normal and healthy — the first response is rarely the last. But if you find yourself making the *same* correction across many sessions ("no spring animations", "use formal tone", "the amount column is column D"), that is the signal to stop re-prompting and **write a skill** that captures the correction once.
 *See also: Skill.*
-*→ Ch. 18*
+*→ Ch. 17*
 
 ### **Sandbox / sandbox mode**
 
@@ -157,19 +157,19 @@ A restricted environment that limits what the agent (or a specific command) is a
 
 A reusable, named procedure the agent invokes by intent — *"ship this PR"*, *"reconcile this month's invoices"*, *"draft a brand-voice blog post"*. Where an MCP adds a new tool, a skill adds a new *way of using* tools — often composing several of them. Skills live as folders containing a `SKILL.md` (the instructions) plus any helper scripts, templates, or examples the procedure needs. You almost never write a skill from scratch by hand: after a successful session you tell the agent *"write a skill that captures what we just did"*, and it does. Skills are the single biggest force multiplier in this book — the war story you wasted a day on once, captured as code, never wasted on again. They're also how teams accumulate institutional knowledge: a project-level skill committed to a repo is shared with every teammate and every future agent that touches the codebase.
 *See also: SKILL.md, Slash command, MCP.*
-*→ Ch. 17, Ch. 18, Ch. 19*
+*→ Ch. 16, Ch. 17, Ch. 18*
 
 ### **SKILL.md**
 
 The Markdown file at the heart of a skill. It contains the skill's **triggers** (when the agent should invoke it), **instructions** (the steps to follow), **examples**, **failure modes**, and any **hard rules** the user has learned the hard way ("no spring animations", "never push to main without a PR"). The file has a small **YAML frontmatter** block at the top declaring the skill's name, description, and a few other fields. The agent reads `SKILL.md` exactly the way it would read any other instruction — so writing a skill is essentially writing a short, well-organized prompt.
 *See also: Skill, YAML frontmatter.*
-*→ Ch. 19*
+*→ Ch. 18*
 
 ### **Slash command**
 
 A single-shot, named invocation you type in the agent's prompt — `/init`, `/review`, `/ship-pr`. Slash commands feel like menu items; they're best for quick, repeatable operations that don't need a full multi-step procedure. The mental hierarchy in this book is **prompt → slash command → skill** — each layer is more reusable and more opinionated than the last.
 *See also: Skill.*
-*→ Ch. 17*
+*→ Ch. 16*
 
 ### **Sub-agent / multi-agent workflow**
 
@@ -195,7 +195,7 @@ A single action the model decides to take — read a file, run a shell command, 
 
 ### **Vibe coding**
 
-A term, coined by Andrej Karpathy in early 2025, for the style of working where you let the agent write nearly all the code from a high-level description, accepting most of what it produces without reading line by line — going on "vibes." It works for prototypes, demos, throwaway scripts, weekend projects, and the kind of one-off tool you'd otherwise never build. **This book mentions vibe coding for completeness but does not promote it as a default working style** — for code that will live in production, be read by teammates, or carry data that matters, the book recommends reviewing what the agent produces (see Ch. 13) and capturing recurring corrections as skills (see Ch. 18). Vibe coding is a tool in the kit; it isn't the kit.
+A term, coined by Andrej Karpathy in early 2025, for the style of working where you let the agent write nearly all the code from a high-level description, accepting most of what it produces without reading line by line — going on "vibes." It works for prototypes, demos, throwaway scripts, weekend projects, and the kind of one-off tool you'd otherwise never build. **This book mentions vibe coding for completeness but does not promote it as a default working style** — for code that will live in production, be read by teammates, or carry data that matters, the book recommends reviewing what the agent produces (see Ch. 13) and capturing recurring corrections as skills (see Ch. 17). Vibe coding is a tool in the kit; it isn't the kit.
 
 ### **Worktree**
 

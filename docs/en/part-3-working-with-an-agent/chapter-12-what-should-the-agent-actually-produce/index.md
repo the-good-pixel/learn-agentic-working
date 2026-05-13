@@ -54,7 +54,7 @@ Most people will never need this. But if you're writing a research paper, a form
 
 Some deliverables aren't documents. A product demo for a marketing page needs to *move*. A walkthrough of a new feature needs to *show*. A 60-second explainer needs *timing*.
 
-The agent can build these directly. The pattern that works is a browser-automation tool driving the real product (recording the flow) combined with a video-rendering pipeline that adds chyrons, captions, and pacing. The `demo-video` skill (Ch. 18, Ch. 19) is the canonical example: it records a Playwright walkthrough of a live app, layers it under a Remotion render, and ships a polished `.mp4`. The first one took a session. The third one took one command.
+The agent can build these directly. The pattern that works is a browser-automation tool driving the real product (recording the flow) combined with a video-rendering pipeline that adds chyrons, captions, and pacing. The `demo-video` skill (Ch. 17, Ch. 18) is the canonical example: it records a Playwright walkthrough of a live app, layers it under a Remotion render, and ships a polished `.mp4`. The first one took a session. The third one took one command.
 
 You don't have to build that pipeline yourself; you ask the agent to. The deliverable is the video file.
 
@@ -65,7 +65,7 @@ Four very different sub-cases, each with a right tool:
 - **Diagrams in a document or repo:** Mermaid. Text-based, renders inline on GitHub, edits cleanly. *"Draw the architecture as a Mermaid diagram in the README."*
 - **Charts from data:** matplotlib / plotly. *"Plot this CSV's monthly revenue and save as `revenue.png`."*
 - **Generated images for marketing or design:** the agent connects to DALL-E / Imagen / Stable Diffusion via MCP and produces them on request.
-- **Screenshots of an actual UI:** the agent drives a real browser (Ch. 25), navigates, and captures.
+- **Screenshots of an actual UI:** the agent drives a real browser (Ch. 24), navigates, and captures.
 
 Be specific about which sub-case you want. *"Make me an image"* is vague; *"draw a Mermaid sequence diagram of the auth flow"* is doable in one shot.
 
