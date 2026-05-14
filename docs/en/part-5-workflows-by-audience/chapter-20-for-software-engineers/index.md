@@ -66,7 +66,7 @@ You opened a PR. The AI code-reviewer found four things. Two are real. Two are n
 
 You used to manage all of this manually — push, watch CI, address comments one at a time, push again, watch CI again. Now this whole job is a single skill the agent runs end-to-end: *push → open PR → monitor CI → fix what's real → reply to what isn't (with reasoning, not silent dismissal) → notify when mergeable*.
 
-> *"This PR is green except for the `e2e` job, which is flaking on `auth.spec.ts`. Open the run log at <URL>, find the failing assertion, decide if it's a real bug or a flake, and either fix the test or re-run the job with a note in the PR explaining why."*
+> *"This PR is green except for the `e2e` job, which is flaking on `auth.spec.ts`. Open the run log at `<URL>`, find the failing assertion, decide if it's a real bug or a flake, and either fix the test or re-run the job with a note in the PR explaining why."*
 
 The hard rule worth stealing from real teams using this pattern: **every AI-reviewer comment gets a substantive reply**. If the comment is wrong, the agent says *why* it's wrong, in a public PR comment. Silent dismissal is forbidden, because that thread is the audit trail for why a change shipped. It's the same etiquette you'd use with a junior human reviewer.
 
