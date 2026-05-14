@@ -16,7 +16,7 @@ Almost every reader of this book is carrying over one reflex from the chatbot er
 
 That reflex needs to be replaced with a new one:
 
-> *"OK, new task — what tools and platforms are involved? Are there pre-built connectors or workflows for them? If yes, install them. Then I'll start."*
+> *"OK, new task — what tools and platforms are involved? Are there any pre-built MCPs or skills for them? If yes, install them. Then I'll start."*
 
 This is the single most important habit change the book asks for. It's a small move at the front of every task. It costs you one extra prompt. And it changes the quality of the work the agent does for the rest of the session — because instead of improvising against a tool it has never seen, it inherits *accumulated knowledge* of how that tool actually behaves and how your team uses it.
 
