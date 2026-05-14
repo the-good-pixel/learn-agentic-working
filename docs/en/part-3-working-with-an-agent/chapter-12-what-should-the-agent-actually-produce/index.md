@@ -56,9 +56,9 @@ Most people will never need this. But if you're writing a research paper, a form
 
 Some deliverables aren't documents. A product demo for a marketing page needs to *move*. A walkthrough of a new feature needs to *show*. A 60-second explainer needs *timing*.
 
-The agent can build these directly. The pattern that works is a browser-automation tool driving the real product (recording the flow) combined with a video-rendering pipeline that adds chyrons, captions, and pacing. The `demo-video` skill (Ch. 18, Ch. 19) is the canonical example: it records a Playwright walkthrough of a live app, layers it under a Remotion render, and ships a polished `.mp4`. The first one took a session. The third one took one command.
+The agent can build these directly. The pattern that works is a **browser-automation tool** (Playwright — a piece of software that opens a browser, clicks buttons, and types like a real user, while recording everything to a video file) driving your real product, combined with a **video-rendering library** (Remotion — a tool that turns ordinary code into polished video, adding captions, animations, intros and outros) that adds the chrome on top. The `demo-video` skill (Ch. 18, Ch. 19) is the canonical example: it records a Playwright walkthrough of a live app, layers it through Remotion, and ships a polished `.mp4`. The first one took a session. The third one took one command.
 
-You don't have to build that pipeline yourself; you ask the agent to. The deliverable is the video file.
+**You do not need to know what Playwright or Remotion are.** You will never type either word at a keyboard. They are listed here for completeness because you might see the agent install them or mention them in a status update — that's normal, that's how it builds the video, and that is the agent's problem, not yours. You ask: *"make me a 30-second demo video of our reporting feature, using the live app at app.example.com, in our usual style."* The agent figures out which tools it needs, installs them, drives the recording, edits the result, and hands you the `.mp4`. The deliverable on your end is the video file. The pipeline is invisible.
 
 ### 5. Image — diagrams, charts, screenshots, generated art
 
