@@ -12,28 +12,6 @@ Here's the entire model. Burn this into your head, because it is the only diagra
 
 ![The agentic architecture: You → Orchestrator → Model → Connectors → Real apps, with the orchestrator looping the model's output back into the next turn](../../../../assets/architecture.svg)
 
-In one line:
-
-```mermaid
-flowchart LR
-    You(["You"]) --> O["Orchestrator<br/><span style='font-size:11px'>Claude Code · Codex · OpenCode · Cursor</span>"]
-    O <-->|consults| M["Model<br/><span style='font-size:11px'>Claude · GPT · Gemini</span>"]
-    O --> C["Connector<br/><span style='font-size:11px'>MCP · built-in tools</span>"]
-    C --> A[("Real app<br/><span style='font-size:11px'>Gmail · Sheets · browser · your files</span>")]
-    A -.->|result loops back| O
-
-    classDef you fill:#fef3c7,stroke:#f59e0b,color:#92400e
-    classDef orch fill:#e0e7ff,stroke:#4f46e5,color:#3730a3
-    classDef model fill:#dcfce7,stroke:#16a34a,color:#14532d
-    classDef conn fill:#fce7f3,stroke:#db2777,color:#831843
-    classDef app fill:#e0f2fe,stroke:#0284c7,color:#0c4a6e
-    class You you
-    class O orch
-    class M model
-    class C conn
-    class A app
-```
-
 Read it like this: a sentence from you goes into the **orchestrator** — the program running on your machine (Claude Code, Codex, OpenCode, Cursor). The orchestrator packages your sentence with system instructions, file context, and the list of tools it has, and *consults* the **model**. The model writes back either prose or a tool call. If it's a tool call, the orchestrator dispatches it through a **connector** to the matching **real app** — reads your inbox, writes a row in a sheet, opens a browser, sends a message — then hands the result back to the model for the next turn. That loop is the agent.
 
 Each box has a job. Let's walk them.

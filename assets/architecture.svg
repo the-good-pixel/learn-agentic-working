@@ -1,82 +1,82 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 640" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#1f2937"/>
     </marker>
-    <marker id="arrow-loop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <marker id="arrow-loop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/>
     </marker>
   </defs>
 
   <!-- title -->
-  <text x="600" y="40" text-anchor="middle" font-size="20" font-weight="600" fill="#111827">The agentic architecture</text>
-  <text x="600" y="68" text-anchor="middle" font-size="14" fill="#6b7280">You talk to the orchestrator. The orchestrator runs the loop.</text>
+  <text x="700" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#111827">The agentic architecture</text>
+  <text x="700" y="80" text-anchor="middle" font-size="17" fill="#6b7280">You talk to the orchestrator. The orchestrator runs the loop.</text>
 
-  <!-- boxes positioned for arrows -->
   <!-- You -->
   <g>
-    <circle cx="100" cy="220" r="50" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-    <text x="100" y="215" text-anchor="middle" font-size="16" font-weight="600" fill="#92400e">You</text>
-    <text x="100" y="236" text-anchor="middle" font-size="11" fill="#92400e">type a prompt</text>
+    <circle cx="110" cy="280" r="62" fill="#fef3c7" stroke="#f59e0b" stroke-width="2.5"/>
+    <text x="110" y="278" text-anchor="middle" font-size="22" font-weight="700" fill="#92400e">You</text>
+    <text x="110" y="304" text-anchor="middle" font-size="14" fill="#92400e">type a prompt</text>
   </g>
 
   <!-- Orchestrator -->
   <g>
-    <rect x="240" y="160" width="200" height="120" rx="10" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2"/>
-    <text x="340" y="195" text-anchor="middle" font-size="16" font-weight="600" fill="#3730a3">Orchestrator</text>
-    <text x="340" y="218" text-anchor="middle" font-size="12" fill="#3730a3">Claude Code · Codex</text>
-    <text x="340" y="234" text-anchor="middle" font-size="12" fill="#3730a3">OpenCode · Cursor</text>
-    <text x="340" y="260" text-anchor="middle" font-size="11" fill="#6366f1" font-style="italic">owns the loop</text>
+    <rect x="240" y="200" width="240" height="160" rx="12" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2.5"/>
+    <text x="360" y="244" text-anchor="middle" font-size="22" font-weight="700" fill="#3730a3">Orchestrator</text>
+    <text x="360" y="276" text-anchor="middle" font-size="15" fill="#3730a3">Claude Code · Codex</text>
+    <text x="360" y="298" text-anchor="middle" font-size="15" fill="#3730a3">OpenCode · Cursor</text>
+    <text x="360" y="332" text-anchor="middle" font-size="14" fill="#6366f1" font-style="italic">owns the loop</text>
   </g>
 
   <!-- Model -->
   <g>
-    <rect x="510" y="160" width="180" height="120" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
-    <text x="600" y="195" text-anchor="middle" font-size="16" font-weight="600" fill="#14532d">Model</text>
-    <text x="600" y="220" text-anchor="middle" font-size="12" fill="#14532d">Claude · GPT · Gemini</text>
-    <text x="600" y="252" text-anchor="middle" font-size="11" fill="#16a34a" font-style="italic">decides what to do</text>
+    <rect x="555" y="200" width="220" height="160" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+    <text x="665" y="244" text-anchor="middle" font-size="22" font-weight="700" fill="#14532d">Model</text>
+    <text x="665" y="276" text-anchor="middle" font-size="15" fill="#14532d">Claude · GPT</text>
+    <text x="665" y="298" text-anchor="middle" font-size="15" fill="#14532d">Gemini</text>
+    <text x="665" y="332" text-anchor="middle" font-size="14" fill="#16a34a" font-style="italic">decides what to do</text>
   </g>
 
   <!-- Connector -->
   <g>
-    <rect x="760" y="160" width="180" height="120" rx="10" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
-    <text x="850" y="195" text-anchor="middle" font-size="16" font-weight="600" fill="#831843">Connector</text>
-    <text x="850" y="220" text-anchor="middle" font-size="12" fill="#831843">MCP server</text>
-    <text x="850" y="236" text-anchor="middle" font-size="12" fill="#831843">or built-in tool</text>
-    <text x="850" y="262" text-anchor="middle" font-size="11" fill="#db2777" font-style="italic">bridges to the app</text>
+    <rect x="850" y="200" width="220" height="160" rx="12" fill="#fce7f3" stroke="#db2777" stroke-width="2.5"/>
+    <text x="960" y="244" text-anchor="middle" font-size="22" font-weight="700" fill="#831843">Connector</text>
+    <text x="960" y="276" text-anchor="middle" font-size="15" fill="#831843">MCP server</text>
+    <text x="960" y="298" text-anchor="middle" font-size="15" fill="#831843">or built-in tool</text>
+    <text x="960" y="332" text-anchor="middle" font-size="14" fill="#db2777" font-style="italic">bridges to the app</text>
   </g>
 
   <!-- Real app -->
   <g>
-    <rect x="1010" y="160" width="160" height="120" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
-    <text x="1090" y="195" text-anchor="middle" font-size="16" font-weight="600" fill="#0c4a6e">Real app</text>
-    <text x="1090" y="220" text-anchor="middle" font-size="12" fill="#0c4a6e">Gmail · Sheets</text>
-    <text x="1090" y="236" text-anchor="middle" font-size="12" fill="#0c4a6e">Linear · Browser</text>
-    <text x="1090" y="252" text-anchor="middle" font-size="12" fill="#0c4a6e">Your files</text>
+    <rect x="1145" y="200" width="220" height="160" rx="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+    <text x="1255" y="244" text-anchor="middle" font-size="22" font-weight="700" fill="#0c4a6e">Real app</text>
+    <text x="1255" y="276" text-anchor="middle" font-size="15" fill="#0c4a6e">Gmail · Sheets</text>
+    <text x="1255" y="298" text-anchor="middle" font-size="15" fill="#0c4a6e">Linear · Browser</text>
+    <text x="1255" y="320" text-anchor="middle" font-size="15" fill="#0c4a6e">Your files</text>
   </g>
 
-  <!-- arrows: You -> Orchestrator -->
-  <line x1="155" y1="220" x2="232" y2="220" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- You -> Orchestrator -->
+  <line x1="172" y1="280" x2="232" y2="280" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arrow)"/>
 
-  <!-- Orchestrator <-> Model (two arrows, slightly offset) -->
-  <line x1="445" y1="208" x2="505" y2="208" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="475" y="200" text-anchor="middle" font-size="10" fill="#4b5563">consults</text>
-  <line x1="505" y1="240" x2="445" y2="240" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="475" y="255" text-anchor="middle" font-size="10" fill="#4b5563">tool call / answer</text>
+  <!-- Orchestrator <-> Model -->
+  <line x1="485" y1="266" x2="550" y2="266" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="517" y="256" text-anchor="middle" font-size="13" fill="#4b5563">consults</text>
+  <line x1="550" y1="304" x2="485" y2="304" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="517" y="324" text-anchor="middle" font-size="13" fill="#4b5563">tool call / answer</text>
 
-  <!-- Orchestrator -> Connector (curves down and right under the Model) -->
-  <path d="M 340 285 Q 340 360 600 360 Q 850 360 850 285" fill="none" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="0"/>
-  <text x="600" y="380" text-anchor="middle" font-size="11" fill="#4b5563">orchestrator dispatches tool calls</text>
+  <!-- Orchestrator -> Connector (curves down under the Model) -->
+  <path d="M 360 365 Q 360 450 665 450 Q 960 450 960 365" fill="none" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="665" y="473" text-anchor="middle" font-size="14" fill="#4b5563">orchestrator dispatches tool calls</text>
 
   <!-- Connector -> Real app -->
-  <line x1="945" y1="220" x2="1005" y2="220" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="1075" y1="280" x2="1140" y2="280" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arrow)"/>
 
   <!-- loop indicator -->
   <g>
-    <path d="M 1090 285 Q 1090 440 600 440 Q 340 440 340 360" fill="none" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow-loop)"/>
-    <text x="715" y="460" text-anchor="middle" font-size="12" fill="#6b7280" font-style="italic">result flows back; the orchestrator feeds it to the model for the next turn</text>
+    <path d="M 1255 365 Q 1255 555 700 555 Q 360 555 360 450" fill="none" stroke="#6b7280" stroke-width="2" stroke-dasharray="7,5" marker-end="url(#arrow-loop)"/>
+    <text x="800" y="578" text-anchor="middle" font-size="14" fill="#6b7280" font-style="italic">result flows back; the orchestrator feeds it to the model for the next turn</text>
   </g>
 
   <!-- bottom caption -->
-  <text x="600" y="500" text-anchor="middle" font-size="13" fill="#374151">You → Orchestrator → Model → Connector → Real app  ·  with the orchestrator looping every result back into the next turn</text>
+  <text x="700" y="618" text-anchor="middle" font-size="16" fill="#374151" font-weight="500">You → Orchestrator → Model → Connector → Real app</text>
 </svg>
