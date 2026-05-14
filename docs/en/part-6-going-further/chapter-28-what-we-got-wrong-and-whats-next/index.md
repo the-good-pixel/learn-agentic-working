@@ -1,14 +1,14 @@
 # 28. What we got wrong, and what's next
 
-A reader who's followed the book this far has probably noticed something: a lot of what we said in 2024 about how to work with agents, we'd say differently now. Some of it we got *wrong*. Some of it the tools outgrew. Some of it we were right about in spirit but the shape kept changing.
+By now you've seen a lot of patterns. Some of them will work on the first try. Some of them will feel wrong in your hands and you'll quietly drop them. And some — the ones this chapter is about — will feel *right* and still steer you off a cliff, because they encode a default that the broader agent conversation has gotten wrong.
 
-This chapter is the honest accounting of that — the mistakes we made, the anti-patterns we watched smart teams fall into, and a short look at where this is headed. It's the closer to the book, so we end where we started: with the three things that haven't changed and probably won't, no matter what ships next.
+This chapter is the honest part of the book. It's where we name the anti-patterns we keep watching smart teams fall into — including the ones our own early drafts leaned toward — and look briefly at where the tooling is headed underneath us. It's the closer, so we end where we started: with the three things that won't change, no matter what ships next.
 
-> **You don't need this chapter to start.** Skip it on first read. Come back when you've been using an agent for a few months and you're trying to figure out why some weeks felt great and others felt like fighting your tools.
+> **You don't need this chapter to start.** Skip it on first read. Come back after a few months of real use, when you're trying to figure out why some weeks felt great and others felt like fighting your tools.
 
 ## The anti-pattern almost nobody warns you about
 
-Most agent guidance, including the early drafts of this book, lean cautious. *Always require confirmation. Never let the agent X. Money is at stake, so gate it. Production is sacred, so gate it. The agent could be wrong, so gate it.*
+Most agent guidance — including the early drafts of this book — leans cautious. *Always require confirmation. Never let the agent X. Money is at stake, so gate it. Production is sacred, so gate it. The agent could be wrong, so gate it.*
 
 We don't think this is right anymore. Or rather: we think it's right for a small set of actions and wrong for everything else, and the failure mode of *blanket* caution is much worse than people admit.
 
