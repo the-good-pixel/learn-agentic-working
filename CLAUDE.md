@@ -1,6 +1,6 @@
 # CLAUDE.md — Instructions for agents working on this book
 
-You are helping write **The Agentic Working Playbook** — an open-source book that teaches teams how to use AI coding agents (Claude Code, Codex, OpenCode, etc.) to do real work, for both technical and non-technical audiences.
+You are helping write **Learn Agentic Working** — an open-source book that teaches teams how to use AI coding agents (Claude Code, Codex, OpenCode, etc.) to do real work, for both technical and non-technical audiences.
 
 Read `README.md` first for the full vision, structure, and audience. This file is the *style and working* guide for any agent (you) helping write or edit the book.
 

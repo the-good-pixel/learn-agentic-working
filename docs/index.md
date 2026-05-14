@@ -1,4 +1,4 @@
-# The Agentic Working Playbook
+# Learn Agentic Working
 
 **A practical, open-source playbook for getting real work done with AI agents.**
 

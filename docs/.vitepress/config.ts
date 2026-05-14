@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: 'The Agentic Working Playbook',
+  title: 'Learn Agentic Working',
   description: 'A practical, open-source playbook for getting real work done with AI agents.',
   base: '/learn-agentic-working/',
   lang: 'en-US',
@@ -11,13 +11,13 @@ export default defineConfig({
 
   head: [
     ['meta', { name: 'theme-color', content: '#1f2937' }],
-    ['meta', { property: 'og:title', content: 'The Agentic Working Playbook' }],
+    ['meta', { property: 'og:title', content: 'Learn Agentic Working' }],
     ['meta', { property: 'og:description', content: 'For engineers, designers, analysts, PMs, marketers, operations — anyone whose work touches a computer.' }],
     ['meta', { property: 'og:type', content: 'website' }],
   ],
 
   themeConfig: {
-    siteTitle: 'Agentic Working Playbook',
+    siteTitle: 'Learn Agentic Working',
 
     nav: [
       { text: 'Home', link: '/' },
