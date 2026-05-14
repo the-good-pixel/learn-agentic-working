@@ -90,7 +90,7 @@ Modern agentic work is reversible far more often than people expect, and the rig
 
 Most agent tools give you these primitives:
 
-- **Stop the run.** Ctrl-C, Esc, or the in-UI stop button. Free, cheap, no penalty. If the agent is going somewhere you don't want it to go, stop it. You can always resume.
+- **Stop the run.** Press **Esc** (the universal soft-interrupt across Claude Code, Codex, OpenCode, Gemini CLI), or use the in-UI stop button. Ctrl-C works too in most tools but in Claude Code it's the *quit*-the-session shortcut — Esc is the lighter touch. Free, cheap, no penalty. If the agent is going somewhere you don't want it to go, stop it. You can always resume.
 - **Undo the last few turns.** Claude Code, Codex, OpenCode all support rewinding the conversation. You scrub back to before the misunderstanding and re-prompt from there.
 - **Ask the agent to reverse what it did.** *"You filed those 14 tickets — close them all with a comment saying 'agent error, refiling'."* The agent does it. The MCP that wrote the data can usually unwrite it.
 - **For engineers specifically: Git is your safety net.** The agent works in a git repo; every change is a diff you can `git restore` or `git checkout` away from being gone. Set up your workflow so the agent commits frequently and you can always reset to the last known-good state. *(More on this in the engineer section below.)*

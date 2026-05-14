@@ -25,7 +25,7 @@ Then come back. The five paragraphs below are the survival kit; the tutorial abo
 
 **How to type a prompt and read the output.** Once the agent is running, you'll see a `>` prompt. Type your sentence in English. To put in a line break without sending, most agents take Shift-Enter (or `\` then Enter); plain Enter sends. The agent's response *streams* — words appear as it thinks, not all at once. You'll see lines like `Read(file.csv)` or `Bash(ls)` — those are *tool calls*, the agent reaching for something on your machine. There's a difference between the agent *thinking out loud* (text scrolling, work happening) and the agent *asking you a question* (it stops and waits for your input). Wait for the question; answer it; otherwise just watch.
 
-**How to interrupt and how to quit.** If the agent heads in a wrong direction, press Ctrl-C — it stops what it's doing right then. Interruption is cheap and the agent will not break anything mid-action; it just stops. To quit the agent cleanly, type `/exit` or press Ctrl-D. To close the terminal window itself, close it like any other window.
+**How to interrupt and how to quit.** If the agent heads in a wrong direction, press **Esc** — that's the universal "stop what you're doing" key across Claude Code, Codex, OpenCode, and Gemini CLI. It stops the agent right then; the conversation stays open so you can redirect with a sentence. Interruption is cheap and the agent will not break anything mid-action. (Ctrl-C also works in most agents, but in Claude Code it's the *quit*-the-session shortcut — Esc is the lighter touch.) To quit cleanly, type `/exit` or press Ctrl-C twice. To close the terminal window itself, close it like any other window.
 
 *That's it. Everything else from here uses these five things.*
 
@@ -46,6 +46,13 @@ Pick one. Have the file, folder, or links handy. You don't need to write the pro
 ## Step 2: install the agent (3 minutes)
 
 We'll use **Claude Code** as the default. The same shape works for Codex, OpenCode, and Gemini CLI — Ch. 6 covers the others side-by-side.
+
+> **These commands may have changed since this was written.** Install pages on the vendor side get refreshed faster than a book chapter does. The snippets below are correct as of writing (May 2026); **if anything doesn't behave as described, follow the vendor's official quickstart page — it will always be more current than this book**. Bookmark the one for the agent you're picking:
+>
+> - **Claude Code** → [docs.claude.com/en/docs/claude-code/quickstart](https://docs.claude.com/en/docs/claude-code/quickstart)
+> - **Codex** → [developers.openai.com/codex](https://developers.openai.com/codex) (or the [openai/codex](https://github.com/openai/codex) GitHub repo)
+> - **OpenCode** → [opencode.ai](https://opencode.ai)
+> - **Gemini CLI** → [github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)
 
 If you're on macOS or Linux, open a terminal (on macOS: hit Cmd-Space, type *Terminal*, press Enter) and paste:
 
@@ -69,11 +76,11 @@ When it drops you into a prompt that looks like:
 > 
 ```
 
-…you're in. The agent is now running in whatever folder your terminal was sitting in. If you want it to operate on a *specific* folder for today's task (the project folder, the meeting-notes folder, the Downloads folder), close the agent with `Ctrl-C`, `cd` into that folder, and run `claude` again. (`cd` means *change directory* — type `cd ~/Downloads` and you're in your Downloads folder.)
+…you're in. The agent is now running in whatever folder your terminal was sitting in. If you want it to operate on a *specific* folder for today's task (the project folder, the meeting-notes folder, the Downloads folder), quit the agent (`/exit` or Ctrl-C twice), `cd` into that folder, and run `claude` again. (`cd` means *change directory* — type `cd ~/Downloads` and you're in your Downloads folder.)
 
 **Non-technical reader, you're done with the scary bit.** The rest of this chapter is sentences in English.
 
-**In other tools.** If you went with Codex instead, the install is `npm install -g @openai/codex && codex`. If you went with OpenCode: see [opencode.ai](https://opencode.ai). If you went with Gemini CLI: `npm install -g @google/gemini-cli && gemini`. The conversation shape from here is the same in all four.
+**In other tools.** As of writing: Codex installs with `npm install -g @openai/codex && codex`; OpenCode via [opencode.ai](https://opencode.ai); Gemini CLI with `npm install -g @google/gemini-cli && gemini`. **Always cross-check against the vendor quickstart links above** — these install commands change. The conversation shape from here is the same in all four.
 
 ## Step 3: brief the agent (1 minute)
 
@@ -91,7 +98,7 @@ This is where it gets fun, and also where you'll feel a tiny urge to look away. 
 
 The agent will start narrating: *"I'll list the files first… reading `meeting-2026-05-08.md`… reading `meeting-2026-05-09.md`…"* You'll see each tool call stream past — `Read`, `Glob`, `Bash`. You'll see proposed file changes appear as diffs. Some agents pause and ask permission for actions they consider risky; some run straight through. (Ch. 7 explains why, and how to tune that.)
 
-The most important habit to start practicing right now is **monitor, don't block**. Don't stop the agent to second-guess every step. Watch the stream. If a step looks wrong — it's reading the wrong files, going in a direction you didn't intend — hit Escape (or Ctrl-C in some tools) and redirect with a sentence: *"Stop. You're reading the archive folder; I meant the current week."* Interruption is cheap. You don't have to gate every step.
+The most important habit to start practicing right now is **monitor, don't block**. Don't stop the agent to second-guess every step. Watch the stream. If a step looks wrong — it's reading the wrong files, going in a direction you didn't intend — press **Esc** and redirect with a sentence: *"Stop. You're reading the archive folder; I meant the current week."* Interruption is cheap. You don't have to gate every step.
 
 Three things will probably happen:
 

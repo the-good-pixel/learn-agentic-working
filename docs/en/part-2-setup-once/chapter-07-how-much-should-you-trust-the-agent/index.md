@@ -28,7 +28,7 @@ There are two ways agent trust goes badly.
 
 Most agent documentation warns you about the second, so it leans hard into the first. The result is the rubber-stamp problem above, plus an agent that under-performs because it's been gated into a polite assistant.
 
-The right posture sits between them, and it leans toward action: **the agent acts; you watch.** You don't pre-approve every step. You see the stream of what's happening in real time, and you interrupt when something looks wrong. Interruption is cheap in every modern agent — Ctrl-C, hit Escape, type "stop". Use *that*, not prior restraint.
+The right posture sits between them, and it leans toward action: **the agent acts; you watch.** You don't pre-approve every step. You see the stream of what's happening in real time, and you interrupt when something looks wrong. Interruption is cheap in every modern agent — press Esc (the universal soft-interrupt), type "stop", or as a last resort Ctrl-C. Use *that*, not prior restraint.
 
 ## The heuristic: reversible vs. irreversible
 
@@ -107,7 +107,7 @@ You're not pre-approving. You're *watching*. In practice:
 - **Stream output by default.** Don't ask the agent to "go away and come back when done" for a task you've never seen it do before. Watch the first few minutes; you'll catch a wrong direction in 30 seconds, not 30 minutes.
 - **Side-by-side, not full-screen.** Keep the agent visible while you do something else. You catch a lot just from peripheral vision: a long-running command you didn't expect, repeated retries, a wandering plan.
 - **Skim the recap.** When the agent finishes a multi-step task, it summarizes what it did. *Read the summary.* It's the single most underused habit. Ten seconds; catches 80% of "the agent did something subtly wrong" moments.
-- **Use undo, revert, and Ctrl-C without hesitation.** They're cheap. There's no penalty for interrupting an agent. There's a big penalty for letting a wrong direction continue for ten minutes because you didn't want to "waste" the tokens already spent.
+- **Use undo, revert, and Esc without hesitation.** They're cheap. There's no penalty for interrupting an agent. There's a big penalty for letting a wrong direction continue for ten minutes because you didn't want to "waste" the tokens already spent.
 
 The non-engineer's version of monitoring is the same shape: *read the summary of what the agent did, spot-check the actual artifacts* — open the Linear ticket it created, look at the spreadsheet row it updated, scan the draft email. Reviewing a created ticket is the same skill as reviewing a code diff. Ch. 13 goes deeper.
 
