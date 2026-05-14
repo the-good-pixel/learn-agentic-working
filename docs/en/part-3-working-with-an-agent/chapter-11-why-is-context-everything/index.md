@@ -29,22 +29,26 @@ The biggest single upgrade most readers can make to their prompts is to **stop d
 
 The chatbot way:
 
-> *"I have a TypeScript error in my checkout component. It says something about a type mismatch on the customer object. I think it's because we changed the customer schema last week."*
+> *"My bank statement looks weird this month — I think there are some duplicate charges from my phone bill or maybe a subscription I forgot about. Can you help me figure out what's going on?"*
 
 The agent way:
 
-> *"Run the build and show me the error. Then read `src/components/Checkout.tsx` and the customer schema definition. Tell me what's broken and what changed."*
+> *"Read `~/Downloads/bank-statement-nov.pdf`. Find any duplicate charges, anything that looks like a forgotten subscription, and tell me what to follow up on."*
 
-You stopped narrating the problem. You handed over the inputs and let the agent observe directly. Almost every "the AI gave me a bad answer" complaint can be traced back to the human paraphrasing something the AI could have read in full.
+You stopped narrating the problem. You handed over the source and let the agent observe directly. Almost every *"the AI gave me a bad answer"* complaint can be traced back to the human paraphrasing something the AI could have read in full.
 
-The same principle applies to non-engineering work:
+A few more in the same shape, across different kinds of work:
 
-- *Bad:* "Here's a rough description of what the client said in the meeting…"
-  *Good:* "Read the transcript at `~/Downloads/acme-call-2026-05-10.txt` and summarize the client's three asks."
-- *Bad:* "The dashboard looks weird in mobile view."
-  *Good:* *(pastes screenshot)* "Here's mobile. Here's desktop. What's different?"
-- *Bad:* "The ad isn't performing well."
-  *Good:* "Pull the last 14 days of performance from Google Ads for campaign 'Spring Launch' via the MCP. What's off?"
+- *Bad:* *"Here's a rough description of what the client said in yesterday's meeting…"*
+  *Good:* *"Read the transcript at `~/Downloads/acme-call-2026-05-10.txt` and summarize the client's three asks."*
+- *Bad:* *"The page looks weird on my phone."*
+  *Good:* *(pastes two screenshots)* *"Here's how it looks on my phone. Here's how it looks on my laptop. What's different?"*
+- *Bad:* *"My ad isn't performing well."*
+  *Good:* *"Pull the last 14 days of performance from my Google Ads account for the 'Spring Launch' campaign. What's off?"*
+- *Bad:* *"This contract from the vendor seems off but I can't quite say why."*
+  *Good:* *"Read `~/Documents/vendor-contract-v3.pdf`. Flag any clause around auto-renewal, liability cap, or IP ownership that looks unusual for a service agreement of this size."*
+- *Bad:* *"My boss wants a one-pager on Q3 sales by Friday."*
+  *Good:* *"Read `q3-sales.xlsx`. Build a one-page summary suitable for a board audience — headline number, top 3 wins, top 3 misses, what changed vs Q2. Save it as `q3-onepager.md`."*
 
 ## Screenshots, PDFs, and the multimodal upgrade
 
