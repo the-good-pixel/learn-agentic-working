@@ -66,17 +66,51 @@ Read what it changes. Save. Done. This is a five-minute decision that will save 
 
 ## The permission modes each agent ships with, and how to pick one
 
-Every major terminal agent ships a small set of named permission modes. The names differ; the shape is the same. Here's the quick reference.
+Every major terminal agent ships a small set of named permission modes. The names differ; the shape is the same. Here's the quick reference. **The vendor docs are the authoritative source — these change** — so the links beside each tool are where to go when the names below don't match what you see on screen.
 
-**Claude Code** has four modes you'll actually use. `default` asks for confirmation on risky actions (running shell commands, writes outside the project). `acceptEdits` auto-accepts file edits and still asks before running commands — this is the sweet spot for most working sessions. `bypassPermissions` runs without any prompts; it's sandbox-aware, so use it in a working directory you can throw away if things go wrong. `plan` is read-only: the agent investigates and produces a written plan but doesn't change anything. Full reference: [docs.claude.com/en/docs/claude-code/iam](https://docs.claude.com/en/docs/claude-code/iam).
+**Claude Code** has five modes you'll actually use:
 
-**Codex** organizes the same idea around two axes — approval for shell commands and approval for file edits. The modes (`suggest`, `auto-edit`, `full-auto`) escalate from "ask before everything" to "act freely inside a sandboxed working directory". The shape is the same as Claude Code; the names are different. See the project README: [github.com/openai/codex](https://github.com/openai/codex).
+- `plan` — read-only. The agent investigates and produces a written plan but doesn't change anything. Best for the *first turn* on an unfamiliar task or codebase.
+- `default` — asks for confirmation on risky actions (running shell commands, writes outside the project, network calls). Conservative; produces rubber-stamping if you live here.
+- `acceptEdits` — auto-accepts file edits, still asks before running commands. The sweet spot for most working sessions, and where most readers should default.
+- `auto` (also called **auto-accept all**, toggled with `Shift+Tab` in the TUI) — auto-accepts edits *and* commands in the allow-list, only stops on actions outside it. One step more permissive than `acceptEdits`; the right mode when you're actively watching a long-running task and don't want to be the bottleneck on every `npm test`.
+- `bypassPermissions` — runs without any prompts; sandbox-aware. Use it in a working directory you can throw away if things go wrong, or in a container.
 
-**OpenCode** takes a configuration-based approach. You set a `permission` block in `~/.config/opencode/` listing which tools the agent may use without asking and which require a prompt. There aren't named "modes" the way Claude Code has them, but the resulting postures look identical: a permissive default with explicit gates on a small list of actions. See [opencode.ai](https://opencode.ai) or the project on GitHub.
+How to set them up: command-line flags on launch (`claude --permission-mode acceptEdits`), in-session toggles (`Shift+Tab`), or persistently in `~/.claude/settings.json` (user-level) or `.claude/settings.json` (project-level). Full reference and the current list of mode names: [docs.claude.com/en/docs/claude-code/iam](https://docs.claude.com/en/docs/claude-code/iam) and [docs.claude.com/en/docs/claude-code/settings](https://docs.claude.com/en/docs/claude-code/settings).
 
-**Which to pick.** Most readers should live in **the auto-accept-edits-but-confirm-commands posture** as their default — `acceptEdits` in Claude Code, `auto-edit` in Codex, the equivalent allow-list in OpenCode. File edits in a tracked repo are reversible (`git diff`, `git restore`); shell commands sometimes aren't. Use `plan` mode when you want the agent to think before doing — a new codebase, a destructive-sounding task, a sensitive area. Use `bypassPermissions` / `full-auto` only when you're running in a sandboxed or throwaway directory, or when you genuinely trust the agent on this specific task and you're going to watch it.
+**Codex** organizes the same idea around two axes — approval for shell commands and approval for file edits. The modes (`suggest`, `auto-edit`, `full-auto`) escalate from "ask before everything" to "act freely inside a sandboxed working directory". The shape is the same as Claude Code; the names are different. Configure via `~/.codex/config.toml` or `--approval-mode` on launch. See the project README and configuration docs: [github.com/openai/codex](https://github.com/openai/codex) and [developers.openai.com/codex](https://developers.openai.com/codex).
+
+**OpenCode** takes a configuration-based approach. You set a `permission` block in `~/.config/opencode/` listing which tools the agent may use without asking and which require a prompt. There aren't named "modes" the way Claude Code has them, but the resulting postures look identical: a permissive default with explicit gates on a small list of actions. See [opencode.ai](https://opencode.ai) and the [opencode/opencode](https://github.com/sst/opencode) GitHub repo for the schema.
+
+**Gemini CLI** ships with `--yolo` (auto-accept all) and an interactive default. Settings live in `~/.gemini/settings.json`. See [github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) for the current options.
+
+**Which to pick.** Most readers should live in **the auto-accept-edits-but-confirm-commands posture** as their default — `acceptEdits` in Claude Code, `auto-edit` in Codex, the equivalent allow-list in OpenCode. File edits in a tracked repo are reversible (`git diff`, `git restore`); shell commands sometimes aren't. Use `plan` mode when you want the agent to think before doing — a new codebase, a destructive-sounding task, a sensitive area. Step up to `auto` / Codex's `auto-edit`-with-broader-command-allow-list when you're shepherding a longer task and the bottleneck has become *you* approving every `npm test`. Use `bypassPermissions` / `full-auto` / `--yolo` only when you're running in a sandboxed or throwaway directory, or when you genuinely trust the agent on this specific task and you're going to watch it.
 
 This ties back to the chapter's whole stance: **monitor, don't block**. Pick the most permissive mode you can monitor effectively, not the most restrictive mode you can tolerate. A rubber-stamp loop is worse than no gate; an unwatched `full-auto` run is worse than a slow one. The middle is where the leverage lives.
+
+## Write your "never without asking" list into `CLAUDE.md`
+
+Permission modes are the broad dial. The fine-grained list — *"never do these specific things without explicit instruction"* — belongs in your `CLAUDE.md` (or `AGENTS.md`, depending on which the agent reads). The agent loads that file at the start of every session in the project, so the rules persist; you don't have to re-explain them.
+
+This is where you write down the things that are *always* gated regardless of which permission mode you're in. A starter list, adapt to your work:
+
+```
+## Never do without explicit instruction
+
+- Never push to the `main` or `develop` branch — always work on a feature branch.
+- Never force-push to a remote branch.
+- Never run database migrations against any environment whose name contains `prod`.
+- Never send email, Slack messages, or SMS to real recipients — drafts only,
+  for me to review and send.
+- Never delete files outside the current project folder.
+- Never modify `.env`, secrets files, or anything under `~/.ssh/` without
+  asking what change to make and why.
+- Never run any command that spends money (ads-API writes, payment API
+  calls, cloud-resource provisioning) — propose it, wait for "yes".
+- Never auto-merge a PR, even if CI is green and the diff is small.
+```
+
+These rules cost you nothing to write down and cost nothing in friction during normal work — the agent simply won't drift into them without coming back to you. They're the difference between a permissive default that's *safe* and one that's *reckless*. Ch. 8 walks through the full `CLAUDE.md` writing flow (the short version: don't hand-author it — let the agent interview you and draft it).
 
 ## Scoped capability instead of approval gates
 
