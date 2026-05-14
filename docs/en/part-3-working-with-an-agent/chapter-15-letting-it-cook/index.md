@@ -53,7 +53,7 @@ The pattern that works:
 
 This is **agent regression-testing agent**, and it's surprisingly effective. The specialist isn't smarter than the main agent — it's the same model — but it comes to the work *with fresh context* and a *single objective*, which catches things the main agent missed during its longer journey.
 
-Concrete example: the `test-assistant-capacity` skill (in some teams' repos) walks every documented capability of a production AI assistant and checks tool selection and safety-rail wording — because no CI job runs the agent end-to-end. The reviewer is itself an agent.
+Concrete example: a **`test-assistant-capacity`** skill — an internal QA pattern some teams build to verify their own production AI assistants. The skill is a project-level checklist: it walks every documented capability of the assistant, asks the assistant questions that should trigger each capability, and verifies the assistant picks the right tool, gives the right safety-rail wording, and stays inside the intended scope. There's no CI job that runs the assistant end-to-end, so the agent *becomes* the regression test. We don't ship a generic template for this one (every team's assistant has different capabilities to check), but the shape is *"reviewer skill = checklist + a fresh agent session running it."*
 
 ## "Explore in parallel, synthesize at the end"
 
@@ -97,13 +97,15 @@ In **Claude Code**, the right entrypoints are:
 
 The collision modes below still exist as **failure shapes that can happen** between any two checkouts of the same repo running side-by-side, regardless of how the worktree got created. Treat the rest of this section as the mental model your agent should already have when it sets up your second worktree — and when you ask it to *"write me a `local-dev` skill that handles all the worktree collision modes"*, this list is what it should encode.
 
+(A **`local-dev`** skill is a project-level reusable workflow that starts your dev servers correctly — the right ports, the right database, the right env vars. The book ships a paste-ready template for it in [Appendix E — A Library of Real Skills](../../appendix/appendix-e-skills-library/), where you can also see the full text of every skill referenced in this chapter.)
+
 ### The collision modes
 
 #### 1. Port collisions
 
 Two dev servers cannot both bind to port 3000. The first one to start wins; the second one crashes or fails silently.
 
-The fix is to make ports a per-worktree variable, not a hardcoded constant. A `local-dev-launcher` skill (real example in some teams' repos) inspects which PID owns a busy port and *refuses to kill it unless the path matches the current repo* — so an agent in worktree A cannot accidentally murder the dev server of worktree B. The same skill assigns ports based on a worktree-derived hash, so each worktree gets a stable, unique set of ports.
+The fix is to make ports a per-worktree variable, not a hardcoded constant. The way some teams handle this is a **`local-dev-launcher`** skill — a more aggressive variant of the `local-dev` template in Appendix E. It inspects which PID owns a busy port and *refuses to kill it unless the path matches the current repo* — so an agent in worktree A cannot accidentally murder the dev server of worktree B. The same skill assigns ports based on a worktree-derived hash, so each worktree gets a stable, unique set of ports.
 
 If you don't have such a skill: at minimum, parameterize the port via env var and pass a different one per worktree.
 
@@ -159,7 +161,7 @@ Once written, every future worktree session in this repo just calls the skill in
 
 #### 8. CI artifact and PR number drift
 
-Less mechanical, more workflow: when three worktrees are landing PRs at the same time, your CI queue is busy, your PR numbers are out of order, and your reviewers get pinged on three threads at once. The `ship-pr` skill pattern (push → open PR → monitor CI → resolve AI review comments → notify when mergeable) shines here, because the agent can babysit each PR independently while you focus on the highest-priority one.
+Less mechanical, more workflow: when three worktrees are landing PRs at the same time, your CI queue is busy, your PR numbers are out of order, and your reviewers get pinged on three threads at once. The **`ship-pr`** skill pattern (push → open PR → monitor CI → resolve AI review comments → notify when mergeable) shines here, because the agent can babysit each PR independently while you focus on the highest-priority one. The full paste-ready template is in [Appendix E — A Library of Real Skills](../../appendix/appendix-e-skills-library/).
 
 ---
 
@@ -172,7 +174,7 @@ Common patterns:
 - **Planner → executor.** One agent (sometimes a different, smaller model) breaks the task into steps; another executes them.
 - **Producer → reviewer.** Main agent writes; specialist reviews; producer revises. (Same as the sub-agent specialist pattern, made explicit.)
 - **Researcher → writer.** One agent gathers; another synthesizes. The handoff is a single Markdown doc; the writer never has to do the noisy research.
-- **Cross-tool consensus.** You ask Claude *and* Gemini for opinions on a hard decision, then have your main agent reconcile them. The `gemini-chat-and-search` skill is a small worked example — multi-turn consensus is required, and the rule is *"never treat Gemini's first response as final."*
+- **Cross-tool consensus.** You ask Claude *and* Gemini for opinions on a hard decision, then have your main agent reconcile them. The **`gemini-chat-and-search`** skill is a small worked example — a user-level skill that lets your Claude session ask Gemini grounded-with-search questions and feed the answers back in. Multi-turn consensus is required, and the rule baked in is *"never treat Gemini's first response as final."* The full template is in [Appendix E — A Library of Real Skills](../../appendix/appendix-e-skills-library/).
 
 For most readers, multi-agent workflows are not day-one material. They become useful when a task is *big enough* that splitting it across specialized roles produces noticeably better output than one agent doing it all. You'll know you want this pattern when your single agent keeps almost-getting-there but losing the thread on long, multi-step work.
 
