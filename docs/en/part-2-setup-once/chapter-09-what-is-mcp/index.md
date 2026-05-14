@@ -126,7 +126,7 @@ New readers conflate these. They're not the same shape; they sit at different la
 
 - A **prompt** is what you type in the chat. One-off.
 - A **slash command** is a named, reusable prompt — type `/changelog` and it expands into a longer instruction. Lightweight; user-defined.
-- A **skill** is a reusable, named **procedure**. It tells the agent *how* to do something — *"to ship a PR: push, open the PR, wait for CI, address review comments, notify me"*. Skills often **compose multiple MCPs** in service of an outcome.
+- A **skill** is a reusable, named **procedure**. It tells the agent *how* to do something — *"to send a monthly investor update: read this month's metrics spreadsheet, compare to last month's update for the structure, draft the email in our usual tone, attach the chart, send to the investor list as a BCC"*. Skills often **compose multiple MCPs** in service of an outcome.
 - An **MCP** is a new **tool** — a capability the agent didn't have before. Gmail. Linear. The filesystem. A database.
 
 Said another way: **an MCP adds a tool; a skill adds a procedure**. The Gmail MCP lets your agent read email. A skill called `triage-inbox` uses the Gmail MCP, plus the Linear MCP, plus your own house rules, to *triage* the inbox according to how you actually work.
