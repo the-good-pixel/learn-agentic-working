@@ -60,15 +60,24 @@ Same for PDFs. Contracts, research papers, scanned receipts, technical spec shee
 
 ## Files and folders beat copy-paste
 
-Whenever the input is a file you have on disk — a CSV, a Markdown doc, a transcript, a JSON dump from some export — *point the agent at the file*. Don't paste its contents into the prompt.
+Whenever the input is a file you already have on disk, *point the agent at the file*. Don't paste its contents into the prompt. This works for almost every file format you actually use at work:
 
-Two reasons. First, the agent will actually read the whole file (or as much as it needs), not whatever fragment you happened to paste. Second, you keep the prompt itself short and skimmable. The prompt is for *instructions*; the file is for *inputs*. Mixing them makes both harder to revise.
+- **Documents** — Word (`.docx`), PDF, plain text (`.txt`), Markdown (`.md`).
+- **Spreadsheets** — Excel (`.xlsx`), Google Sheets exports, CSV.
+- **Slides** — PowerPoint (`.pptx`), Keynote, PDF exports of decks.
+- **Images** — photos (`.jpg`, `.heic`), screenshots (`.png`), scans of receipts and forms — the agent reads them visually, no OCR step required from you.
+- **Audio / video** — meeting recordings (`.mp4`, `.m4a`), voice memos — most modern agents either transcribe natively or invoke a transcription tool on your behalf.
+- **Data exports** — JSON, XML, the messy CSV that came out of your accounting system at 11pm.
+
+Two reasons it beats copy-paste. First, the agent will actually read the *whole* file (or as much as it needs), not whatever fragment you happened to paste in. A PDF contract is 14 pages; you'd never paste the whole thing. Second, you keep the prompt itself short and skimmable. The prompt is for *instructions*; the file is for *inputs*. Mixing them makes both harder to revise.
 
 ```
-"Study ~/Downloads/TransactionHistory.csv and tell me why my balance keeps dropping at the end of every month. Look for recurring patterns I might have missed."
+"Read ~/Downloads/Q3-sales.xlsx and tell me why our APAC numbers
+keep dropping in the last week of every month. Look for recurring
+patterns I might have missed."
 ```
 
-That's twenty words of prompt and a 4 MB file of data. The agent does the rest.
+Twenty words of prompt, a 4 MB Excel workbook of data. The agent does the rest. The same shape works for a 90-page PDF contract, a folder full of meeting screenshots, a `.pptx` deck you need a summary of, or a photo of a handwritten flipchart from this morning's offsite.
 
 ## Links: when fetching beats summarizing
 
