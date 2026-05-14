@@ -1,6 +1,6 @@
 # 3. What's out there right now?
 
-You're sold on the idea. You can picture the five-box diagram. You open a browser tab to figure out which agent to actually install, and within ninety seconds you have eighteen tabs open — Claude Code, Codex, Cursor, Windsurf, Cline, OpenCode, Aider, Gemini CLI, Devin, Replit Agent, ChatGPT Agent, Claude for Chrome — and a faint feeling that maybe you should just go to bed.
+You're sold on the idea. You can picture the architecture diagram. You open a browser tab to figure out which agent to actually install, and within ninety seconds you have eighteen tabs open — Claude Code, Codex, Cursor, Windsurf, Cline, OpenCode, Aider, Gemini CLI, Devin, Replit Agent, ChatGPT Agent, Claude for Chrome — and a faint feeling that maybe you should just go to bed.
 
 This chapter is the map. By the end of it you'll know which kind of agent you actually want, why there are so many of them, and roughly where each one shines. We aren't going to rank them. The field moves too fast — by the time you read this, at least one tool listed here will have a new headline feature, and at least one will have been quietly surpassed. The *categories*, though, will be stable.
 
@@ -74,7 +74,7 @@ The strongest setups in 2026 combine one terminal agent (for the file-system, AP
 
 ## What about Devin, Replit Agent, and "autonomous" branded products?
 
-A few products market themselves as **autonomous** software engineers — Devin, Replit Agent, Codex's longer cloud sessions, and a growing list of competitors. Mechanically, they are still the same five-box diagram: you, an orchestrator, the model it consults, connectors, real apps. What's different is **how long they run unattended** and **how much you're meant to watch them**.
+A few products market themselves as **autonomous** software engineers — Devin, Replit Agent, Codex's longer cloud sessions, and a growing list of competitors. Mechanically, they are still the same architecture: you, an orchestrator, the model it consults, connectors, real apps. What's different is **how long they run unattended** and **how much you're meant to watch them**.
 
 These can be useful for long-horizon tasks where you genuinely want to step away (the *let it cook* pattern from Ch. 15). They are *not* a different category of agent; they are an orchestrator tuned for longer leashes. Treat them as a special case of family 1.
 
@@ -82,7 +82,7 @@ These can be useful for long-horizon tasks where you genuinely want to step away
 
 Fast. Be calibrated about that. New tools ship weekly; existing tools change defaults monthly; pricing and model-routing change quarterly. By the time this paragraph reaches you, at least three things in this chapter will be slightly out of date.
 
-This is fine, because the **five-box diagram from Ch. 2** is the part that doesn't churn. A new tool from a vendor you've never heard of will, almost certainly, be an orchestrator that consults some model and dispatches its tool calls through some kind of connector. Drop it into your existing mental model and ask: *which box is this competing in? what does it do better?* That question answers most "should I switch?" debates faster than any review article.
+This is fine, because the **architecture diagram from Ch. 2** is the part that doesn't churn. A new tool from a vendor you've never heard of will, almost certainly, be an orchestrator that consults some model and dispatches its tool calls through some kind of connector. Drop it into your existing mental model and ask: *which box is this competing in? what does it do better?* That question answers most "should I switch?" debates faster than any review article.
 
 ## So which one should you install first?
 
@@ -101,7 +101,7 @@ The next chapter has you installing one of these and running a first task in ten
 ## The takeaway
 
 - Three families: **terminal agents** (the workhorses), **IDE agents** (in-editor code work), **browser/computer-use agents** (for UI-only tools).
-- All of them are variations on the **five-box diagram** from Ch. 2 — you, orchestrator, model, connectors, real apps. New tools slot into that diagram without changing it.
+- All of them are variations on the **architecture from Ch. 2** — you, orchestrator, model, connectors, real apps. New tools slot into that diagram without changing it.
 - The field churns fast. Pick a default, learn the muscle, swap when a real task pulls you to.
 - A reasonable starter set: one terminal agent (Claude Code is the book's default), plus a browser agent for the long tail of UI-only tools.
 

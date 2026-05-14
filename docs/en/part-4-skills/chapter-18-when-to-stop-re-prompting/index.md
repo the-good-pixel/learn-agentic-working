@@ -50,7 +50,7 @@ That's the signal. You stop re-prompting and say:
 
 The agent drafts a `SKILL.md`. You tweak two lines and save it as `.claude/skills/demo-video/SKILL.md`. The third video — for a third feature — is one prompt: *"make a demo video for that page."* The agent picks up the skill, follows it, produces the video, doesn't need a single correction about spring animations or caption-bar placement.
 
-Same shape as the customer-comms story above — *"three corrections in a row, all on the same dimension, write the skill"* — applied to a different room of the building. (Full `demo-video` template in [Appendix E](../../appendix/appendix-e-skills-library/).)
+Same shape as the customer-comms story above — *"three corrections in a row, all on the same dimension, write the skill"* — applied to a different room of the building. (Full `demo-video` template in [Appendix C](../../appendix/appendix-c-skills-examples/).)
 
 ## The second story (engineers only): the day you lost to symlinked node_modules
 

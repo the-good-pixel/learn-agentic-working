@@ -130,7 +130,7 @@ The point of all of these is the same: the first win is *one task, end to end, i
 
 ## What just happened
 
-You wrote one sentence. The agent read your files, made decisions about them, wrote a result, and showed it to you. Mechanically, the five-box diagram from Ch. 2 just ran end-to-end on your machine, against your real data, in real time.
+You wrote one sentence. The agent read your files, made decisions about them, wrote a result, and showed it to you. Mechanically, the architecture diagram from Ch. 2 just ran end-to-end on your machine, against your real data, in real time.
 
 The feeling, the first time, is a small jolt. Most people say some version of *"oh, that's what they meant"*. The chatbot-to-agent shift is one of those things you don't really believe until your own files are involved. Now they have been.
 

@@ -1,10 +1,10 @@
-# Appendix E — A Library of Real Skills
+# Appendix C — Skills Examples
 
 The skill-writing chapters (Ch. 17 and Ch. 19) make a claim that's hard to believe until you see it: most of the skills you'll use in a year of agentic working aren't elaborate. They're a page of opinions, dropped into `.claude/skills/<name>/SKILL.md`, that turns "ask the agent to figure it out" into "ask the agent and the right thing happens." The hard part isn't the YAML. The hard part is knowing *what rules a skill should contain*, and that only comes from watching real ones.
 
-This appendix collects seven skills you can copy into your own setup today. Three are written for engineers (`ship-pr`, `local-dev`, `demo-video`). Three are written for non-technical work (`reconcile-stripe`, `brand-voice`, `weekly-team-update`). One — `gemini-chat-and-search` — is useful to everyone. Each one is a `SKILL.md` file in full, with no missing pieces. You can paste it into `~/.claude/skills/<name>/SKILL.md` (user-level, available across all your projects) or `.claude/skills/<name>/SKILL.md` (project-level, committed to a repo so your team inherits it) and it will work on the first invocation.
+This appendix collects seven real skills you can copy into your own setup today. Three are engineer-flavored (`ship-pr`, `local-dev`, `demo-video`). Three are written for cross-functional work an engineer wouldn't necessarily own — managing email templates, running an event launch, asking the production database an ad-hoc question (`sendgrid-template-manager`, `event-setup`, `railway-db-query`). One — `gemini-chat-and-search` — is useful to everyone. Each one is a `SKILL.md` file paraphrased from a real one running in production, lightly redacted. You can paste it into `~/.claude/skills/<name>/SKILL.md` (user-level, available across all your projects) or `.claude/skills/<name>/SKILL.md` (project-level, committed to a repo so your team inherits it) and it will work on the first invocation after you fill in your own credentials, table names, and IDs.
 
-A note on adapting these. Every one of them is **opinionated** — they assert rules about tolerance windows, brand voice, animation timing, port-killing etiquette. Those rules came from real production use, and they will be subtly wrong for your situation. Don't reverently keep them. Open the skill, read it with the agent, and ask "where would this be wrong for our team?" Customizing a skill takes five minutes and is exactly the kind of thing the agent is good at. The skills below are starting points, not gospel.
+A note on adapting these. Every one of them is **opinionated** — they assert rules about animation timing, port-killing etiquette, retry limits, what columns to read first. Those rules came from real production use, and they will be subtly wrong for your situation. Don't reverently keep them. Open the skill, read it with the agent, and ask "where would this be wrong for our team?" Customizing a skill takes five minutes and is exactly the kind of thing the agent is good at. The skills below are starting points, not gospel.
 
 ## 1. `ship-pr` — the engineer's PR babysitter
 
@@ -364,270 +364,245 @@ Confirm the storyboard with the user before recording.
 
 **How to adapt this.** If you're not on Playwright + Remotion, the principles still apply: storyboard first, deterministic capture, fixed caption band, no springs, don't redesign the chrome. Substitute your tool (Puppeteer, Cypress, After Effects, CapCut) and keep the rules.
 
-## 5. `reconcile-stripe` — closing the month without a copy-paste rampage
+## 5. `sendgrid-template-manager` — the marketer asks, the agent edits the welcome email
 
-Every month someone in finance ops takes the folder of vendor invoices, the Stripe export of the month's charges, and tries to make them agree. It's tedious, error-prone, and the kind of thing an agent should do in seven minutes. The catch: matching invoices to payments isn't an exact-equality problem (vendor names differ, amounts include fees, dates straddle the month boundary), and the failure mode of "the agent decided to invent a Stripe line to make the numbers tie" is unacceptable. This skill encodes the tolerances and the hard limits. Use it monthly. Don't use it as a substitute for a real accounting system — it produces a reconciliation report, not bookkeeping entries.
-
-````markdown
----
-name: reconcile-stripe
-description: Reconcile a folder of vendor invoices against a Stripe export for the month. Matches on vendor name (fuzzy), amount (within stated tolerance), and date (within stated window). Produces a report of matched, unmatched, and ambiguous items. Triggers on "reconcile the invoices", "close the month", "match the Stripe export against the invoice folder", "produce a reconciliation report".
----
-
-# reconcile-stripe
-
-Monthly invoice-to-Stripe reconciliation. Produces a report; does not modify Stripe or the books.
-
-## When to use
-
-- End-of-month close. The user has a folder of vendor invoices and a Stripe export CSV.
-- Ad-hoc spot checks of specific vendors against Stripe activity.
-- Catching missing or duplicated charges before the books are closed.
-
-## When NOT to use
-
-- The user wants you to create, refund, or modify Stripe charges. Different skill, different blast radius.
-- Reconciliation against a system other than Stripe — write a sibling skill (`reconcile-quickbooks`, `reconcile-bank`).
-- The user wants formal accounting entries. This is reconciliation, not bookkeeping.
-
-## Procedure
-
-### Step 1 — Load the inputs
-
-Expect:
-
-- A folder of invoice files (PDF, mostly). Path provided by the user, or default to `./invoices/<YYYY-MM>/`.
-- A Stripe export CSV for the same month. Default to `./stripe-export-<YYYY-MM>.csv`.
-
-For each invoice, extract:
-
-- Vendor name (string)
-- Total amount (number, in the invoice's currency)
-- Invoice date (ISO date)
-- Invoice number (if present)
-- Currency
-
-For the Stripe export, parse each row's description, amount, currency, and date.
-
-### Step 2 — Match
-
-For each invoice, search the Stripe rows for a candidate match using all three criteria:
-
-- **Vendor: fuzzy match.** Use a normalized comparison (lowercase, strip "Inc"/"Ltd"/"LLC"/"GmbH"/punctuation). Accept a match if the normalized strings have a Levenshtein ratio ≥ 0.85, **or** the invoice vendor appears as a substring of the Stripe description after normalization.
-- **Amount: within tolerance.** Default tolerance is **±2% or ±$1, whichever is larger.** This covers FX rounding and payment processor fees. State the tolerance used at the top of the report.
-- **Date: within window.** Default window is **±7 days** between the invoice date and the Stripe charge date. State the window used at the top of the report.
-
-If a single Stripe row matches on all three, it's a **match**. If multiple rows match, it's **ambiguous**. If none match, the invoice is **unmatched**.
-
-### Step 3 — Build the report
-
-Output a Markdown report at `./reconciliation-<YYYY-MM>.md`:
-
-1. **Header**: month, tolerances used (amount %, amount $, date window).
-2. **Matched section**: table of (Invoice file, Vendor, Amount, Date, Matched Stripe row).
-3. **Unmatched invoices section**: invoices with no Stripe counterpart. For each, suggest the closest Stripe candidate (highest combined similarity) so the human can decide.
-4. **Unmatched Stripe rows section**: Stripe charges the invoice folder doesn't cover.
-5. **Ambiguous section**: invoices with more than one plausible Stripe row. Show all candidates.
-6. **Totals**: sum of matched, sum of unmatched, sum of ambiguous, on both sides.
-
-### Step 4 — Hand off
-
-Tell the user:
-
-- The path to the report.
-- The headline numbers (e.g. "23 of 27 invoices matched, 2 unmatched, 2 ambiguous").
-- The single most surprising line item (largest unmatched amount, or a vendor that newly appeared).
-
-## Hard rules
-
-- **Never create, refund, void, or modify a Stripe line.** This skill is read-only against Stripe and the books. If the user wants to act on a finding, they do it through Stripe directly.
-- **State the tolerances used at the top of every report.** Reconciliation is meaningless without them.
-- **Never claim a match below the tolerance threshold.** If two candidates are close to the line, mark ambiguous, don't pick.
-- **Never "round to match."** If an invoice is $1,200.00 and Stripe shows $1,199.50, that's within default tolerance; document the delta. If it's $1,200.00 vs $1,150.00, that is *not* a match — flag it.
-- **Preserve currency.** If invoice and Stripe row are in different currencies, do not match silently. Either convert with a stated FX rate and document it, or flag as ambiguous.
-- **Don't lose the invoice files.** Reference each invoice in the report by the filename it came from, so the human can audit.
-- **Don't dedupe Stripe rows.** Multiple charges to the same vendor on the same day are legitimate; let the human decide.
-
-## Reference files
-
-- `./invoices/<YYYY-MM>/` — the invoice folder.
-- `./stripe-export-<YYYY-MM>.csv` — the Stripe export.
-- The previous month's `reconciliation-*.md`, if present, to inherit any tolerance overrides the user set.
-````
-
-**How to adapt this.** Tolerances are the most-customized part. A team paying mostly in USD with low fees can tighten amount tolerance to ±0.5%; a team paying international vendors should loosen the date window to ±14 days to cover settlement delays. Ask your agent to read three months of historical reconciliations and propose tolerances that would have produced clean reports — that's the right starting point.
-
-## 6. `brand-voice` — the style guide that actually gets applied
-
-Every company has a brand voice document. Almost no one reads it before drafting a tweet, an email, or a job posting, and as a result the brand voice exists in theory and dies in practice. This skill is the brand voice file *with teeth*: it gets loaded any time the agent is asked to write copy, and its rules apply before the draft comes back. Use it for any drafting task — emails, social posts, landing-page copy, board documents, recruiting outreach. Don't use it for internal Slack messages between colleagues; nobody wants a brand-voiced "lunch?".
+Every team with a product has a folder of transactional emails — welcome emails, reset-password emails, event-reminder emails — sitting inside whatever email service the engineers picked years ago. The PM or marketer says "can we update the welcome email to mention the new onboarding flow?" and the actual change is a five-line content edit, but it lives behind an API and a UI nobody on the marketing team has logins for. This skill removes the friction: the agent has scoped API access to the email-template service (here, SendGrid) and can list, read, draft, and update templates on request. The version below is paraphrased from a real production skill. Use it any time someone wants email copy changed. Don't use it for sending campaigns — that's a different blast radius.
 
 ````markdown
 ---
-name: brand-voice
-description: Apply the company brand voice rules to any drafting task — emails, social posts, landing-page copy, recruiting messages, board documents. Encodes diction, register, and forbidden words. Triggers on "draft a [post / email / page / message]", "write copy for", "rewrite this in our voice", "review this draft for tone".
+name: sendgrid-template-manager
+description: Manage SendGrid dynamic email templates — list, get, create, update, delete templates and versions. Use when the user asks about email templates, SendGrid templates, or needs to create, modify, or inspect transactional email content.
+tools: Bash
 ---
 
-# brand-voice
+# sendgrid-template-manager
 
-The company's voice, encoded as rules the agent enforces before returning a draft.
+Full CRUD on SendGrid dynamic templates and their versions via the v3 API, plus a brand-consistent base HTML template for new emails.
 
 ## When to use
 
-- Drafting any external-facing copy.
-- Drafting internal copy that crosses functions (board update, all-hands script, recruiting page).
-- Rewriting an existing draft to match the company voice.
-- Reviewing a draft for tone before it ships.
+- "Update the welcome email to say X."
+- "List all our transactional templates."
+- "Create a new template for event confirmations."
+- "Show me the current HTML for the password-reset email."
+- "Change the subject line on the abandoned-cart reminder."
 
 ## When NOT to use
 
-- 1:1 Slack messages between colleagues. Be a human.
-- Code comments, commit messages, PR descriptions. Different conventions.
-- Direct customer-support replies in flight — those have their own template library.
+- Sending a campaign or a one-off broadcast — different API, different blast radius, gate that behind explicit user approval.
+- Editing email *content* that lives outside SendGrid (in-app banners, push notifications). Different surface.
+- Anything touching billing, suppression lists, or subscriber lists. Out of scope.
 
-## Procedure
+## Authentication
 
-### Step 1 — Identify the surface
+The API key lives in the environment variable `SENDGRID_TEMPLATE_ADMIN_KEY`. Always read it from the env, never hardcode, never echo the full key into a log.
 
-Ask (or infer): is this a Threads/X post, a LinkedIn post, an email, a landing-page section, a board doc, a recruiting message? Different surfaces, different sub-rules below.
+## Operations
 
-### Step 2 — Draft against the rules
+The skill wraps small Python snippets (run with the project's `uv` or `python3`) against `https://api.sendgrid.com/v3`:
 
-Apply the universal rules and the surface-specific rules. If the user provided a draft, rewrite it; otherwise produce one.
+- **List templates** — `GET /templates?generations=dynamic&page_size=200`, paginate via the `_metadata.next` URL. The list response uses the `result` key, not `templates` (this is the single most common bug when writing against this API for the first time).
+- **Get one template** — `GET /templates/{id}`. The list endpoint omits `html_content`; you must fetch each template individually to read or modify the body.
+- **Create / update / delete templates** — `POST`, `PATCH`, `DELETE /templates/{id}`. The template ID format is `d-<32 hex chars>`.
+- **Create / update / delete versions** — `POST`, `PATCH`, `DELETE /templates/{id}/versions/{version_id}`. Versions hold the actual `subject`, `html_content`, `plain_content`, and the `active` flag. Version IDs are standard UUIDs.
 
-### Step 3 — Self-audit before returning
+## Base HTML template
 
-Check the draft against every rule in *Hard rules* below. Fix violations silently. If a rule conflict is unavoidable (e.g. an industry term that breaks the no-jargon rule but the audience expects it), call it out in a one-line note at the end of the draft.
+The skill bundles a known-good base HTML for new emails — logo, greeting, body, CTA button, sign-off, social icons, footer, copyright. It has the MSO/Outlook-compatible comment blocks and the mobile-responsive `@media` rules already in place. New templates are created by copying this base and replacing seven placeholders: `{{PREHEADER_TEXT}}`, `{{GREETING}}`, `{{BODY_TEXT}}`, `{{CTA_URL_VARIABLE}}`, `{{CTA_BUTTON_LABEL}}`, `{{CLOSING_TEXT}}`, `{{SIGN_OFF}}`.
 
-### Step 4 — Return
-
-Return the draft, then a short list of the rules that were load-bearing in this rewrite (e.g. "removed three exclamation marks, replaced 'leverage' twice, broke one long sentence in half"). This trains the user on the voice over time.
+Variables auto-injected by the backend (no caller change needed): `{{copyright_year}}`.
 
 ## Hard rules
 
-### Universal
-
-- **No exclamation marks.** Anywhere. Period.
-- **No "leverage" as a verb.** Use "use".
-- **No "unlock", "unleash", "empower", "supercharge", "revolutionize", "game-changing", "next-generation", "best-in-class".** Plain alternatives always exist.
-- **No "in today's fast-paced world" or any phrase that performs the role of "let me clear my throat."** Start with the point.
-- **No em dashes used as a stand-in for "and also" — use a period.** Reserve em dashes for genuine parenthetical asides.
-- **No emoji** in any copy that will appear in a corporate context (board docs, contracts, recruiting page, investor updates). Social posts may use a single emoji per post, never two.
-- **No "we are excited to announce."** State what was announced.
-- **Active voice.** Passive voice only when the actor genuinely doesn't matter.
-- **Sentence length variety.** Don't string three long sentences in a row. Don't string five short ones either.
-
-### By surface
-
-- **Threads / X / Bluesky**: Contractions OK. Single emoji OK. One link max. No hashtag soup; one hashtag if it's load-bearing, zero otherwise.
-- **LinkedIn**: No contractions. No emoji. Lead with the point, not "I'm humbled to share." Length cap: 1,200 characters.
-- **Email (external)**: Contractions OK in the body, not in the signoff. No "I hope this finds you well." Open with the reason for writing.
-- **Landing-page copy**: Second person ("you"). One claim per section. Numbers concrete (specific figures, not "many").
-- **Board doc / investor update**: No contractions. No first-person plural cheerleading ("we're crushing it"). State metrics with the period and the comparison ("Q1: $X, up Y% QoQ").
-- **Recruiting outreach**: Personalize the first sentence to something real about the recipient. No "I came across your profile."
-
-### Things to actively replace
-
-| Don't | Do |
-| --- | --- |
-| leverage (verb) | use |
-| utilize | use |
-| in order to | to |
-| at this point in time | now |
-| reach out | contact, email, message |
-| circle back | follow up |
-| robust | (delete, or be specific) |
-| seamless | (delete, or be specific) |
-| solution | (the actual product noun) |
+- **Confirm with the user before deleting or modifying any existing template.** Show the diff, get a yes, then act.
+- **Test new templates with a dummy send before flipping `active: 1`** on a version that real customers will receive.
+- **Use descriptive template names** with an `[In Use]` suffix for the production version. Stale drafts pile up fast.
+- **Iterate slowly when bulk-updating.** Add a ~150ms delay between requests to avoid rate-limit blowback.
+- **Never log the full API key.** Treat it as production credentials.
+- **Don't dedupe versions.** Multiple versions per template are legitimate; the `active` flag is the source of truth.
 
 ## Reference files
 
-- The company's full brand voice doc, if one exists. Read it once on first invocation and treat it as overriding for any conflict with the rules above.
-- The last 20 published posts/emails, for tonal calibration on tough cases.
+- The team's brand voice doc (if one exists) — informs subject lines and tone of any new draft.
+- The previous version of whichever template you're editing — `GET` it before you `PATCH` so the diff is visible.
+- The team's i18n table, if templates exist in more than one language.
 ````
 
-**How to adapt this.** This is the most personal skill in the appendix. Open it, replace the forbidden-words list with the ones your team actually overuses, set the surface-specific rules to match your channels, and — most importantly — have the agent ingest five or six published pieces of copy you're proud of, and ask it to propose three rules it would *add* based on what those pieces have in common.
+**How to adapt this.** Two things to localize. First, the env-var name and the base HTML — swap them for your team's actual key and your actual branded template. Second, the database side: most teams that use a transactional-email service also have a small table in their own database that maps an app-side template key (`welcome_email_v2`) to the SendGrid template ID, so the app can swap templates without a code change. If you have one, add a small section to this skill that documents the table and the typical SQL query to find which SendGrid ID a given app-side template is currently pointing at.
 
-## 7. `weekly-team-update` — Friday updates that don't read like Friday updates
+## 6. `event-setup` — collapsing a six-Slack-channel launch into one invocation
 
-Every team writes a weekly update. Most of them are bad in the same way: lists of activities, no signal about what changed, performative optimism. This skill flips it. It pulls the week's metrics and project notes, leads with the metric move that actually matters, demands a one-line "why" for any KPI move over 15%, and bans the rhetorical tics that turn updates into noise. Use it every Friday. Don't use it for the formal monthly business review — that's a different document with a different audience.
+Launching a new event (a conference, a hackathon, a webinar) is the kind of cross-functional task that lives in six different Slack channels and never quite gets written down. Marketing creates a SendGrid template, engineering wires up a registration page, ops sets up the Google Sheet that tracks who signed up, someone schedules the reminder emails. Each piece is small; the coordination is what eats the week. This skill is the SOP: it walks the agent through every checkbox — templates, database records, Google Sheets sync, test the registration flow end-to-end — in the order they actually need to happen. Paraphrased from a real production skill that has shipped dozens of events. Use it whenever a new event needs to go live. Don't use it for one-off ad-hoc broadcasts that don't need registration tracking.
 
 ````markdown
 ---
-name: weekly-team-update
-description: Generate the team's Friday update from metrics and project notes. Leads with the headline metric move, explains KPI movement over 15%, and enforces a no-exclamation, no-contractions-in-closing voice. Triggers on "write the weekly update", "draft Friday's update", "team update", "EOW summary".
+name: event-setup
+description: Step-by-step guide for launching a new event — SendGrid templates, email config, event record, Google Sheets sync, and end-to-end testing. Use when setting up a new event or modifying event email flows.
+tools: Bash, Read
 ---
 
-# weekly-team-update
+# event-setup
 
-The Friday update, generated from the week's actual numbers and project notes — not vibes.
+The launch SOP for a new event. Templates, database records, reminder schedule, sheet sync, smoke test. In this order.
 
 ## When to use
 
-- Friday afternoon / Monday morning team update.
-- Anywhere a "what happened this week" summary is needed for a cross-functional audience.
-- After a sprint, week, or two-week iteration closes.
+- A new event (conference, hackathon, webinar, info session) needs registration and email flows wired up.
+- An existing event's email content, reminder timing, or sheet sync needs to change.
+- Verifying that an event's full registration flow still works after a refactor.
 
 ## When NOT to use
 
-- Monthly business review. Different audience, different depth, different format.
-- 1:1 update to a manager. Be more direct.
-- Customer-facing release notes. Different skill, different voice.
+- One-off broadcasts that don't need per-recipient tracking. Use the email-template skill directly.
+- Pure marketing-site changes (a landing page that doesn't accept registrations). Different surface.
+- Anything that touches a payment flow. Out of scope here.
+
+## Prerequisites
+
+1. SendGrid template IDs for the registration email and any reminder emails (up to 3 per event).
+2. A Google Sheet for tracking registrations, shared with the service account email. Note the sheet ID from the URL.
+3. Event details: title, date, organizer name, mode (`ONLINE`/`OFFLINE`/`HYBRID`), unique invite code, line of business, region.
+4. Admin role on the backend, with permission to run the relevant management commands.
 
 ## Procedure
 
-### Step 1 — Gather inputs
+### Step 1 — Create templates in SendGrid
 
-- Pull metrics for this week and last week from the team's metrics source (the dashboard, the spreadsheet, the BI tool, whichever the team uses).
-- Read the week's project notes, standup logs, or ticket activity. Whatever the team's notes substrate is.
-- Identify the top 3–5 KPIs the team has agreed to lead with. If there's no agreed list, ask the user once and remember it for next week.
+Use the `sendgrid-template-manager` skill if it's installed. Otherwise, create them in the dashboard. You need:
 
-### Step 2 — Find the lede
+- One **registration** template (the confirmation email sent right after sign-up).
+- Up to three **reminder** templates (typical: 1 week before, 1 day before, day-of). Each gets its own SendGrid template ID, format `d-<32 hex chars>`.
 
-Scan the KPI movements week-over-week:
+Personalization variable used across all: `{{first_name}}`. Event-specific details (name, date, organizer) are usually hardcoded in the template body rather than passed as variables.
 
-- The headline is the metric move that **most changes the picture** — not necessarily the biggest %, but the one a smart reader would care about most.
-- If nothing moved meaningfully, the headline says so: "Quiet week on the metrics. The interesting thing was [project beat]."
+### Step 2 — Register templates in the backend
 
-### Step 3 — Draft
+Add `update_or_create` calls in the project's email-templates seed command (here: `set_up_event_email_templates.py`). Each record needs: app-side UUID, display name, the SendGrid template ID, the provider, the `is_active` flag, and the line-of-business / region tags so the right tenant picks it up.
 
-Structure (this order, every time):
+### Step 3 — Create the event record
 
-1. **Headline** — one sentence. Lead with the metric, then the move, then the period. "Weekly active users hit 8,420, up 6% from last week."
-2. **Why it moved** — one to three sentences, only for KPI moves over 15%, or for the headline metric regardless of size.
-3. **Projects shipped** — bullet list. Each bullet: project, status, who. No more than seven bullets; if there are more, the team is over-extended and the agent should say so in a one-line aside.
-4. **Risks / blockers** — bullets. Each one has an owner and a date. If there are none, write "No new risks raised this week." Don't invent risks.
-5. **Next week** — bullets. Three to five items. Specific, not aspirational.
-6. **Closing line** — one sentence. No contractions. No exclamations.
+Add an `Event.objects.update_or_create(...)` call in the events seed command (`set_up_events.py`). Fields: `date`, `title`, `organizer_name`, `mode`, `event_invite_code` (unique lowercase string), `gsheet_id` (the Google Sheet from prerequisites), `registration_email_template_id`, and the reminder pairs (`reminder_email_template_N_id` plus `reminder_send_at_N` for each reminder you want). Tag with `line_of_business` and `region_of_business`.
 
-### Step 4 — Self-audit
+### Step 4 — Enable the setup commands in the deploy script
 
-Run the hard rules below. Fix violations silently.
+Uncomment (or add) the two management commands in the migration step so they run on the next deploy:
 
-### Step 5 — Return
+```bash
+uv run python manage.py set_up_event_email_templates
+uv run python manage.py set_up_events
+```
 
-Return the draft and a short note listing any KPI moves over 15% the user might want to fact-check.
+### Step 5 — Wire the event into the Google Sheets sync
+
+Add the new event's UUID to the list of events the health-check cron syncs (commonly in `monitor.py`). The cron writes registrations to the sheet and flips the `wrote_to_gsheet` flag so they don't get re-written.
+
+### Step 6 — Smoke test locally
+
+Run lint and the event test suites, then exercise the registration flow in a shell:
+
+```bash
+just lint
+uv run pytest tests/.../event -v
+```
+
+Then call the registration function directly with `is_production=False` and confirm the `NotificationMessage` rows for both registration and reminders get created.
+
+### Step 7 — Verify in staging, then ship
+
+After deploy to staging: register a test user, confirm the email lands, confirm the row appears in the Google Sheet, confirm a reminder is scheduled at the right time. Only then promote to production.
 
 ## Hard rules
 
-- **No exclamation marks.** Anywhere.
-- **Lead with a metric, not a paragraph of preamble.** The first sentence of the update is the headline number. Always.
-- **Any KPI move over 15% gets a one-line "why".** If you don't know the why, the line says "Cause not yet identified; investigating." Don't paper over it.
-- **No contractions in the closing line.** "We will keep pushing on retention next week." not "We'll keep pushing." The closing is the most-quoted line; it carries the register.
-- **No "great week!", "amazing progress!", "team's crushing it"** or any cheerleading without numbers behind it. Praise is a metric move, not an adjective.
-- **No more than seven project bullets.** If there are more, point that out.
-- **No invented risks.** If no one raised a risk this week, say so. Don't fabricate one to look thoughtful.
-- **Numbers are absolute and relative.** "8,420 WAU, up 6% WoW" — never just "up 6%" and never just "8,420".
-- **Specific names, not "the team did X".** Say who.
-- **Date format**: ISO (`2026-05-08`) or the team's documented format. Pick one and be consistent within the update.
+- **4-day cutoff is not optional.** SendGrid's `send_at` parameter has a hard 7-day ceiling. The backend schedules anything beyond ~4 days in-house instead of handing it to SendGrid. Don't bypass that path.
+- **Reminders are capped at 3 per event.** If you need more, you're using the wrong primitive — write a campaign, not an event.
+- **Retry budget is 10.** Failed notifications retry up to 10 times before being parked. Don't raise this without explicit user approval.
+- **Don't hardcode template IDs in code paths.** All template lookups go through the `EmailTemplate` table, not constants. This is what makes templates editable without a deploy.
+- **Confirm with the user before changing an active event.** Especially `reminder_send_at_*` — these can fire emails immediately if you set them to the past.
+- **No registrations are written without a `NotificationMessage` reference** for the audit trail.
 
 ## Reference files
 
-- The team's metrics dashboard or export.
-- Last three weeks of updates, for tonal calibration and to detect drift.
-- The team's agreed KPI list, if recorded.
+- The events seed command (`set_up_events.py` or equivalent).
+- The email-templates seed command.
+- The notifications module (`email_service.py`, `scheduled_email_processor.py`) for the cutoff and retry logic.
+- The reference PR for the most recent launch — every team has one; use it as a worked example.
 ````
 
-**How to adapt this.** Two things to customize. First, the KPI list — get the team to agree on the three to five metrics that the update leads with, and put them in the skill so the agent doesn't ask every week. Second, the threshold — 15% is a reasonable default for KPIs with daily volatility; teams with smoother metrics (subscription revenue, churn) should tighten it to 5% or 10%, and noisy ones (paid acquisition) should loosen it to 25%.
+**How to adapt this.** Two things are project-specific. First, the names of the management commands and the location of the cron health-check are different in every codebase — ask the agent to find them on first run and update the skill with the actual paths. Second, the cutoff window (4 days here) and retry budget (10 here) are tuned for one team's email volume; teams sending fewer, more time-sensitive emails should tighten both.
+
+## 7. `railway-db-query` — the PM gets to ask the database a question
+
+Half the time someone asks an engineer "do we have any users on the new plan yet?", the engineer pulls up a SQL client, runs `SELECT COUNT(*) FROM ...`, pastes the number back, and moves on. The other half, the engineer is in the middle of something else, the PM waits two days, and decisions get made on guesses. This skill closes that gap. It gives the agent scoped, read-only access to the project's hosted databases (here, Postgres on Railway across dev and prod) plus a library of common analysis queries — token usage and cost, user-tier counts, schema inspection, recent activity. The PM asks in English; the agent runs the query and explains the result. Paraphrased from a real production skill. Use it for ad-hoc analytical questions. Don't use it as a substitute for a real BI tool, and don't use it for anything that writes.
+
+````markdown
+---
+name: railway-db-query
+description: Access Railway development and production databases to run read-only SQL queries, analyze costs, debug issues, and explore data. Use when the user asks to "check the database", "query dev/prod database", "analyze token costs", "check user counts", or needs to investigate database state.
+---
+
+# railway-db-query
+
+Connect to the project's hosted Postgres databases and run read-only analysis queries.
+
+## When to use
+
+- "Check whether any users have signed up for X yet."
+- "How much are we spending on Y this month? Pull the token counts."
+- "Did the new table get created in prod after the last deploy?"
+- "Why don't we see any rows in the new analytics table?"
+- General ad-hoc data questions where pulling out a BI tool would be overkill.
+
+## When NOT to use
+
+- Anything that writes (`INSERT`, `UPDATE`, `DELETE`, `DROP`, `ALTER`, `TRUNCATE`, `GRANT`). Different blast radius — gate behind explicit user approval if it's ever needed, and prefer a migration in the codebase instead.
+- Long-running reports the team will want to see every week. Build it into a real dashboard.
+- Anything touching PII without a documented reason and an audit trail.
+
+## Connection
+
+Railway uses proxy connections with per-environment credentials. The connection string format is:
+
+```
+postgresql://USER:PASSWORD@HOST:PORT/DATABASE
+```
+
+Get it by asking the user for the `DATABASE_URL` for the environment they want (dev or prod), or by checking the project's `.env.dev` / `.env.prod` if those are local and gitignored. Default database name is `railway`, default user is `postgres`. Test the connection with `psql "$CONNECTION_STRING" -c "SELECT NOW();"` before doing anything real.
+
+## Common queries
+
+Keep a small library of starter queries in the skill — the agent picks the right one based on the user's question and adapts it.
+
+- **Token usage and cost.** `SELECT COUNT(*), SUM(input_tokens), SUM(output_tokens), AVG(total_tokens), MIN(created_at), MAX(created_at) FROM <table> WHERE input_tokens IS NOT NULL;` — then apply the current per-million pricing for the model the team is using to get a monthly cost projection.
+- **User and tier counts.** `SELECT subscription_tier, COUNT(*), COUNT(CASE WHEN status = 'active' THEN 1 END) FROM users GROUP BY subscription_tier;`
+- **Recent activity across tables.** A `UNION ALL` block that counts rows and shows earliest/latest `created_at` per table — useful for "did anyone actually use the new feature this week?".
+- **Schema inspection.** `SELECT column_name, data_type, is_nullable FROM information_schema.columns WHERE table_name = '<table>'` and `SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'`.
+- **Row counts at a glance.** `SELECT tablename, n_live_tup FROM pg_stat_user_tables ORDER BY n_live_tup DESC;`
+
+## Workflow
+
+1. Ask the user which environment (dev or prod) and confirm the connection string.
+2. Test the connection.
+3. Pick (or adapt) the closest starter query.
+4. Run it. Format results as a Markdown table.
+5. Add interpretation — calculate cost projections from token counts, point out when "earliest" is recent enough that the data is incomplete, flag anything surprising.
+
+## Hard rules
+
+- **Read-only by default.** Never run `INSERT`, `UPDATE`, `DELETE`, `DROP`, `ALTER`, `TRUNCATE`, `CREATE`, `GRANT`, or `REVOKE` without showing the user the query and getting explicit approval.
+- **Always `LIMIT` exploratory queries** on large tables. Add `LIMIT 100` by default; remove it only when the user asks for full counts.
+- **Never log the connection string** with the password embedded. Reference it via the env var, not by echoing it back.
+- **Prefer aggregates over row dumps** when answering a question. "How many users on Pro" is a `COUNT`, not a `SELECT *`.
+- **State the environment in every reply.** A number from dev and a number from prod look identical and mean very different things.
+- **If a query takes longer than a few seconds, stop and `EXPLAIN`** before re-running. Long-running queries on prod are a real cost.
+
+## Reference files
+
+- The project's `.env.dev` / `.env.prod` for connection strings (if committed locally and gitignored).
+- The team's pricing or model-cost reference for any cost-calculation queries.
+- The latest schema migration for the table the user is asking about.
+````
+
+**How to adapt this.** Three things to localize. First, the connection-string format and host pattern — Railway, Supabase, RDS, Cloud SQL all look different; document the one your team uses. Second, the starter-query library — the five above are the most-asked across the projects this was distilled from, but every team has its own top ten. Ask the agent to pull the team's last month of database questions out of chat history and propose the queries that would have answered them. Third, decide explicitly whether you ever want this skill to be able to write. If the answer is "no, ever," strip the approval-gated language and replace it with a flat ban.
 
 ## Writing your own from scratch
 

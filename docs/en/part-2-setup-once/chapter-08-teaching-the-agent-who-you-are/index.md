@@ -93,7 +93,7 @@ Same flow applies to **slash commands**, **hooks**, and **settings.json** edits 
 
 ## A starter file by role
 
-The appendices have full templates (Appendix C). Here's a 30-second version of what you'd say in the interview, by role, to seed the conversation:
+The appendices have full templates (Appendix B). Here's a 30-second version of what you'd say in the interview, by role, to seed the conversation:
 
 - **Engineer.** *"I'm a backend engineer on a 4-person team, mostly Node/Python. We use Linear for tickets, PostgreSQL in prod, deploy via GitHub Actions. Commit messages are short. Tests run on every PR. I hate it when AI writes comments that just restate the code."*
 - **PM.** *"I'm a PM at a SaaS company. I live in Linear, Notion, Figma, and Slack. I don't code but I read it. I write specs as bullets, not prose. I want tickets that lead with the user-facing problem."*

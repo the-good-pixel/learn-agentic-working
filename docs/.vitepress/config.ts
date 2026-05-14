@@ -7,7 +7,6 @@ export default withMermaid(defineConfig({
   base: '/learn-agentic-working/',
   lang: 'en-US',
   cleanUrls: true,
-  lastUpdated: true,
   ignoreDeadLinks: true,
 
   head: [
@@ -110,11 +109,9 @@ export default withMermaid(defineConfig({
           collapsed: true,
           items: [
             { text: 'A. Glossary', link: '/en/appendix/appendix-a-glossary/' },
-            { text: 'B. Tool comparison', link: '/en/appendix/appendix-b-tool-comparison/' },
-            { text: 'C. CLAUDE.md templates', link: '/en/appendix/appendix-c-claude-md-templates/' },
-            { text: 'D. MCP servers', link: '/en/appendix/appendix-d-mcp-servers/' },
-            { text: 'E. Skills library', link: '/en/appendix/appendix-e-skills-library/' },
-            { text: 'F. Further reading', link: '/en/appendix/appendix-f-further-reading/' },
+            { text: 'B. CLAUDE.md templates', link: '/en/appendix/appendix-b-claude-md-templates/' },
+            { text: 'C. Skills examples', link: '/en/appendix/appendix-c-skills-examples/' },
+            { text: 'D. Further reading', link: '/en/appendix/appendix-d-further-reading/' },
           ],
         },
       ],
@@ -123,11 +120,6 @@ export default withMermaid(defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/the-good-pixel/learn-agentic-working' },
     ],
-
-    editLink: {
-      pattern: 'https://github.com/the-good-pixel/learn-agentic-working/edit/main/docs/:path',
-      text: 'Edit this page on GitHub',
-    },
 
     footer: {
       message: 'Released under the MIT License.',

@@ -1,4 +1,4 @@
-# Appendix C — Starter `CLAUDE.md` Templates
+# Appendix B — Starter `CLAUDE.md` Templates
 
 Chapter 8 makes the case that nobody should hand-author a `CLAUDE.md` from scratch — the file is the output of a five-minute interview with the agent, not a writing exercise. That advice still stands. But sometimes a blank session and a blinking cursor is intimidating, and a reader benefits from seeing what *finished* looks like before they describe their own version. The templates below are starting points by role. The intended use is not to paste them verbatim and ship — it is to paste one into a fresh agent session and say: *"adopt this voice and adapt it for me. Interview me on the details, then write the final version that's actually mine."* The agent will ask the questions you'd otherwise have to invent; the template gives it a shape and an opinion to work against.
 

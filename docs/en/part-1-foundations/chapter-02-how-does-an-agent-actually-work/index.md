@@ -92,7 +92,7 @@ You type: *"Find the eight people I exchanged business cards with today, draft a
 6. **Loop.** Read `~/Notes/conference.txt`. Drafts eight emails. Calls the Gmail MCP for each: *"send this draft to this address"*. Each turn, the orchestrator is the thing routing the call, collecting the result, and feeding it back into the next consult.
 7. **You watch.** The orchestrator streams every step to your screen as it happens. You see the photos being read, the notes being read, the drafts being composed. When the drafts are ready, you can preview before they send (or not — that's a permissions choice, covered in Ch. 7).
 
-Five boxes. One loop. Eight emails out the door.
+One picture. One loop. Eight emails out the door.
 
 ## Why this picture matters
 
@@ -103,7 +103,7 @@ Every advanced pattern in this book is a variation on this diagram:
 - A **long-running agent** (Ch. 15) is the same loop, left to run on its own for an extended task.
 - A **hook** is a rule in the orchestrator that says "when X happens in the loop, also run Y."
 
-When you read about any of these later, come back to the diagram and ask: *which box is this changing?* The answer is always one of the five.
+When you read about any of these later, come back to the diagram and ask: *which box is this changing?* The answer is always one of them.
 
 ## In other tools
 
@@ -111,7 +111,7 @@ Claude Code, Codex, OpenCode, Cursor, Gemini CLI — all five are orchestrators 
 
 ## The takeaway
 
-- One sentence, five boxes: **you → Orchestrator → Model → Connectors → your apps**, with the orchestrator looping the model's output back into the next turn.
+- One sentence, one picture: **you → Orchestrator → Model → Connectors → your apps**, with the orchestrator looping the model's output back into the next turn.
 - The Orchestrator is what you actually type into; it owns the loop. The Model is the brain it *consults*. The Connectors are how the loop reaches the world (MCP is the most common kind). Your apps are the world.
 - The new vocabulary — orchestrator, MCP, tool call, the loop — all maps to a specific box. When a concept feels fuzzy, ask which box it lives in.
 - Skills, sub-agents, schedules, hooks, custom MCPs: all of them are variations on this same picture.
@@ -124,7 +124,7 @@ Open whatever AI chat app you currently use (ChatGPT, Claude.ai, Gemini). Ask it
 
 Read the answer. Notice how it has to explain — even though it can't actually do it from a chat window — that it would need *access to Gmail*, that *something would have to call the API*, that there would be a *back-and-forth*. That answer is the diagram from this chapter, in the chatbot's own words.
 
-**You'll know it worked when** you can point at three different pieces of that explanation and say which box of the five-box diagram each piece lives in.
+**You'll know it worked when** you can point at three different pieces of that explanation and say which box of the architecture diagram each piece lives in.
 
 ## What's next
 

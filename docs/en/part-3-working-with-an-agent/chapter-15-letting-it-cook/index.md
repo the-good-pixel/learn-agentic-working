@@ -93,11 +93,11 @@ In **Claude Code**, the right entrypoints are:
 - The **`/worktrees`** slash command (and related `/worktree` create/list/remove variants) — manages worktrees from inside an existing Claude Code session. The agent creates the worktree, branches off the right base, copies the necessary untracked files (like `.env`), and offers to spawn a fresh session pointed at the new tree. One slash command instead of three terminal commands.
 - **Just ask in plain English**: *"spawn a new worktree off `main` for ticket LIN-100; copy `.env` over; install dependencies; then drop me into a fresh agent session pointed at it."* The agent runs the equivalents of the commands above, plus the housekeeping.
 
-**Codex, OpenCode, and Gemini CLI** all have similar shapes; check each tool's worktree / project-switching docs (Appendix B has the current links).
+**Codex, OpenCode, and Gemini CLI** all have similar shapes; check each tool's official worktree / project-switching docs for the current command syntax.
 
 The collision modes below still exist as **failure shapes that can happen** between any two checkouts of the same repo running side-by-side, regardless of how the worktree got created. Treat the rest of this section as the mental model your agent should already have when it sets up your second worktree — and when you ask it to *"write me a `local-dev` skill that handles all the worktree collision modes"*, this list is what it should encode.
 
-(A **`local-dev`** skill is a project-level reusable workflow that starts your dev servers correctly — the right ports, the right database, the right env vars. The book ships a paste-ready template for it in [Appendix E — A Library of Real Skills](../../appendix/appendix-e-skills-library/), where you can also see the full text of every skill referenced in this chapter.)
+(A **`local-dev`** skill is a project-level reusable workflow that starts your dev servers correctly — the right ports, the right database, the right env vars. The book ships a paste-ready template for it in [Appendix C — Skills Examples](../../appendix/appendix-c-skills-examples/), where you can also see the full text of every skill referenced in this chapter.)
 
 ### The collision modes
 
@@ -105,7 +105,7 @@ The collision modes below still exist as **failure shapes that can happen** betw
 
 Two dev servers cannot both bind to port 3000. The first one to start wins; the second one crashes or fails silently.
 
-The fix is to make ports a per-worktree variable, not a hardcoded constant. The way some teams handle this is a **`local-dev-launcher`** skill — a more aggressive variant of the `local-dev` template in Appendix E. It inspects which PID owns a busy port and *refuses to kill it unless the path matches the current repo* — so an agent in worktree A cannot accidentally murder the dev server of worktree B. The same skill assigns ports based on a worktree-derived hash, so each worktree gets a stable, unique set of ports.
+The fix is to make ports a per-worktree variable, not a hardcoded constant. The way some teams handle this is a **`local-dev-launcher`** skill — a more aggressive variant of the `local-dev` template in Appendix C. It inspects which PID owns a busy port and *refuses to kill it unless the path matches the current repo* — so an agent in worktree A cannot accidentally murder the dev server of worktree B. The same skill assigns ports based on a worktree-derived hash, so each worktree gets a stable, unique set of ports.
 
 If you don't have such a skill: at minimum, parameterize the port via env var and pass a different one per worktree.
 
@@ -161,7 +161,7 @@ Once written, every future worktree session in this repo just calls the skill in
 
 #### 8. CI artifact and PR number drift
 
-Less mechanical, more workflow: when three worktrees are landing PRs at the same time, your CI queue is busy, your PR numbers are out of order, and your reviewers get pinged on three threads at once. The **`ship-pr`** skill pattern (push → open PR → monitor CI → resolve AI review comments → notify when mergeable) shines here, because the agent can babysit each PR independently while you focus on the highest-priority one. The full paste-ready template is in [Appendix E — A Library of Real Skills](../../appendix/appendix-e-skills-library/).
+Less mechanical, more workflow: when three worktrees are landing PRs at the same time, your CI queue is busy, your PR numbers are out of order, and your reviewers get pinged on three threads at once. The **`ship-pr`** skill pattern (push → open PR → monitor CI → resolve AI review comments → notify when mergeable) shines here, because the agent can babysit each PR independently while you focus on the highest-priority one. The full paste-ready template is in [Appendix C — Skills Examples](../../appendix/appendix-c-skills-examples/).
 
 ---
 
@@ -174,7 +174,7 @@ Common patterns:
 - **Planner → executor.** One agent (sometimes a different, smaller model) breaks the task into steps; another executes them.
 - **Producer → reviewer.** Main agent writes; specialist reviews; producer revises. (Same as the sub-agent specialist pattern, made explicit.)
 - **Researcher → writer.** One agent gathers; another synthesizes. The handoff is a single Markdown doc; the writer never has to do the noisy research.
-- **Cross-tool consensus.** You ask Claude *and* Gemini for opinions on a hard decision, then have your main agent reconcile them. The **`gemini-chat-and-search`** skill is a small worked example — a user-level skill that lets your Claude session ask Gemini grounded-with-search questions and feed the answers back in. Multi-turn consensus is required, and the rule baked in is *"never treat Gemini's first response as final."* The full template is in [Appendix E — A Library of Real Skills](../../appendix/appendix-e-skills-library/).
+- **Cross-tool consensus.** You ask Claude *and* Gemini for opinions on a hard decision, then have your main agent reconcile them. The **`gemini-chat-and-search`** skill is a small worked example — a user-level skill that lets your Claude session ask Gemini grounded-with-search questions and feed the answers back in. Multi-turn consensus is required, and the rule baked in is *"never treat Gemini's first response as final."* The full template is in [Appendix C — Skills Examples](../../appendix/appendix-c-skills-examples/).
 
 For most readers, multi-agent workflows are not day-one material. They become useful when a task is *big enough* that splitting it across specialized roles produces noticeably better output than one agent doing it all. You'll know you want this pattern when your single agent keeps almost-getting-there but losing the thread on long, multi-step work.
 

@@ -183,7 +183,7 @@ Modeled on [Learn Harness Engineering](https://github.com/walkinglabs/learn-harn
 ## Working norms for the agent (you)
 
 - This repo will be **published on GitHub** as a free open-source resource. Treat every file as something strangers will read.
-- **Never deploy or push** on the user's behalf. The user deploys manually. When deployment is needed, provide the commands.
+- **Never commit or push** on this project without explicit, in-the-moment user confirmation. Staging changes is fine; running `git commit` or `git push` is not — even when the user has approved several commits earlier in the same session, treat the next one as needing fresh approval. When work is ready, *show the diff and ask*, don't act. The user deploys manually; when deployment is needed, provide the commands.
 - **Commit messages are short** (one line). No `Co-Authored-By` trailer, no "Generated with Claude Code" trailer — the user has asked to skip those to save tokens.
 - When the user asks for a new chapter, **draft an outline first** and confirm before writing the full chapter. Chapters are expensive to rewrite once they exist.
 - When in doubt about a tool's current behavior (Codex syntax, OpenCode config, an MCP server's capabilities), **verify with WebSearch or WebFetch** rather than relying on memory — this space changes fast.
