@@ -28,21 +28,23 @@ For the cases where the deliverable really is an artifact, there are roughly six
 
 ### 1. Markdown — the right default
 
-Markdown is the agent's lingua franca and yours. It's plain text, so it diffs cleanly in git, pastes into Notion / Slack / GitHub / Linear / Confluence without surprises, and renders beautifully everywhere. It's readable as a file. It's tweakable by hand. It can carry headings, lists, tables, code blocks, links, even Mermaid diagrams that render inline on GitHub.
+Markdown is the agent's lingua franca and a sensible default for almost anything. It's plain text, so it diffs cleanly in git, pastes into Notion / Slack / GitHub / Linear / Confluence without surprises, and renders beautifully everywhere *it gets rendered*. It's tweakable by hand. It can carry headings, lists, tables, code blocks, links, even Mermaid diagrams that render inline on GitHub.
 
-Use Markdown for: research summaries, meeting notes, drafts of any kind, requirements docs, runbooks, READMEs, blog posts, ticket descriptions before they go into the tracker, anything you might paste into something else later.
+The honest caveat: **raw Markdown on its own is just text.** Open a `.md` file in TextEdit or Notepad and you'll see `# Headings` and `**bold**` as literal characters. Markdown only *looks* nice once something renders it — Notion, GitHub, a chat client, a static site, or the preview pane in your editor. If you're piping the result into one of those, perfect. If you want something that's immediately easy to *read* by a human who's going to double-click it, jump to HTML below.
 
-When in doubt about format, the right answer is Markdown.
+Use Markdown for: research summaries, meeting notes, drafts of any kind, requirements docs, runbooks, READMEs, blog posts, ticket descriptions before they go into the tracker, anything you'll paste into something else later. When in doubt and the output is going to be rendered somewhere, the right answer is Markdown.
 
-### 2. HTML — when you want the output to be interactive or visually polished and openable in any browser
+### 2. HTML — when you want something a human can just open and read
 
-When Markdown isn't enough — when you want something that *looks* finished and can also click, scroll, or animate — ask for an HTML file. The agent writes the file; you double-click it to open. No setup, no build step, no install. Any browser handles it.
+HTML is the right form **when the artifact needs to be readable on its own, without any rendering app in the middle.** Your agent writes one `.html` file; you double-click it; your browser opens it and it looks finished — headings, fonts, tables, sometimes charts, sometimes clickable sections. No build step, no install, no Markdown editor required, no "wait, does this person have Notion?" question to answer.
 
-Examples that land cleanly here: a one-page report with charts and clickable sections, a slide-deck-style summary you can flip through, an email preview to eyeball before you send, a small mock that needs to feel real for a meeting tomorrow.
+This is the form for the human moments: emailing a board update to someone who only checks email, leaving a one-pager on a shared drive for a non-technical colleague, sending a one-off report to a client who'll open it on their phone, showing a meeting attendee something polished without needing a slide deck app. Markdown lives in tools; HTML lives anywhere a browser exists.
 
-Use HTML for: client-facing one-pagers, executive summaries with charts, lightweight slide decks, throwaway interactive prototypes, styled email previews, mocks that need to "feel real" without anyone touching a frontend project.
+Examples that land cleanly here: a one-page report with charts and clickable sections, a slide-deck-style summary you can flip through, an email preview to eyeball before you send, a small mock that needs to feel real for a meeting tomorrow, a dashboard-style view of a spreadsheet's results that the recipient can scroll through without opening Excel.
 
-> *"Write me a single `report.html` summarizing this analysis. Include charts for the monthly numbers and make the sections clickable. I'll just double-click it to open."*
+Use HTML for: client-facing one-pagers, executive summaries with charts, lightweight slide decks, throwaway interactive prototypes, styled email previews, board-update one-pagers, anything you want to *hand* to someone rather than make them open in a specific app.
+
+> *"Write me a single `report.html` summarizing this analysis. Include charts for the monthly numbers and make the sections clickable. I'll just double-click it to open and forward it to my boss."*
 
 ### 3. LaTeX → PDF — when typography is the deliverable
 
@@ -91,8 +93,8 @@ Five short questions, in order. The first one that fires picks your form.
 1. **Does this work end in a system that has an MCP?** → **Direct action.** Ticket, row, message, PR, calendar event. No document.
 2. **Does motion or timing carry meaning?** → **Video.**
 3. **Is typography or print-quality part of the message?** → **LaTeX → PDF.**
-4. **Does it need to look polished as a standalone document, or include light interactivity?** → **HTML.**
-5. **None of the above?** → **Markdown.** And then it lives in your repo / Notion / Drive, where it can be revised forever.
+4. **Does a human need to just *open and read* it — without a specific app — or does it need light interactivity?** → **HTML.**
+5. **None of the above, and the output is going to be rendered somewhere (Notion, GitHub, Slack, your editor)?** → **Markdown.** It lives in your repo / Notion / Drive, where it can be revised forever.
 
 For images, the decision is downstream of one of these — a Mermaid diagram lives *inside* a Markdown doc; a chart lives *inside* an HTML report; a screenshot is a side-effect of the agent driving a browser.
 
