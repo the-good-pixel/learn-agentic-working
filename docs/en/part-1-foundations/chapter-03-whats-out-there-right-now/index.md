@@ -58,7 +58,7 @@ Today the field includes:
 - **Computer-use APIs** from Anthropic and others. Lower-level: the model receives screenshots of an entire desktop and emits mouse and keyboard actions. The building block underneath the consumer-facing products above.
 - **Browser-driving skills** built on **Playwright** or **Puppeteer**. The agent writes scripted browser interactions, runs them, and reads the results back. Less interactive, much more reproducible.
 
-**When to reach for this family**: any tool that has no API, no MCP, and lives only as a webpage. Vendor portals. Internal admin tools. Government sites. SaaS settings pages your team uses once a month. Also useful for testing a product you've built — *dogfooding* the way a real user would. Ch. 25 is a deep dive on this family with concrete scenarios.
+**When to reach for this family**: any tool that has no API, no MCP, and lives only as a webpage. Vendor portals. Internal admin tools. Government sites. SaaS settings pages your team uses once a month. Also useful for testing a product you've built — *dogfooding* the way a real user would. Ch. 26 is a deep dive on this family with concrete scenarios.
 
 A practical truth: today, browser agents are slower and flakier than terminal agents, because reading a screenshot is more brittle than reading an API response. They will get faster and more reliable. They are already useful enough to keep one installed.
 

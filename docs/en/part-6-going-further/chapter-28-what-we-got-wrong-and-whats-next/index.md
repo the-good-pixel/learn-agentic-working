@@ -1,4 +1,4 @@
-# 27. What we got wrong, and what's next
+# 28. What we got wrong, and what's next
 
 A reader who's followed the book this far has probably noticed something: a lot of what we said in 2024 about how to work with agents, we'd say differently now. Some of it we got *wrong*. Some of it the tools outgrew. Some of it we were right about in spirit but the shape kept changing.
 
@@ -34,7 +34,7 @@ A handful of patterns we keep watching people walk into, and the move out of eac
 
 **The "more context is always better" trap.** Stuffing the prompt with every adjacent file, every linked doc, the entire codebase. After a certain point, the model is searching for the signal in your noise. Curated context beats exhaustive context — point at the *right* files, not all of them. The agent can pull more if it needs to.
 
-**The "one giant model call" trap.** Trying to get the agent to do everything in a single mega-prompt. The work that actually compounds happens in *loops* — the agent reads a thing, thinks, acts, reads the result, acts again. Briefing for the loop is different from briefing for a one-shot. (And it's much cheaper — see Ch. 26 on token economics.)
+**The "one giant model call" trap.** Trying to get the agent to do everything in a single mega-prompt. The work that actually compounds happens in *loops* — the agent reads a thing, thinks, acts, reads the result, acts again. Briefing for the loop is different from briefing for a one-shot. (And it's much cheaper — see Ch. 27 on token economics.)
 
 **The "I'll roll my own agent harness" trap.** Reasonable on a Saturday afternoon. Painful by month three when you're maintaining your own tool-call retry logic, prompt caching, MCP loader, and approval prompts instead of doing the work the agent was supposed to do for you. Use Claude Code, Codex, OpenCode, Cursor, Gemini CLI — even if imperfect, they're all moving faster than you can. Save the build-your-own energy for skills and MCPs that actually encode your team's knowledge.
 
@@ -42,7 +42,7 @@ A handful of patterns we keep watching people walk into, and the move out of eac
 
 The patterns in this book will outlast the specific tools. The tools themselves are moving fast enough that any specific claim about what's possible *today* is half-stale by the time you read it. A few directions to watch, with the caveat that any of them could land sooner or later than expected:
 
-**Deeper computer use.** Browser-driving (Ch. 25) is the first taste; full desktop computer use is in early but real shape. The same loop — *navigate, snapshot, interact, re-snapshot* — extended from the browser to the whole OS. The agent reads your screen, moves your mouse, types into any app. The boring corporate desktop apps that have outlived their APIs become reachable. Reliability is the open question, not capability.
+**Deeper computer use.** Browser-driving (Ch. 26) is the first taste; full desktop computer use is in early but real shape. The same loop — *navigate, snapshot, interact, re-snapshot* — extended from the browser to the whole OS. The agent reads your screen, moves your mouse, types into any app. The boring corporate desktop apps that have outlived their APIs become reachable. Reliability is the open question, not capability.
 
 **Persistent agents.** The agent that remembers across sessions — your preferences, your projects, your past failures, the thing it learned about your codebase last Tuesday. Long-term memory features are landing in most major tools, with different tradeoffs. The agentic working playbook becomes less about *teaching the agent who you are each session* and more about *curating what it remembers about you over time*. The CLAUDE.md and skills patterns we taught are early forms of this; the next version is closer to ambient.
 

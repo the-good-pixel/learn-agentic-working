@@ -35,7 +35,7 @@ Letting the agent work on something while you do something else — either by st
 ### **Browser agent / computer use**
 
 An agent that drives a real browser (or, in the more general case, a real computer) — navigating to pages, clicking buttons, filling forms, taking screenshots, and reading what's on screen. Useful when a system has no API or MCP and the only way in is the same interface a human would use: a vendor portal, an internal admin tool, an analytics dashboard. The canonical loop is **navigate → snapshot → interact → re-snapshot**. Examples in current use: Claude for Chrome, the computer-use APIs from Anthropic and OpenAI, ChatGPT Agent / Operator, and headless-browser skills built on Playwright or Puppeteer. The browser is the most universal action surface in business; teaching the agent to drive it is a force multiplier.
-*→ Ch. 25*
+*→ Ch. 26*
 
 ### **Chatbot tax**
 

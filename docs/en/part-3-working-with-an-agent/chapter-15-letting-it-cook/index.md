@@ -141,7 +141,7 @@ The fix is that each worktree has its own cache because it has its own working t
 
 #### 6. Browser session state
 
-If the agent drives a real browser (Ch. 25), two worktrees both opening Chrome with the same profile will share cookies, localStorage, and login state. Worktree A logs in as the test user; worktree B's test now thinks it's also that test user.
+If the agent drives a real browser (Ch. 26), two worktrees both opening Chrome with the same profile will share cookies, localStorage, and login state. Worktree A logs in as the test user; worktree B's test now thinks it's also that test user.
 
 The fix is a per-worktree browser profile directory. Modern browser-automation tools support this with a single flag.
 

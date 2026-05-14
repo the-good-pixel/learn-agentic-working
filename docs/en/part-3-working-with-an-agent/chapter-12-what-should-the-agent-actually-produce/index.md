@@ -69,7 +69,7 @@ Four very different sub-cases, each with a right tool:
 - **Diagrams in a document or repo:** Mermaid. Text-based, renders inline on GitHub, edits cleanly. *"Draw the architecture as a Mermaid diagram in the README."*
 - **Charts from data:** matplotlib / plotly. *"Plot this CSV's monthly revenue and save as `revenue.png`."*
 - **Generated images for marketing or design:** the agent connects to DALL-E / Imagen / Stable Diffusion via MCP and produces them on request.
-- **Screenshots of an actual UI:** the agent drives a real browser (Ch. 25), navigates, and captures.
+- **Screenshots of an actual UI:** the agent drives a real browser (Ch. 26), navigates, and captures.
 
 Be specific about which sub-case you want. *"Make me an image"* is vague; *"draw a Mermaid sequence diagram of the auth flow"* is doable in one shot.
 

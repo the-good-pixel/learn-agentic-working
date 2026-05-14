@@ -1,4 +1,4 @@
-# 23. For Everyone (Personal Workflows)
+# 24. For Everyone (Personal Workflows)
 
 *A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real personal-workflow cases the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
@@ -57,7 +57,7 @@ You want to learn Blender. The traditional path: a 6-hour YouTube playlist, half
 
 The agent-era path:
 
-> *"I want to learn Blender enough to make a simple animated logo for a hobby project. I have no experience with 3D tools at all. Build me a one-week plan saved as `~/Documents/blender-week/plan.md` with one small project per day, in increasing difficulty. For each day, give me the exact steps, with screenshots of where the buttons are if you can find them. After each day, I'll drop my result in `~/Documents/blender-week/dayN/` and you'll tell me what's wrong."*
+> *"I want to learn Blender enough to make a simple animated logo for a hobby project. I have no experience with 3D tools at all. Build me a one-week plan saved as `~/Documents/blender-week/plan.docx` with one small project per day, in increasing difficulty. For each day, give me the exact steps, with screenshots of where the buttons are if you can find them. After each day, I'll drop my result in `~/Documents/blender-week/dayN/` and you'll tell me what's wrong."*
 
 What you get is a *tutor*, not a textbook. The plan is yours. The accountability is real (you have to show your result). The corrections are specific. The "what's wrong" feedback is the part most courses skip entirely.
 
@@ -81,6 +81,18 @@ If you have multiple accounts in different markets (one US broker, one Vancouver
 
 A note on safety: read-only access to your broker is fine; *trading* access is the kind of *big and irreversible* action that deserves an approval gate (Ch. 7). Let the agent look. Make the trades yourself, or at least confirm each one.
 
+## A weekend portfolio check from a screenshot
+
+You don't always want the full Bloomberg-lite setup. Sometimes you just want a thought partner for ten minutes on a Saturday morning. The lightest-weight version uses two things the agent is freshly good at: looking at a picture, and pulling current market context off the web.
+
+> *"Here's a screenshot of my Robinhood / IBKR / broker portfolio. Given today's market conditions (check today's news, S&P movement, sector trends), tell me which positions look like they're worth holding, which I might consider taking profit on, and which I might add to. Don't make trades — just give me your analysis. Treat this as a thought partner, not financial advice."*
+
+The agent reads the positions and cost basis straight off the screenshot — no exporting, no CSV, no API. It opens a few tabs (the major indices, sector news, anything ticker-specific that broke this week) and comes back with a one-page take: *here's what your concentration looks like, here's why semiconductors moved this week, this one position is up 40% and worth thinking about, this one has news you may have missed.*
+
+You read it. You disagree with two of its calls. You agree with three. You go for a walk and decide for yourself.
+
+This is the same safety note as above, but worth saying twice: the agent *looks and analyzes*. The agent does **not** trade. Trading access stays manual — those are the *big and irreversible* actions Ch. 7 reserves an approval gate for. The point of this workflow is to be a smarter version of the conversation you'd have with a friend who happens to read a lot of market news, not to outsource the decision.
+
 ## Making sense of bureaucracy
 
 Insurance EOBs. Tax forms. School registration. Visa applications. Lease addenda. The bureaucratic paperwork of adult life is mostly *"read this dense document and tell me what it means for me"*.
@@ -97,7 +109,7 @@ Travel is the easiest "obvious win" to demo. The agent handles the search, the s
 
 The version that gets *interesting* is the personal-context one:
 
-> *"Plan three days in Tokyo for someone who's been twice before, doesn't want to do the famous things again, likes hole-in-the-wall jazz bars and weird museums, and is jet-lagged so wants the first day low-key. Save the itinerary as `~/Documents/trips/tokyo-2025-jan/itinerary.md`."*
+> *"Plan three days in Tokyo for someone who's been twice before, doesn't want to do the famous things again, likes hole-in-the-wall jazz bars and weird museums, and is jet-lagged so wants the first day low-key. Save the itinerary as `~/Documents/trips/tokyo-2025-jan/itinerary.docx`."*
 
 A search engine can't answer that. A chatbot can suggest things, but you still have to do the actual booking dance. An agent can suggest, draft a tentative itinerary, and (if you let it) book the actual restaurants through whatever reservation system they use.
 

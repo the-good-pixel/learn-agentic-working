@@ -1,4 +1,4 @@
-# 24. Talking and showing: voice and vision as input
+# 25. Talking and showing: voice and vision as input
 
 You're walking back from lunch, phone in hand, and a thought lands: the onboarding flow for new users has been bugging you for a week. Three specific friction points, in order. By the time you sit down at your desk, the first one has already slipped, and you're halfway through reconstructing the second.
 
@@ -52,7 +52,7 @@ A few real cases that fall flat without vision and click with it:
 
 **"Help me place the mesh WiFi nodes."** You hand it a photo of your floor plan. The agent reads the rooms, the likely thick walls, the placement of the modem, and gives you three placements with reasoning. You couldn't describe the layout in words faster than the photo did.
 
-**"Why doesn't this Threads post show a link preview?"** You screenshot the broken preview, the agent looks at it alongside the URL, fetches the page, and walks you through which Open Graph tag is missing. (You'll meet this scenario again in Ch. 25 from the *browser-driving* side.)
+**"Why doesn't this Threads post show a link preview?"** You screenshot the broken preview, the agent looks at it alongside the URL, fetches the page, and walks you through which Open Graph tag is missing. (You'll meet this scenario again in Ch. 26 from the *browser-driving* side.)
 
 **"Read this whiteboard."** A photo of the meeting whiteboard becomes a structured list of decisions, action items, and open questions.
 
@@ -66,7 +66,7 @@ You're not switching to a different model when you add a screenshot. The same mu
 
 That has a couple of practical consequences worth knowing:
 
-- **Images cost tokens too.** A high-resolution screenshot can easily run a few thousand tokens. Not free, not expensive. Don't worry about it for one-off use; do think about it if you're building a workflow that processes hundreds of images per run (more on cost in Ch. 26).
+- **Images cost tokens too.** A high-resolution screenshot can easily run a few thousand tokens. Not free, not expensive. Don't worry about it for one-off use; do think about it if you're building a workflow that processes hundreds of images per run (more on cost in Ch. 27).
 - **The model sees what's *in* the image, not metadata.** EXIF, file names, layer info — gone. If you need the agent to know "this is from the staging environment", say so in the prompt.
 - **PDFs and video frames work the same way.** A PDF gets rendered to images of each page; video, where supported, gets sampled into frames. Same multimodal substrate.
 

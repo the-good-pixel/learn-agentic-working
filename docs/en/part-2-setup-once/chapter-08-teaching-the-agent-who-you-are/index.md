@@ -66,7 +66,7 @@ There are two places this file can live, and you'll likely have both.
 
 Project-level overrides and *extends* user-level for that session. You don't have to think about the priority rules; the agent handles them. You just keep each file scoped to what it should say.
 
-If you work on a team, project-level files get **committed to the repo**, the same way you'd commit a README. Your teammate clones the repo, their agent reads the same `CLAUDE.md`, and now both agents work the same way. This is how team standards spread — one file, version-controlled, evolving with the codebase. Ch. 26 goes into team adoption; for now, just know that this is the surface where it happens.
+If you work on a team, project-level files get **committed to the repo**, the same way you'd commit a README. Your teammate clones the repo, their agent reads the same `CLAUDE.md`, and now both agents work the same way. This is how team standards spread — one file, version-controlled, evolving with the codebase. Ch. 27 goes into team adoption; for now, just know that this is the surface where it happens.
 
 ## Cross-tool: `CLAUDE.md`, `AGENTS.md`, and the convergence
 

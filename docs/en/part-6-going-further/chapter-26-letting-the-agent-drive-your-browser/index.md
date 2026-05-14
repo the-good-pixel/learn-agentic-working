@@ -1,4 +1,4 @@
-# 25. Letting the agent drive your browser
+# 26. Letting the agent drive your browser
 
 You shipped a new feature on Friday. Marketing wants a 20-second demo video on Threads by Monday morning. You consider yourself a builder, not a producer, and the last time you made a "quick demo" it took an afternoon — record the screen three times because your cursor was in the wrong place, fight with the export, draw arrows in Keynote, give up and ship a screenshot.
 
@@ -86,7 +86,7 @@ Browser-driving is the most physically *visible* form of agent action — you li
 - **Stale snapshots.** The agent acts on a snapshot from before the page finished loading. Fix: tell it to wait for a specific element ("wait until the dashboard chart renders") instead of waiting a fixed number of seconds.
 - **Hidden state.** Auth lives in IndexedDB (a kind of browser storage), or session storage, or a cookie that expires. The `demo-video` skill's auth gotcha — Firebase login state lives in IndexedDB, not cookies, so Playwright's default saved login state misses it — is a real one. Capture the failure mode in the skill the first time it bites you.
 - **Selectors that aren't stable.** "The button with text 'Submit'" works until someone changes the copy. Prefer accessibility-tree references and data-test attributes (markers developers add to make elements easy to find); if you're operating someone else's site, accept that the script will break occasionally and the agent will need to re-walk it.
-- **Drift from "I'll just watch it once" to "I'll just trust it."** Headed mode lulls you into watching less over time. For high-stakes actions (anything financial, anything irreversible — see Ch. 26), keep a gate even when the agent has done it ten times. For reversible things, let it cook.
+- **Drift from "I'll just watch it once" to "I'll just trust it."** Headed mode lulls you into watching less over time. For high-stakes actions (anything financial, anything irreversible — see Ch. 27), keep a gate even when the agent has done it ten times. For reversible things, let it cook.
 
 ## In other tools
 

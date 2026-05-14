@@ -86,7 +86,7 @@ Regardless of your role, install a starter set. They cover the surfaces almost e
 
 - **Gmail / Google Workspace** — read and send email; read Calendar; read Drive; read and edit Sheets and Docs. If your work email lives in Google, this is the highest-leverage single install.
 - **Outlook / Microsoft 365** — the equivalent for the Microsoft side.
-- **Browser** — let the agent open pages, click, fill forms, take screenshots. Ch. 25 goes deep on browser-driving; for now, install it. The two big options are *Playwright* (headless, scripted) and the headed real-browser tools (Claude for Chrome, computer-use APIs). You can have both.
+- **Browser** — let the agent open pages, click, fill forms, take screenshots. Ch. 26 goes deep on browser-driving; for now, install it. The two big options are *Playwright* (headless, scripted) and the headed real-browser tools (Claude for Chrome, computer-use APIs). You can have both.
 - **GitHub** — for anyone who touches code or even reads a repo. Open PRs, read issues, comment.
 - **Linear** or **Jira** — whichever your team uses for tickets. Create, read, update, transition.
 - **Notion** — read pages, create pages, search.

@@ -85,7 +85,7 @@ If the relevant information lives on a public webpage, hand the agent the URL an
 
 This matters for the same reason files matter: paraphrases are lossy. The agent will pick up signal from headings, structure, footnotes, and adjacent paragraphs that you would never think to copy out.
 
-When the source requires authentication or is behind a portal, that's when the **browser MCP** earns its keep — the agent drives a real browser, logs in (with your blessing), and reads the page that way. Ch. 25 is the deep-dive on this.
+When the source requires authentication or is behind a portal, that's when the **browser MCP** earns its keep — the agent drives a real browser, logs in (with your blessing), and reads the page that way. Ch. 26 is the deep-dive on this.
 
 ## The throughline from Ch. 8: persistent context
 
