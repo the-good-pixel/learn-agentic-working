@@ -56,7 +56,7 @@ When a session has been running long enough that the agent's working memory (its
 
 ### **Connector**
 
-The plain-English term this book uses for an **MCP server** — the little software bridge that lets your agent reach a specific outside system (Gmail, Google Drive, Linear, Shopify, your database). The mental image: connectors are **apps installed on your agent's phone** — each one gives it a new capability, and you can install more whenever you need them. You don't "configure" a connector by editing a config file; you ask the agent to install it, click through the OAuth prompt, and you're done. The technical term in the documentation will usually be "MCP server"; the everyday term in this book, especially in non-engineering chapters, is "connector."
+The umbrella term this book uses for the layer the orchestrator uses to reach a real app — the little software bridge that lets your agent talk to Gmail, Google Drive, Linear, Shopify, your database. The dominant kind of connector today is an **MCP server**, and the two words are often used interchangeably; but some connectors are *built in* to the orchestrator (file Read/Write, Bash, web fetch) and never go over MCP, and new connector protocols (A2A and others) are emerging alongside MCP. So **connector** is the architectural layer; **MCP** is the most common protocol that lives there. The mental image: connectors are **apps installed on your agent's phone** — each one gives it a new capability, and you can install more whenever you need them. You don't "configure" a connector by editing a config file; you ask the agent to install it, click through the OAuth prompt, and you're done.
 *See also: MCP, MCP server.*
 *→ Ch. 9*
 
@@ -104,7 +104,7 @@ Large language model — the underlying AI model that generates text. Claude, GP
 
 ### **MCP**
 
-The **Model Context Protocol** — an open standard, originally introduced by Anthropic in late 2024 and now broadly adopted, that defines how agents talk to outside systems. Because it is open, the same Gmail MCP works for Claude, Codex, OpenCode, Cursor agents, and any future tool that speaks the protocol. MCP is a *standard*, not a product: when this book says "install the Gmail MCP", it means installing a specific MCP server that implements the Gmail capabilities. The "open" part is what matters — your investment in connecting the agent to your tools carries forward as the agent landscape evolves.
+The **Model Context Protocol** — an open standard, originally introduced by Anthropic in late 2024 and now broadly adopted, that defines how orchestrators talk to outside systems. MCP is **the most common kind of *connector*** — see *Connector* for the umbrella term. Because MCP is open, the same Gmail MCP works for Claude, Codex, OpenCode, Cursor agents, and any future tool that speaks the protocol. MCP is a *standard*, not a product: when this book says "install the Gmail MCP", it means installing a specific MCP server that implements the Gmail capabilities. The "open" part is what matters — your investment in connecting the agent to your tools carries forward as the agent landscape evolves.
 *See also: MCP server, MCP client, Connector.*
 *→ Ch. 9*
 
@@ -128,7 +128,7 @@ One of the book's three throughlines. Let the agent take real action by default;
 
 ### **Orchestrator**
 
-The piece of software that sits between the LLM and the outside world. The model decides *what* it wants to do next ("read this file", "call this MCP"); the orchestrator actually *does* it — runs the tool, hands the result back to the model, manages the conversation state, handles errors, decides when to compact. When you run `claude` or `codex` in your terminal, that running program is the orchestrator; the model itself runs in the cloud. The architecture diagram the whole book builds on is: **User → Model → Orchestrator → MCP → Real tools.** Almost every "what is X" question about agents resolves to "which box of that diagram are we in?"
+The piece of software you actually type into — Claude Code, Codex, OpenCode, Cursor, Gemini CLI. The orchestrator sits between **you** and everything else, and it owns the agent loop: it packages your prompt with system instructions, file context, `CLAUDE.md`, and the list of tools currently available, *consults* the model, reads what the model writes back, dispatches any tool calls through connectors to real apps, hands the results back to the model for the next turn, and loops until the task is done. The model decides *what* to do next ("read this file", "call this MCP"); the orchestrator actually *does* it — runs the tool, manages state, handles errors, decides when to compact. When you run `claude` or `codex` in your terminal, that running program is the orchestrator; the model itself runs in the cloud. The architecture diagram the whole book builds on is: **You → Orchestrator → Model → Connector → Real app**, with the orchestrator looping the model's output back into the next turn. Almost every "what is X" question about agents resolves to "which box of that diagram are we in?"
 *→ Ch. 2*
 
 ### **Plan mode**

@@ -4,21 +4,25 @@ The eight emails went out. It's 10:03 PM. You're still on the couch, a little st
 
 You didn't see a single tab open. You didn't watch a cursor move. From your seat it just *happened*.
 
-It's worth slowing down and pulling that apart, because the rest of this book leans on the answer. Once you can see the moving parts, every chapter from here on — skills, MCPs, sub-agents, scheduled work — clicks into place. They're all variations on the same five-box picture.
+It's worth slowing down and pulling that apart, because the rest of this book leans on the answer. Once you can see the moving parts, every chapter from here on — skills, MCPs, sub-agents, scheduled work — clicks into place. They're all variations on the same picture.
 
 ## The picture
 
 Here's the entire model. Burn this into your head, because it is the only diagram you really need:
 
-![The agentic architecture: User → AI Model → Orchestrator → MCP servers → Real tools (Gmail, browser, sheets, project trackers, notes)](../../../../assets/architecture.png)
+![The agentic architecture: You → Orchestrator → Model → Connectors → Real apps, with the orchestrator looping the model's output back into the next turn](../../../../assets/architecture.png)
+
+*(The hero image on the homepage is being regenerated to match the corrected order below; if the picture above still shows the old left-to-right `User → Model → …` arrangement, trust the text.)*
 
 In one line:
 
 ```
-You  →  the Model  →  the Orchestrator  →  the Connectors (MCPs)  →  your real apps
+You  →  the Orchestrator  →  the Model  →  the Connectors (MCPs the most common kind)  →  your real apps
+                  ↑                ↓
+                  └──── loops back ────┘
 ```
 
-Read left to right: a sentence from you flows into a language model, which thinks about what to do, which hands instructions to a piece of software running on your computer, which calls out to one or more connectors that know how to talk to specific apps, which then actually do the things — read your inbox, write a row in a sheet, open a browser, send a message.
+Read it like this: a sentence from you goes into the **orchestrator** — the program running on your machine (Claude Code, Codex, OpenCode, Cursor). The orchestrator packages your sentence with system instructions, file context, and the list of tools it has, and *consults* the **model**. The model writes back either prose or a tool call. If it's a tool call, the orchestrator dispatches it through a **connector** to the matching **real app** — reads your inbox, writes a row in a sheet, opens a browser, sends a message — then hands the result back to the model for the next turn. That loop is the agent.
 
 Each box has a job. Let's walk them.
 
@@ -28,48 +32,50 @@ You write a sentence. Sometimes a paragraph. Occasionally you drop in a screensh
 
 That sounds trivial; it isn't. The quality of what comes back is mostly a function of how clearly you said what you wanted. The book spends an entire chapter on this (Ch. 10), but the short version is: brief the agent like you'd brief a smart colleague who just walked into the room. Give it the context it doesn't already have. Show, don't just tell. A screenshot beats a paragraph of description nine times out of ten.
 
-## Box 2: the Model
+## Box 2: the Orchestrator
 
-The Model is the **brain**. It is the part you already know — GPT-5, Claude, Gemini, whichever underlying large language model your agent is built on. It reads your sentence and the surrounding context and produces words. That's all an LLM does, fundamentally: predict the next batch of words.
+The Orchestrator is the **piece of software running on your machine** (or in some cases, in a vendor's cloud) that you actually type into. When you launch Claude Code in a terminal, or Codex, or OpenCode, you are running the orchestrator. *This* is what the user touches — not the model directly. The orchestrator owns the loop; the model is something it consults.
+
+Its job is the boring, important glue:
+
+- Take your sentence, package it with relevant context (your `CLAUDE.md`, project files, recent screenshots, prior conversation, the list of tools currently available), and send it to the model.
+- Read what the model writes back. If the model wrote prose, show it to you. If the model wrote a tool call, route that call to the right connector.
+- Take the result, hand it back to the model so it can think about the next step, and loop.
+- Manage memory: what's been said, what's been done, what should be forgotten when the context window fills up.
+
+The loop in step three is what makes an agent feel different from a chatbot. A chatbot does *one* round-trip — your sentence in, model's answer out. An agent runs a loop: orchestrator asks the model, model writes a tool call, orchestrator runs it, result goes back to the model, model writes the next call, repeat until done.
+
+You will hear this loop called many things: the "agent loop", the "ReAct loop", the "tool-use loop". They all mean the same thing — and the orchestrator is the thing actually running it.
+
+## Box 3: the Model
+
+The Model is the **brain the orchestrator consults**. It is the part you already know — GPT-5, Claude, Gemini, whichever underlying large language model your agent is built on. It reads the packaged-up context the orchestrator sends and produces words. That's all an LLM does, fundamentally: predict the next batch of words.
 
 What's new is *what* it's now writing. In chatbot mode, it writes an answer for you to read. In agent mode, it writes one of two things:
 
 1. **An answer** — the same as before, when an answer is what you needed.
 2. **A tool call** — a tiny structured instruction that says *"call the Gmail connector and send this email to this address"* or *"open the file `notes.txt` and read it back to me"*.
 
-The model doesn't *do* anything itself. It doesn't have hands. It writes either prose for you, or a request for something else to act on its behalf. The model is the part that decides; everything to its right is the part that executes.
+The model doesn't *do* anything itself. It doesn't have hands. It writes either prose for the orchestrator to show you, or a request for the orchestrator to act on. The model is the part that decides; the orchestrator and everything beyond it is the part that executes.
 
-This matters because it explains why agents from different vendors feel similar. Underneath, they're all the same shape — a language model that can either talk or call a tool. The personality varies. The shape doesn't.
-
-## Box 3: the Orchestrator
-
-The Orchestrator is the **piece of software running on your machine** (or in some cases, in a vendor's cloud) that wraps the model. When you launch Claude Code in a terminal, or Codex, or OpenCode, you are running the orchestrator. The orchestrator is the body to the model's brain.
-
-Its job is the boring, important glue:
-
-- Take your sentence, package it with relevant context (your project files, recent screenshots, prior conversation), and send it to the model.
-- Read what the model writes back. If the model wrote prose, show it to you. If the model wrote a tool call, route that call to the right connector.
-- Take the result, hand it back to the model so it can think about the next step, and loop.
-- Manage memory: what's been said, what's been done, what should be forgotten when the context window fills up.
-
-The loop in step three is what makes an agent feel different from a chatbot. A chatbot does *one* round-trip — your sentence in, model's answer out. An agent runs a loop: model thinks, model calls a tool, tool returns a result, model thinks again, model calls another tool, repeat until done.
-
-You will hear this loop called many things: the "agent loop", the "ReAct loop", the "tool-use loop". They all mean the same thing.
+This matters because it explains why agents from different vendors feel similar. Underneath, they're all the same shape — an orchestrator that consults a language model and dispatches its tool calls. The personality varies. The shape doesn't.
 
 ## Box 4: the Connectors (MCPs)
 
 Here is the part that's genuinely new, and the part that gives this book half its vocabulary.
 
-The Model can write *"call the Gmail connector"*. But how does it know *what* Gmail can do, what arguments to pass, what format the response comes back in? Someone has to write a piece of software that bridges *generic instructions from a language model* to *specific calls to the Gmail API* — and that bridge has to be in a format the model can read.
+The Model can write *"call the Gmail connector"*. But how does the orchestrator know *what* Gmail can do, what arguments to pass, what format the response comes back in? Someone has to write a piece of software that bridges *generic instructions from a language model* to *specific calls to the Gmail API* — and that bridge has to be in a format both the orchestrator and the model can read.
 
-That bridge is called an **MCP server**. MCP stands for **Model Context Protocol** — an open standard, originally published by Anthropic in late 2024, that defines a shared language for "here is a tool the model can call". Once a tool speaks MCP, *any* MCP-capable agent — Claude Code, Codex, OpenCode, Cursor, Gemini CLI — can use it.
+We call that bridge a **connector**. The dominant kind of connector today is an **MCP server**. MCP stands for **Model Context Protocol** — an open standard, originally published by Anthropic in late 2024, that defines a shared language for "here is a tool the model can call". Once a tool speaks MCP, *any* MCP-capable orchestrator — Claude Code, Codex, OpenCode, Cursor, Gemini CLI — can use it.
 
-For the purposes of this chapter, think of an MCP server as **an app installed on your agent's phone**. Each MCP gives the agent one new capability:
+Not every connector is an MCP. Orchestrators also ship with **built-in tools** they dispatch directly — file Read/Write, Bash, web fetch — which are connectors in the same architectural sense but don't go over MCP. And new protocols (A2A and others) are starting to appear alongside MCP. So in this book, **connector** is the umbrella term for "the layer the orchestrator uses to reach real apps", and **MCP** is the connector protocol you'll see used most.
+
+For the purposes of this chapter, think of a connector as **an app installed on your agent's phone**. Each one gives the agent one new capability:
 
 - Install the **Gmail MCP** → the agent can read and send mail.
 - Install the **GitHub MCP** → it can open PRs, read issues, comment on diffs.
 - Install the **Linear MCP** → it can create and update tickets.
-- Install the **filesystem MCP** → it can read and edit files on your machine (this one usually ships built-in).
+- Reading and editing files on your machine is usually a **built-in** connector — no MCP needed, the orchestrator ships with it.
 - Install the **Shopify, Stripe, Notion, Slack, Google Sheets MCPs** → and so on.
 
 You don't install these by editing JSON. You ask the agent: *"install the Gmail MCP and connect it to my Google account."* The agent does the install, walks you through the one-click sign-in, confirms it works. That's the throughline from Ch. 1 — *if you can describe it, you can ask the agent to do it, including the setup*. Ch. 9 is the full tour of which MCPs to install on day one and how to ask.
@@ -88,12 +94,12 @@ Let's run the conference-emails scenario from Ch. 1 through this picture.
 
 You type: *"Find the eight people I exchanged business cards with today, draft a warm follow-up for each one referencing what we talked about, and send them all from my Gmail."*
 
-1. **You → Model.** The orchestrator packages your sentence and ships it to the model.
-2. **Model writes a tool call.** Something like *"call the filesystem MCP, list image files added to `~/Photos/` today"*.
-3. **Orchestrator → MCP → Real app.** The filesystem MCP returns a list of eight photos.
-4. **Result goes back to Model.** It writes another tool call: *"call the vision tool, extract text from these eight photos"*. Names, titles, companies, emails come back.
-5. **Model writes another tool call.** *"Read `~/Notes/conference.txt`"*. Your scribbled notes come back.
-6. **Loop.** The model now has the names and the notes. It drafts eight emails. It calls the Gmail MCP for each: *"send this draft to this address"*.
+1. **You → Orchestrator.** You type the sentence into Claude Code (or whichever orchestrator you're running).
+2. **Orchestrator → Model.** It packages your sentence with your `CLAUDE.md`, the tool list, and recent context, and consults the model.
+3. **Model writes a tool call.** Something like *"list image files added to `~/Photos/` today"*.
+4. **Orchestrator → Connector → Real app.** The orchestrator dispatches the call (in this case via the built-in filesystem tool) and gets back a list of eight photos.
+5. **Result goes back to Model.** The orchestrator hands the result to the model. It writes another tool call: *"extract text from these eight photos"*. Names, titles, companies, emails come back.
+6. **Loop.** Read `~/Notes/conference.txt`. Drafts eight emails. Calls the Gmail MCP for each: *"send this draft to this address"*. Each turn, the orchestrator is the thing routing the call, collecting the result, and feeding it back into the next consult.
 7. **You watch.** The orchestrator streams every step to your screen as it happens. You see the photos being read, the notes being read, the drafts being composed. When the drafts are ready, you can preview before they send (or not — that's a permissions choice, covered in Ch. 7).
 
 Five boxes. One loop. Eight emails out the door.
@@ -111,13 +117,13 @@ When you read about any of these later, come back to the diagram and ask: *which
 
 ## In other tools
 
-Claude Code, Codex, OpenCode, Cursor, Gemini CLI — all five are orchestrators sitting on top of a model and speaking MCP. They differ in defaults, in how they show the loop, in which model they default to, and in their permission UX. They do not differ in the diagram. If you switch tools next year, you'll have to relearn the keybindings; you will not have to relearn this picture.
+Claude Code, Codex, OpenCode, Cursor, Gemini CLI — all five are orchestrators sitting between you and a model, speaking MCP (and a few other connector flavours) out the back. They differ in defaults, in how they show the loop, in which model they default to, and in their permission UX. They do not differ in the diagram. If you switch tools next year, you'll have to relearn the keybindings; you will not have to relearn this picture.
 
 ## The takeaway
 
-- One sentence, five boxes: **you → Model → Orchestrator → MCP connectors → your apps**.
-- The Model decides. The Orchestrator runs the loop. The Connectors are how the loop reaches the world. Your apps are the world.
-- The new vocabulary — MCP, tool call, the loop — all maps to a specific box. When a concept feels fuzzy, ask which box it lives in.
+- One sentence, five boxes: **you → Orchestrator → Model → Connectors → your apps**, with the orchestrator looping the model's output back into the next turn.
+- The Orchestrator is what you actually type into; it owns the loop. The Model is the brain it *consults*. The Connectors are how the loop reaches the world (MCP is the most common kind). Your apps are the world.
+- The new vocabulary — orchestrator, MCP, tool call, the loop — all maps to a specific box. When a concept feels fuzzy, ask which box it lives in.
 - Skills, sub-agents, schedules, hooks, custom MCPs: all of them are variations on this same picture.
 
 ## Try it yourself

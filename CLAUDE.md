@@ -120,11 +120,18 @@ When a chapter needs a concrete skill, prefer these (paths are the source of tru
 The book's backbone diagram (in `assets/`, source in the project root) shows:
 
 ```
-User Prompt → AI Model/LLM → Orchestrator (Agent Logic, Tool Planning, State Mgmt)
-            → MCP (Model Context Protocol) → MCP Servers → Real Tools/Services
+You → Orchestrator → Model → Connector → Real app
+        ↑              ↓
+        └── loops back ──┘
 ```
 
-This is the **single mental model** the whole book builds on. Refer back to it any time you introduce a new concept — say which box of the diagram you're zooming into.
+- **You** type into the **Orchestrator** (Claude Code, Codex, OpenCode, Cursor) — not into the model directly.
+- The **Orchestrator** owns the agent loop. It packages your prompt with system prompt, tool definitions, file context, and `CLAUDE.md`, then *consults* the **Model**.
+- The **Model** writes back either prose or a tool call.
+- Tool calls are dispatched through a **Connector** to the matching **Real app**. **MCP** is the dominant connector protocol; built-in tools (file Read/Write, Bash) are also connectors in this architectural sense.
+- The result feeds back into the model's next turn — the orchestrator runs that loop until the task is done.
+
+This is the **single mental model** the whole book builds on. Refer back to it any time you introduce a new concept — say which box of the diagram you're zooming into. Two recurring framings to watch for and correct in drafts: (a) "the user talks to the model and Claude Code is a wrapper around it" — wrong, the user talks to the *orchestrator*, which consults the model; (b) "MCP is the connector layer" — close, but **connector** is the umbrella term and **MCP** is the most common kind.
 
 ---
 

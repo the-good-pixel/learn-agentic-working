@@ -17,12 +17,12 @@ That connector is called an **MCP server**. And the elegant part — the part th
 Ch. 2 introduced the spine:
 
 ```
-User Prompt → AI Model → Orchestrator → MCP → Real tools/services
+You → Orchestrator → Model → Connectors → Real apps
 ```
 
-Zoom into the MCP box. The **Model Context Protocol** is exactly that — a *protocol*, an agreed-upon way for an agent to ask a tool to do something. Anthropic published it; the broader ecosystem adopted it. It's like USB: any device that speaks USB plugs into any laptop that speaks USB. Any MCP server that follows the protocol plugs into any agent that speaks it.
+Zoom into the **connector** box. A connector is just "the layer the orchestrator uses to reach a real app". The dominant kind of connector today is an **MCP server** — and that's what this chapter is about. The **Model Context Protocol** is exactly that — a *protocol*, an agreed-upon way for an orchestrator to ask a tool to do something. Anthropic published it; the broader ecosystem adopted it. It's like USB: any device that speaks USB plugs into any laptop that speaks USB. Any MCP server that follows the protocol plugs into any orchestrator that speaks it.
 
-A useful metaphor: **MCPs are apps installed on your agent's phone**. Each one gives the agent a new capability. The Gmail MCP adds *read and send email*. The Linear MCP adds *create, read, update tickets*. The browser MCP adds *open pages, click, fill forms*. (Reading and writing local files isn't an MCP — that's built in to the agent itself.)
+A useful metaphor: **MCPs are apps installed on your agent's phone**. Each one gives the agent a new capability. The Gmail MCP adds *read and send email*. The Linear MCP adds *create, read, update tickets*. The browser MCP adds *open pages, click, fill forms*. (Reading and writing local files isn't an MCP — that's a connector built in to the orchestrator itself.)
 
 Without MCPs, your agent is a brilliant intern with no access to anything. With MCPs, it's the same intern, but now with logins.
 
@@ -30,12 +30,12 @@ Without MCPs, your agent is a brilliant intern with no access to anything. With 
 
 You type: *"Find the latest invoice from Stripe in my Gmail and tell me the amount."*
 
-1. The **orchestrator** (the Claude Code / Codex / OpenCode process running on your machine) receives the prompt and passes it to the **model**.
-2. The model decides: *I need Gmail*. It emits a structured **tool call** — *"call the Gmail MCP's `search_messages` function with query `from:stripe`"*.
+1. The **orchestrator** (the Claude Code / Codex / OpenCode process running on your machine) receives your prompt and consults the **model**, sending along the list of connectors currently available.
+2. The model decides: *I need Gmail*. It writes a structured **tool call** — *"call the Gmail MCP's `search_messages` function with query `from:stripe`"*.
 3. The orchestrator sees the tool call and forwards it to the **Gmail MCP server** running locally (or remotely) on your machine.
 4. The MCP server makes the authenticated API call to Google. Gmail returns five messages.
-5. The MCP server returns those messages to the orchestrator, which passes them back into the model's context.
-6. The model reads them, finds the invoice line, and answers: *"$847.23, dated March 12."*
+5. The MCP server returns those messages to the orchestrator, which passes them back into the model's next turn.
+6. The model reads them, finds the invoice line, and the orchestrator shows you the answer: *"$847.23, dated March 12."*
 
 Six steps. Sub-second between most of them. You see a stream of activity — "calling Gmail…" — and then the answer. The MCP made the round-trip possible. Without it, step 3 fails and the agent apologizes.
 

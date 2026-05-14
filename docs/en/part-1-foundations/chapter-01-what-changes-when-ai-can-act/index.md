@@ -133,4 +133,4 @@ That second line is the chatbot tax. The rest of this book is about handing that
 
 ## What's next
 
-The next chapter unpacks the single diagram that makes everything in this book concrete: how the AI model, the orchestrator running on your computer, the tool-connectors (MCPs), and your real apps fit together. If you'd rather skip the architecture and just *do the thing*, jump to **Ch. 4: A 10-minute first win**.
+The next chapter unpacks the single diagram that makes everything in this book concrete: how *you*, the orchestrator running on your computer (Claude Code, Codex, OpenCode), the model it consults, the tool-connectors (MCP is the most common kind), and your real apps fit together. If you'd rather skip the architecture and just *do the thing*, jump to **Ch. 4: A 10-minute first win**.

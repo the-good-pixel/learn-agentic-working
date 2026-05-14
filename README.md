@@ -27,7 +27,7 @@ Chat   →   Tool-using assistant   →   Agent that gets work done
 ```
 
 1. **What an agent actually is** — and why it's different from the chatbot you already know.
-2. **The mental model**: User → Model → Orchestrator → MCP → Real tools (Gmail, Sheets, browsers, Jira, your own files). See [the architecture diagram](assets/architecture.png).
+2. **The mental model**: You → Orchestrator → Model → Connectors (MCP is the most common kind) → Real apps (Gmail, Sheets, browsers, Jira, your own files), with the orchestrator looping the model's output back into the next turn. See [the architecture diagram](assets/architecture.png).
 3. **Setup once, benefit forever** — installation, sensible defaults, permissions, and the configuration files (`CLAUDE.md`, `~/.claude/settings.json`, skills, hooks) that turn a generic agent into *your* agent.
 4. **How to brief an agent like a colleague**, not a search engine — context, plans, scope, and review.
 5. **Extending the agent** — MCP servers for Gmail, Google Drive, Linear, browsers; skills for repeatable workflows; sub-agents for parallel work.
@@ -42,7 +42,7 @@ Chat   →   Tool-using assistant   →   Agent that gets work done
 
 ### Part I — Foundations (everyone reads this)
 1. **From Chatbot to Agent** — what changes when the AI can act, not just answer.
-2. **The Agentic Architecture** — model, orchestrator, MCP, tools. (Anchored by [the architecture diagram](assets/architecture.png).)
+2. **The Agentic Architecture** — you, orchestrator, model, connectors, real apps. (Anchored by [the architecture diagram](assets/architecture.png).)
 3. **A 10-minute first win** — install Claude Code (or Codex / OpenCode), run one real task, feel the difference.
 
 ### Part II — Setup Once
