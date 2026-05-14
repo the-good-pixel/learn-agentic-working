@@ -81,22 +81,25 @@ A useful upper bound: most people can productively oversee **two to three** para
 
 > *Non-engineers — you can skim this section or skip to "Multi-agent workflows" below. The idea matters more than the syntax.*
 
-This is the section where the "two to three parallel agents on the same repo" pattern actually has to work in practice. If you've tried it without preparation, you've already hit some of these. Here's the full list of things that go wrong, and how each gets solved.
+This is the section where the "two to three parallel agents on the same repo" pattern actually has to work in practice. If you've tried it without preparation, you've already hit some of these.
 
-### The setup
+### Use your agent's built-in worktree support — don't drive `git worktree` by hand
 
-```bash
-# Main checkout lives at ~/Development/myrepo
-cd ~/Development/myrepo
+The good news first: **modern agents have grown built-in worktree commands**, and you should use them. The pattern *"open a terminal, type `git worktree add ../foo -b feature/foo main`, `cd` into it, launch a fresh agent session, repeat for the second worktree"* still works, but it's slower than it needs to be and it makes you the one responsible for keeping the three trees from stomping on each other.
 
-# Spawn two worktrees off main for two tickets
-git worktree add ../myrepo-LIN-100 -b feature/LIN-100 main
-git worktree add ../myrepo-LIN-101 -b feature/LIN-101 main
-```
+In **Claude Code**, the right entrypoints are:
 
-Now you have three checkouts of the same repo, three branches, three independent working trees. Each agent works in its own directory. That's the foundation. Everything below is *what else* has to be different between them.
+- **`claude -w <path>`** on launch — points a fresh session at a specific worktree path. Useful when the worktree already exists; you just want a parallel session in it.
+- The **`/worktrees`** slash command (and related `/worktree` create/list/remove variants) — manages worktrees from inside an existing Claude Code session. The agent creates the worktree, branches off the right base, copies the necessary untracked files (like `.env`), and offers to spawn a fresh session pointed at the new tree. One slash command instead of three terminal commands.
+- **Just ask in plain English**: *"spawn a new worktree off `main` for ticket LIN-100; copy `.env` over; install dependencies; then drop me into a fresh agent session pointed at it."* The agent runs the equivalents of the commands above, plus the housekeeping.
 
-### 1. Port collisions
+**Codex, OpenCode, and Gemini CLI** all have similar shapes; check each tool's worktree / project-switching docs (Appendix B has the current links).
+
+The collision modes below still exist as **failure shapes that can happen** between any two checkouts of the same repo running side-by-side, regardless of how the worktree got created. Treat the rest of this section as the mental model your agent should already have when it sets up your second worktree — and when you ask it to *"write me a `local-dev` skill that handles all the worktree collision modes"*, this list is what it should encode.
+
+### The collision modes
+
+#### 1. Port collisions
 
 Two dev servers cannot both bind to port 3000. The first one to start wins; the second one crashes or fails silently.
 
@@ -104,7 +107,7 @@ The fix is to make ports a per-worktree variable, not a hardcoded constant. A `l
 
 If you don't have such a skill: at minimum, parameterize the port via env var and pass a different one per worktree.
 
-### 2. Shared database state
+#### 2. Shared database state
 
 If both worktrees connect to the same local Postgres, an agent in one will see and modify the rows the agent in the other just created. Test fixtures collide. Migrations run twice. Foreign keys explode.
 
@@ -116,31 +119,31 @@ Options, from cheapest to cleanest:
 
 Whatever you pick, encode it in a setup script (or a skill) so the agent gets it right automatically.
 
-### 3. `node_modules` lockfile fights
+#### 3. `node_modules` lockfile fights
 
 Two `npm install` / `pnpm install` / `yarn install` runs against the same `node_modules` directory at the same time will corrupt it. Even when worktrees have *separate* `node_modules`, there are gotchas. A famous one (preserved as a war-story-skill in at least one team's repo): if you symlink `node_modules` across worktrees to save disk space, Vite's sandbox quietly rejects the symlinked paths and icons render as empty squares. The fix is in a `local-dev` skill that documents the trap and refuses to set up the symlink. Don't share `node_modules` across worktrees, even when it seems cheap.
 
 For Python: `uv` and modern poetry are much better-behaved than pip; each worktree gets its own `.venv`. Don't reuse virtualenvs across worktrees.
 
-### 4. `.env` drift
+#### 4. `.env` drift
 
 The `.env` file is usually gitignored. Which means: when you create a fresh worktree, *it has no `.env`*. The agent starts work, can't connect to the database, makes confused guesses about why, and burns 20 minutes before you notice.
 
-The fix is to either (a) symlink `.env` from the main checkout into each worktree at creation time, or (b) have a `.env.example` that the agent copies and fills in from a known source. A worktree-creation skill is the right home for this — *"create a paired FE+BE worktree off main for ticket LIN-100, with `.env`s linked"* in one phrase.
+The fix is to either (a) symlink `.env` from the main checkout into each worktree at creation time, or (b) have a `.env.example` that the agent copies and fills in from a known source. A worktree-creation skill is the right home for this — *"create a paired FE+BE worktree off main for ticket LIN-100, with `.env`s linked"* in one phrase. (Claude Code's `/worktrees` command can do this copy for you if you configure which untracked paths it should bring along.)
 
-### 5. Build cache collisions
+#### 5. Build cache collisions
 
 `.next/`, `dist/`, `target/`, `__pycache__/`, `.turbo/`, `node_modules/.cache/` — every modern build system has a cache directory, and most assume they own it exclusively. Two worktrees writing to the same cache at the same time is undefined behavior.
 
 The fix is that each worktree has its own cache because it has its own working tree. The trap is when a tool's config points at a *shared* cache directory (some monorepo setups do this on purpose for cross-worktree caching speedups). If you see weird build behavior across worktrees, suspect the cache.
 
-### 6. Browser session state
+#### 6. Browser session state
 
 If the agent drives a real browser (Ch. 25), two worktrees both opening Chrome with the same profile will share cookies, localStorage, and login state. Worktree A logs in as the test user; worktree B's test now thinks it's also that test user.
 
 The fix is a per-worktree browser profile directory. Modern browser-automation tools support this with a single flag.
 
-### 7. File-watcher limits
+#### 7. File-watcher limits
 
 On Linux/macOS, each running dev server adds inotify/fsevents watchers for every file it cares about. Three Next.js dev servers in three worktrees can hit the OS file-watcher limit and start silently dropping change events. Symptom: HMR randomly stops working.
 
@@ -148,21 +151,13 @@ The fix is to raise the limit (`fs.inotify.max_user_watches`) or kill the server
 
 ### Just ask the agent to write the skill
 
-You don't have to solve all eight of the problems above by hand. The right move, the first time you hit two or three of them in the same week, is to **ask the agent to write a skill that launches your dev servers with all these collision modes considered**. Something like:
+You don't have to solve all eight of the problems above by hand — and you definitely don't have to remember them. The right move, the first time you hit two or three of them in the same week, is to **ask the agent to write a skill that launches your dev servers with all these collision modes considered**. Something like:
 
-> *"The worktree dev-server collisions described above — write me a `local-dev` skill in this repo that picks free ports automatically, won't kill ports owned by other repos, and warns me before doing anything to `node_modules`. Document the symlink-`node_modules`-breaks-Vite gotcha so future-me doesn't fall into it again."*
+> *"The worktree dev-server collisions in Ch. 15 — write me a `local-dev` skill in this repo that picks free ports automatically, won't kill ports owned by other repos, copies `.env` from the main checkout on first run, and warns me before doing anything to `node_modules`. Document the symlink-`node_modules`-breaks-Vite gotcha so future-me doesn't fall into it again."*
 
-Once written, every future worktree session in this repo just calls the skill instead of debugging collisions from scratch. The skill turns into the living memory of every collision you've already paid for once. (Ch. 17 unpacks skills in detail — this is a worked-in-advance preview of why you'll want them.)
+Once written, every future worktree session in this repo just calls the skill instead of debugging collisions from scratch. Combined with Claude Code's `/worktrees` for the *creation* step, the whole flow is "one slash command, one skill invocation, parallel agent running." The skill turns into the living memory of every collision you've already paid for once. (Ch. 18 unpacks skills in detail — this is a worked-in-advance preview of why you'll want them.)
 
-### Launching Claude Code against a specific worktree
-
-If you're using Claude Code, the `-w` flag points a fresh session at a specific git worktree path — handy for spawning a parallel agent without changing directories in your main shell:
-
-```bash
-claude -w ../myrepo-LIN-101
-```
-
-### 8. CI artifact and PR number drift
+#### 8. CI artifact and PR number drift
 
 Less mechanical, more workflow: when three worktrees are landing PRs at the same time, your CI queue is busy, your PR numbers are out of order, and your reviewers get pinged on three threads at once. The `ship-pr` skill pattern (push → open PR → monitor CI → resolve AI review comments → notify when mergeable) shines here, because the agent can babysit each PR independently while you focus on the highest-priority one.
 
