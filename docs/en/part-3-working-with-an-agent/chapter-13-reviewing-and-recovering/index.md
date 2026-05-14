@@ -1,6 +1,6 @@
 # 13. Reviewing and recovering
 
-You handed the agent a real task. Twenty minutes later it comes back: *"Done. I filed 14 Linear tickets, updated three spreadsheet rows, and sent a summary email to the team. Anything else?"*
+You handed the agent a real task. Twenty minutes later it comes back: *"Done. I filed 14 tickets in Asana, updated three spreadsheet rows, and sent a summary email to the team. Anything else?"*
 
 Pause. That sounds like a lot just happened. Did the right thing happen?
 
@@ -28,7 +28,7 @@ You're looking for:
 - **Scope creep.** You asked for one thing; the summary mentions three. Did the extras need doing, or did the agent invent work?
 - **Hedging language.** *"I think I…"*, *"this should be…"*, *"I assumed…"* — every one of those is a flag to check.
 - **Silent skips.** *"I processed 12 of the 14"* — what happened to the other two?
-- **Wrong tools.** It used the Linear MCP to file tickets, when you wanted them in Jira.
+- **Wrong tools.** It filed tickets in the wrong tracker — Linear (a popular team-ticketing system) when you wanted them in Jira, or in your team's main project when you wanted them in the inbound triage one.
 
 If the summary reads clean and the numbers match, you're 80% of the way to "this is fine." Move to spot-checks.
 
@@ -37,7 +37,7 @@ If the summary reads clean and the numbers match, you're 80% of the way to "this
 Whatever the agent produced, **open it in the place it lives** and look at one or two examples in full.
 
 - Drafted 8 follow-up emails? Open the first one and read it end-to-end. Then open the last one (anchoring effect — agents sometimes pace themselves and get sloppier toward the end of a batch).
-- Filed 14 Linear tickets? Open three at random. Check the description, the labels, the assignee, the priority. Look at one that went to a team you weren't expecting.
+- Filed 14 tickets in your team's tracker (Asana, Linear, Jira, Trello — whichever you use)? Open three at random. Check the description, the labels, the assignee, the priority. Look at one that went to a team you weren't expecting.
 - Updated 47 spreadsheet rows? Sort by `updated_at` descending and eyeball the top dozen.
 - Wrote a draft blog post? Read the intro and the conclusion in full. Scan the middle for paragraphs that feel hollow or generic.
 - Launched an ad campaign? Open Google Ads, look at the actual campaign — budget, targeting, ad copy, status.
@@ -64,7 +64,7 @@ Modern agents keep enough of the recent context to answer these honestly, includ
 
 The agent telling you *"I assumed Y because you didn't mention it"* is a gift. It surfaces the implicit assumption so you can correct it.
 
-## Ask the agent to audit its own work — and tell it what to check
+## Layer 4: ask the agent to audit its own work — and tell it what to check
 
 There's a move most readers miss for far too long: **review isn't only you reading the output. You can hand the agent a checklist and let *it* check itself.** The agent is genuinely good at this, and it costs you one sentence.
 
@@ -121,10 +121,10 @@ Nine times out of ten, the second attempt — with a clean context window — su
 
 ## The non-engineer's playbook, end to end
 
-If you're reviewing a draft article, a created Linear ticket, a filled-in spreadsheet, a scheduled email, a launched ad campaign, a new CRM entry — the playbook is the same:
+If you're reviewing a draft article, a newly-created ticket in your team's tracker, a filled-in spreadsheet, a scheduled email, a launched ad campaign, a new CRM entry — the playbook is the same:
 
 1. **Read the agent's summary.** Note anything that doesn't match what you expected.
-2. **Open the actual thing in its actual home.** Linear, Sheets, your email client, Google Ads, your CMS, your CRM.
+2. **Open the actual thing in its actual home.** Your ticket tracker, Sheets, your email client, Google Ads, your CMS, your CRM.
 3. **Look at one or two examples in full.** The first one and the weirdest-looking one from the summary.
 4. **If something's off, ask the agent why.** Don't dig through dashboards on your own.
 5. **If it needs fixing, ask the agent to fix it.** Don't open the UI and start hand-editing — that's the chatbot tax (Ch. 1).
@@ -151,7 +151,7 @@ The harder review case is when the diff is large *and correct in places, wrong i
 ## The takeaway
 
 - Trust until proven wrong, then verify in three cheap layers: read the summary, spot-check the artifacts, ask the agent to show its work.
-- Open the deliverable in its actual home (Linear, Sheets, the CMS, the inbox), not just in the chat window.
+- Open the deliverable in its actual home (your ticket tracker, Sheets, the CMS, the inbox), not just in the chat window.
 - Most agent work is reversible. Stop, undo, revert, redirect — none of these are expensive.
 - The doom loop is real. When you spot it, throw the session away and start fresh.
 - Engineers have an extra tool — the diff. Read it like a PR; use git as your undo.
@@ -168,7 +168,7 @@ The harder review case is when the diff is large *and correct in places, wrong i
 
 **You'll know it worked when** you catch at least one small discrepancy (a label that didn't quite fit, a sentence that drifted from your tone, a row that was almost-but-not-quite right) that you would have missed by reading the summary alone.
 
-*If you don't have a real batch task waiting*: brief the agent with *"create 5 throwaway Linear tickets in my personal scratch project with realistic-sounding feature requests"*, then spot-check the summary against the tickets it actually created.
+*If you don't have a real batch task waiting*: brief the agent with *"create 5 throwaway tickets in my personal scratch project on Asana / Linear / Trello / whichever tracker I have set up, with realistic-sounding feature requests"*, then spot-check the summary against the tickets it actually created.
 
 **Exercise 3.** Deliberately let a session go too long until you feel friction. Save the salvageable parts, close the session, and re-run the next task in a fresh one. Time both.
 
