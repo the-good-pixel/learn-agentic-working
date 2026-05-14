@@ -60,6 +60,8 @@ The agent can build these directly. The pattern that works is a **browser-automa
 
 **You do not need to know what Playwright or Remotion are.** You will never type either word at a keyboard. They are listed here for completeness because you might see the agent install them or mention them in a status update — that's normal, that's how it builds the video, and that is the agent's problem, not yours. You ask: *"make me a 30-second demo video of our reporting feature, using the live app at app.example.com, in our usual style."* The agent figures out which tools it needs, installs them, drives the recording, edits the result, and hands you the `.mp4`. The deliverable on your end is the video file. The pipeline is invisible.
 
+**A second path worth knowing about**: the agent doesn't have to *make* the video locally. It can also **chain through a video-generation AI service** via MCP — Sora, Runway, Pika, Veo, whichever the agent has a connector for. The local pipeline above is the right answer when you're recording your *real product*. The AI-service path is the right answer when you're generating *new* visual content from a script ("a 10-second cinematic of a coffee bean rolling across a wooden table, soft morning light"). Often both are part of one workflow — record the product flow locally, generate a stylish intro animation via Sora, stitch them together. Same applies to other forms: images can be generated locally from data (matplotlib) or via DALL-E / Imagen / Midjourney; voice and music can be local or via ElevenLabs / Suno; transcription via Whisper / AssemblyAI. **Your agent becomes a conductor more often than a maker** — it orchestrates whichever service is best for that specific output, and hands you the finished file.
+
 ### 5. Image — diagrams, charts, screenshots, generated art
 
 Four very different sub-cases, each with a right tool:
@@ -104,9 +106,9 @@ Once you know the form, write it into the prompt. Two examples:
 
 > *"Research the three closest competitors to our product. Output: a single `competitor-analysis.md` in the repo root, with one section per competitor (pricing, positioning, weaknesses, recent moves) and a one-paragraph summary at the top. Use Markdown tables for the pricing breakdown."*
 
-> *"Triage today's Linear inbox. For each unassigned ticket: read it, decide which team owns it, assign it, add labels, and write a one-sentence summary in the comments explaining why you routed it that way. No final report to me — I'll review in Linear."*
+> *"Triage my Gmail inbox from today. For each unread email: read it, decide if it needs a reply, is just an FYI, or is junk. Reply-needed ones get drafted (don't send) with a starter response and labelled `Needs reply`. FYI ones get labelled `Read later` and archived. Junk gets labelled `Promo` and archived. No final report to me — I'll review in Gmail."*
 
-In the first, the artifact is named, the location is specified, the structure is sketched. In the second, the deliverable is the *state of Linear at the end* — no artifact at all.
+In the first, the artifact is named, the location is specified, the structure is sketched. In the second, the deliverable is the *state of your inbox at the end* — no document at all. You don't open the chat to read a summary; you open Gmail and see the work is done.
 
 ## Common mismatches and their fixes
 
