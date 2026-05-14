@@ -16,16 +16,21 @@ You do **not** write this file by hand.
 
 ## What goes in it
 
-Think of the file as a one-page brief you'd hand a new contractor on their first day. *"Here's who I am. Here's what I work on. Here's how we do things around here. Here's what I'll get annoyed by."*
+Think of the file as a one-page brief you'd hand a new contractor on their first day. *"Here's what we're working on. Here's how we do things around here. Here's what I'll get annoyed by."*
 
 The shape that works:
 
-- **Who you are and what your role is.** *"I'm a PM at a 30-person fintech. I work in Linear and Notion. I don't write code; I read it sometimes."* Or *"I'm a senior backend engineer on the platform team. Mostly Python, some Go."*
-- **What this project / folder is.** *"This is the marketing-ops repo for our newsletter."* Or *"This folder is my personal Downloads dumping ground; I'm organizing it."*
+- **What this project / folder is.** *"This is the marketing-ops repo for our newsletter."* *"This folder is my personal Downloads dumping ground; I'm organizing it."* *"This is the backend service that handles checkout."*
 - **Conventions that matter.** Style preferences, terminology, file naming, formatting. *"Slack messages, three bullets max, no preamble."* *"Tickets always start with the user-facing symptom, not the cause."* *"For SQL, prefer CTEs over subqueries."*
 - **What to never do.** *"Don't run migrations against prod without showing me the plan first."* *"Don't suggest we 'leverage synergies'."* *"Don't write a Notion doc; write Markdown and I'll paste."*
 - **Where the bodies are buried.** Project-specific traps. *"`yarn dev` doesn't work in worktrees — there's a known issue with symlinked `node_modules`."* *"Our `staging` env is actually production traffic mirrored; treat it as prod."*
 - **Tool and skill pointers.** *"Use the `gemini-chat-and-search` skill for any research that involves checking facts online."* *"The Shopify MCP is installed; use it for any product-catalog question."*
+
+### Don't lock the file to your job title
+
+You'll be tempted to open with *"I'm a PM at a fintech…"* or *"I'm a senior backend engineer…"* — **resist that**. Most people wear several hats during a day: an engineer drafts customer-facing release notes, a PM writes the occasional SQL, a marketer pokes at the analytics dashboard, an ops lead reviews a contract. If you lock your `CLAUDE.md` to one role, the agent gets quietly worse at the *other* things you do in the same folder — it picks the role-adjacent answer when you needed the cross-hat one.
+
+The better move: describe the **work**, not the **identity**. *"This folder is where I draft customer comms, run weekly metrics, and triage support escalations."* That gives the agent enough to set tone, format, and tooling for each task you actually pull out of it. Your role can come up in the conversation when it's relevant — you don't have to declare it up front.
 
 Not what goes in it: a wall of text trying to anticipate every situation. The file is a *brief*, not a manual. A page is plenty; two is a lot. If you find yourself writing the third page, stop — that material probably belongs in a **skill** (Ch. 19), which is the right place to teach the agent a specific *procedure*.
 
@@ -35,7 +40,7 @@ Here is the actual workflow. You do not open an editor. You do not stare at a bl
 
 You start a session in the folder where the file will live (your project, or your home directory for a user-level one), and you say:
 
-> *"I want to write a `CLAUDE.md` for this project so you have context every time we work together. Interview me. Ask me five to ten questions about who I am, what this project is, how I work, what I care about, and what mistakes I'd want you to avoid. After we're done, draft the file and show it to me. Keep it under a page."*
+> *"I want to write a `CLAUDE.md` for this project so you have context every time we work together. Interview me. Ask me five to ten questions about **what this project is, the range of work I do in it, how I work, what I care about, and what mistakes I'd want you to avoid.** Don't try to pin down a single job title for me — most people wear several hats in the same folder. After we're done, draft the file and show it to me. Keep it under a page."*
 
 The agent asks. You answer in plain language, in the chat, the same way you'd answer a new hire over coffee. Five minutes. Then it writes the file.
 
