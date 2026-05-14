@@ -111,6 +111,28 @@ The shape is: clean → save → report. The report is portable, the cleaned CSV
 
 You skim the result. If a vendor didn't match, the agent flags it; you decide whether to add a row to `vendors.csv` or fix the spelling in `expenses.xlsx`.
 
+## The flagship: pulling live analytics, writing the report, suggesting what to do next
+
+The previous three shapes all start with a file you already have. This one starts with **a live data source** — Google Analytics, Mixpanel, PostHog, Amplitude, your data warehouse — and ends with a *report plus a recommendation*. It's the workflow that, once it's running, makes most weekly-metrics meetings half as long.
+
+The shape:
+
+> *"Use the Google Analytics MCP. Pull last week's data for our website — sessions, top sources, top landing pages, conversion rate by source, anything anomalous compared to the previous four weeks. Write me a one-page HTML report with the headline number at the top, a section per dimension (acquisition / behavior / conversion), and three concrete suggestions for what to investigate or change this week. Save as `~/Documents/reports/ga-weekly-<date>.html`."*
+
+What just happened:
+
+1. **The agent pulled the data itself** — no CSV export, no copy-paste, no dashboard screenshot. The Google Analytics MCP (or equivalent skill that wraps the GA Data API) gave the agent direct, scoped, read-only access. *"Equip first, then engage"* from Ch. 10 in action: install the MCP once, every future report is one prompt.
+2. **The agent made comparisons you'd otherwise type out by hand** — last week vs the prior four weeks, sources sorted by conversion, landing pages ranked by bounce. The boring spreadsheet work is the agent's now.
+3. **You get *suggestions*, not just numbers.** A graph telling you traffic from `linkedin.com` dropped 40% is information. *"Linkedin traffic dropped 40% week-over-week, concentrated on the `/pricing` page; the most recent campaign there ended on the 12th — restart the campaign or refresh the creative"* is a recommendation. The agent does both because you asked it to.
+
+Same shape, different platform — swap *Google Analytics* for *Mixpanel*, *PostHog*, *Amplitude*, *Search Console*, *Stripe* (for revenue), or *your warehouse* (for everything joined). Same prompt template:
+
+> *"Pull \<period\> from \<system\>, compare against \<baseline\>, write a one-page report with a headline metric, sections per dimension, and three concrete suggestions. Save as HTML at \<path\>."*
+
+Once this works once, capture it as a skill — `weekly-ga-report`, `weekly-revenue-report` — and the next time the prompt is just *"run this week's GA report."* Ch. 18 is about exactly that moment.
+
+**A safety note.** This is the kind of workflow you can confidently run on a schedule (Ch. 15's *"keep doing X until Y"* pattern). The agent's analytics MCP should be read-only — pulling data is reversible, writing back to GA is not. *"Monitor, don't block"* from Ch. 7 applies cleanly: let the report run; spot-check it on arrival; intervene only when the recommendations are obviously off.
+
 ## Where you still want to drive
 
 A few jobs are still yours, even in the agent era:
