@@ -1,4 +1,4 @@
-# 16. When should you stop re-prompting and write a skill?
+# 18. When should you stop re-prompting and write a skill?
 
 The first product demo video takes an afternoon.
 
@@ -76,13 +76,13 @@ The agent is always the new hire. Every session starts fresh. A skill is what ma
 
 ## Before you write: search for one that already exists
 
-One step worth running before you draft anything. When you've decided a task is skill-shaped, the *first* move isn't to open an empty `SKILL.md` — it's to ask the agent whether somebody already wrote the skill you're about to write. This is the *equip first, then engage* habit from Ch. 10 applied at the skill layer. The prompt is plain: *"is there a published skill for shipping PRs / drafting weekly newsletters / handling i18n in a Vue project? Check my user-level skills, this project's `.claude/skills`, and community lists on GitHub."* Half the time, the answer is yes — someone shipped a `ship-pr` or a `gemini-chat-and-search`, and you install it in one sentence. Save your skill-writing budget for the things that are *actually* about your work. Ch. 17 walks through this *search before you write* flow in full.
+One step worth running before you draft anything. When you've decided a task is skill-shaped, the *first* move isn't to open an empty `SKILL.md` — it's to ask the agent whether somebody already wrote the skill you're about to write. This is the *equip first, then engage* habit from Ch. 10 applied at the skill layer. The prompt is plain: *"is there a published skill for shipping PRs / drafting weekly newsletters / handling i18n in a Vue project? Check my user-level skills, this project's `.claude/skills`, and community lists on GitHub."* Half the time, the answer is yes — someone shipped a `ship-pr` or a `gemini-chat-and-search`, and you install it in one sentence. Save your skill-writing budget for the things that are *actually* about your work. Ch. 19 walks through this *search before you write* flow in full.
 
 ## "But I'm not sure it's worth a skill"
 
 Common hesitation. Resolve it like this:
 
-**The cost of writing the skill is low.** You don't hand-write it. You finish a session, say *"write me a skill that captures what we just did, including the corrections I had to give you"*, and the agent drafts it. You read it, tweak a line, save it. Total time: 5–10 minutes. We'll cover the exact flow in Ch. 17.
+**The cost of writing the skill is low.** You don't hand-write it. You finish a session, say *"write me a skill that captures what we just did, including the corrections I had to give you"*, and the agent drafts it. You read it, tweak a line, save it. Total time: 5–10 minutes. We'll cover the exact flow in Ch. 19.
 
 **The cost of *not* writing it is sneaky.** The same correction next week. The same lost hour debugging a thing you already debugged. The next teammate who hits the same wall. None of those are a disaster on their own; they add up.
 
@@ -134,4 +134,4 @@ Verdict (skill / not skill yet): ____________________
 
 ## What's next
 
-Ch. 17 takes you through the two flows that produce a skill — search before you write, then write-from-conversation — and dissects real skills with different *shapes*, so you can recognize which shape your candidate fits.
+Ch. 19 takes you through the two flows that produce a skill — search before you write, then write-from-conversation — and dissects real skills with different *shapes*, so you can recognize which shape your candidate fits.

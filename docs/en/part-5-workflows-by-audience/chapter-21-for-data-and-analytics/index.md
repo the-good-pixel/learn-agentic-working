@@ -1,4 +1,4 @@
-# 19. For Data & Analytics People
+# 21. For Data & Analytics People
 
 *A note on how to read Part V.* Read only this chapter if its role matches yours — the other chapters in Part V exist as inspiration for what your colleagues in other roles are doing. The workflows below are real cases from working teams the rest of the playbook draws from. Pick one that sounds useful, drop the suggested files in front of your agent, and run it.
 
@@ -60,7 +60,7 @@ The agent-era version:
 Three things to notice about that ask:
 
 1. **You name the systems, not the libraries.** You said "the database" and "the sheet" — not "use the right Python library and the Google Sheets API". The agent picks the library; you don't care.
-2. **You named the *schedule*.** This is when long-running agents (Ch. 14) earn their keep — recurring data work that previously required an entire BI subscription, now done by a sentence and a recurring run.
+2. **You named the *schedule*.** This is when long-running agents (Ch. 15) earn their keep — recurring data work that previously required an entire BI subscription, now done by a sentence and a recurring run.
 3. **You handed it credentials it can use safely.** Practically, this is where the *scoped read-only* pattern matters: give the agent a database role that can read everything and write nothing. Then you don't have to gate every query; you can let it loose and just look at what it returns.
 
 A practical version of that scoped-credential pattern lives in a skill the agent loads automatically — the skill documents *"here's the read-only connection, here are example questions it's been asked before, here's the schema."* The agent inherits all of that the moment it's invoked. You ask *"do any customers have on-demand reports turned on?"* and it answers in fifteen seconds, with the actual SQL it ran in case you want to verify.
@@ -121,7 +121,7 @@ A few jobs are still yours, even in the agent era:
 
 ## When to write it down as a skill
 
-If your agent successfully traced a weird-data thing once, the *next* time someone hands you a similar file, you don't want to re-explain how to look at it. Capture the procedure as a skill (Ch. 16, Ch. 17): "given a transactions CSV, here's how to load it, here's how to dedupe, here's how to categorize, here's what we always check first." Next month's mystery CSV is half the work.
+If your agent successfully traced a weird-data thing once, the *next* time someone hands you a similar file, you don't want to re-explain how to look at it. Capture the procedure as a skill (Ch. 18, Ch. 19): "given a transactions CSV, here's how to load it, here's how to dedupe, here's how to categorize, here's what we always check first." Next month's mystery CSV is half the work.
 
 Some shapes of skill that pay off for analysts:
 

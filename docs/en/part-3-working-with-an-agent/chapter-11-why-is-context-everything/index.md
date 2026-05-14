@@ -72,7 +72,7 @@ If the relevant information lives on a public webpage, hand the agent the URL an
 
 This matters for the same reason files matter: paraphrases are lossy. The agent will pick up signal from headings, structure, footnotes, and adjacent paragraphs that you would never think to copy out.
 
-When the source requires authentication or is behind a portal, that's when the **browser MCP** earns its keep — the agent drives a real browser, logs in (with your blessing), and reads the page that way. Ch. 23 is the deep-dive on this.
+When the source requires authentication or is behind a portal, that's when the **browser MCP** earns its keep — the agent drives a real browser, logs in (with your blessing), and reads the page that way. Ch. 25 is the deep-dive on this.
 
 ## The throughline from Ch. 8: persistent context
 
@@ -92,7 +92,7 @@ This is **context bloat**. The context window is finite, and you've packed it wi
 
 Most agent tools handle this with **compaction**: at some threshold, the agent automatically summarizes the older parts of the conversation to make room for new work. Compaction is necessary, but it's also lossy. The summary the agent writes of "what we were doing earlier" may quietly drop a detail you cared about.
 
-The honest cure is not to fight compaction; it's to **start fresh when the task changes**. When you finish a unit of work — a bug fixed, an article drafted, a campaign launched — close the session and open a new one for the next task. Each new session inherits the persistent context (`CLAUDE.md`, memory, skills, MCPs) but starts with a clean working table.
+The honest cure is not to fight compaction; it's to **start fresh when the task changes**. When you finish a unit of work — a bug fixed, an article drafted, a campaign launched — close the session and open a new one for the next task. Each new session inherits the persistent context (`CLAUDE.md`, memory, skills, MCPs) but starts with a clean working table. Ch. 16 is the working chapter on managing the window once you're inside a session — `/compact`, `/clear`, the handoff file, why position matters more than size. Ch. 17 picks up the related discipline *before* the session begins: every installed MCP or skill is itself loaded context, and over-installing has real costs (with empirical numbers).
 
 Heuristics for "time to start fresh":
 
@@ -107,7 +107,7 @@ Cheap, fast, no penalty. Start a new session.
 
 When you have a side-quest — *"research this on the web for me"*, *"go investigate why the staging DB is slow"*, *"look at every file under `lib/` and tell me which ones import deprecated APIs"* — you don't have to do it in your main session. You can hand it to a **sub-agent**: a fresh, throwaway agent instance with its own context window.
 
-The sub-agent goes off, burns through its own context doing the research, comes back with a short summary, and your main thread stays clean. Ch. 14 covers this in depth; for now, just know that this is the right move when you're about to do something noisy that would otherwise crowd your main session.
+The sub-agent goes off, burns through its own context doing the research, comes back with a short summary, and your main thread stays clean. Ch. 15 covers this in depth; for now, just know that this is the right move when you're about to do something noisy that would otherwise crowd your main session.
 
 In other tools: Claude Code has the `Task` tool for spawning sub-agents; Codex and OpenCode have similar primitives. The mental model is the same in any of them.
 
@@ -117,7 +117,7 @@ In other tools: Claude Code has the `Task` tool for spawning sub-agents; Codex a
 - Don't describe what the agent could just *see*. Hand it the file, the URL, the screenshot, the transcript.
 - Persistent context (Ch. 8) saves you from re-explaining the basics every session.
 - Long sessions go sideways. When you finish a task or feel drift, start a fresh session — it's cheap.
-- Hand noisy side-quests to a sub-agent so your main thread stays focused (Ch. 14).
+- Hand noisy side-quests to a sub-agent so your main thread stays focused (Ch. 15).
 
 ## Try it yourself
 

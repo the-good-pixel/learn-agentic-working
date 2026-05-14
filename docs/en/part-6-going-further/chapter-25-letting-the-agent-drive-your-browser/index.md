@@ -1,4 +1,4 @@
-# 23. Letting the agent drive your browser
+# 25. Letting the agent drive your browser
 
 You shipped a new feature on Friday. Marketing wants a 20-second demo video on Threads by Monday morning. You consider yourself a builder, not a producer, and the last time you made a "quick demo" it took an afternoon — record the screen three times because your cursor was in the wrong place, fight with the export, draw arrows in Keynote, give up and ship a screenshot.
 
@@ -39,7 +39,7 @@ This loop is the spine of every browser-driving skill we've shipped. It's also t
 
 The cleanest worked example. Our `demo-video` skill, in production on the product, drives a real Playwright browser through a feature, emits a raw video plus a stream of "cursor moved here, click happened there, spotlight this element" events, and then a Remotion (a video-compositing library) pipeline composites brand chrome — opening title, watermark, bottom chyron with sell-the-job-to-be-done copy, end-card CTA — on top of the raw footage.
 
-What's notable is what the skill *won't* let the agent do, captured as hard rules learned from real user feedback: no spring animations ("feels ancient and old-school"), no chapter indicators ("makes viewers feel stuck on step one"), no separate intro card, chyron must own the full-width bottom band ("corner callouts get missed when the eye is on data"), don't redesign the chrome — copy it from an existing composition. The third demo video we made took one command. (See Ch. 16 for the war story behind why this became a skill, and Ch. 17 for the anatomy.)
+What's notable is what the skill *won't* let the agent do, captured as hard rules learned from real user feedback: no spring animations ("feels ancient and old-school"), no chapter indicators ("makes viewers feel stuck on step one"), no separate intro card, chyron must own the full-width bottom band ("corner callouts get missed when the eye is on data"), don't redesign the chrome — copy it from an existing composition. The third demo video we made took one command. (See Ch. 18 for the war story behind why this became a skill, and Ch. 19 for the anatomy.)
 
 ### Recon, then write the tests
 
@@ -77,7 +77,7 @@ Following the **equip first, then engage** principle (Ch. 10): before driving th
 - *"Is there a published skill for driving [platform]?"* — community skill repos and the Anthropic registry sometimes have one. Install it.
 - *"Is there a browser-driving skill in this repo already?"* — your team may have already written one. Reuse it.
 
-Only when none of those exist do you drive the browser ad-hoc. And when you do drive it ad-hoc twice, that's the signal to capture the third run as a skill (Ch. 16).
+Only when none of those exist do you drive the browser ad-hoc. And when you do drive it ad-hoc twice, that's the signal to capture the third run as a skill (Ch. 18).
 
 ## What goes wrong, and what to watch
 
@@ -86,7 +86,7 @@ Browser-driving is the most physically *visible* form of agent action — you li
 - **Stale snapshots.** The agent acts on a snapshot from before the page finished loading. Fix: tell it to wait for a specific element ("wait until the dashboard chart renders") instead of waiting a fixed number of seconds.
 - **Hidden state.** Auth lives in IndexedDB (a kind of browser storage), or session storage, or a cookie that expires. The `demo-video` skill's auth gotcha — Firebase login state lives in IndexedDB, not cookies, so Playwright's default saved login state misses it — is a real one. Capture the failure mode in the skill the first time it bites you.
 - **Selectors that aren't stable.** "The button with text 'Submit'" works until someone changes the copy. Prefer accessibility-tree references and data-test attributes (markers developers add to make elements easy to find); if you're operating someone else's site, accept that the script will break occasionally and the agent will need to re-walk it.
-- **Drift from "I'll just watch it once" to "I'll just trust it."** Headed mode lulls you into watching less over time. For high-stakes actions (anything financial, anything irreversible — see Ch. 24), keep a gate even when the agent has done it ten times. For reversible things, let it cook.
+- **Drift from "I'll just watch it once" to "I'll just trust it."** Headed mode lulls you into watching less over time. For high-stakes actions (anything financial, anything irreversible — see Ch. 26), keep a gate even when the agent has done it ten times. For reversible things, let it cook.
 
 ## In other tools
 
@@ -102,7 +102,7 @@ The space moves fast. The shape of the work — navigate, snapshot, interact, re
 - Two modes: **headed real-browser** (one-off, signed in as you, watch it work) and **headless scripted-browser** (repeatable, headless, becomes a skill).
 - The canonical loop is **navigate → snapshot → interact → re-snapshot**. The re-snapshot is the step most people skip and the one that makes it reliable.
 - The richest scenarios are the ones MCPs don't cover: demo videos, third-party platform investigations, auth-gated forms, vendor portals, cross-viewport bug repro.
-- When you find yourself driving the same flow twice, capture it as a skill. The third run is one command (see Ch. 16, Ch. 17).
+- When you find yourself driving the same flow twice, capture it as a skill. The third run is one command (see Ch. 18, Ch. 19).
 - Watch the browser the first few times. Then trust it for reversible work and keep gating the irreversible. The **monitor, don't block** stance from Ch. 7 applies here more than anywhere.
 
 ## Try it yourself

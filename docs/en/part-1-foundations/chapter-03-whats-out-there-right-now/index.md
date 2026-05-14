@@ -58,7 +58,7 @@ Today the field includes:
 - **Computer-use APIs** from Anthropic and others. Lower-level: the model receives screenshots of an entire desktop and emits mouse and keyboard actions. The building block underneath the consumer-facing products above.
 - **Browser-driving skills** built on **Playwright** or **Puppeteer**. The agent writes scripted browser interactions, runs them, and reads the results back. Less interactive, much more reproducible.
 
-**When to reach for this family**: any tool that has no API, no MCP, and lives only as a webpage. Vendor portals. Internal admin tools. Government sites. SaaS settings pages your team uses once a month. Also useful for testing a product you've built — *dogfooding* the way a real user would. Ch. 23 is a deep dive on this family with concrete scenarios.
+**When to reach for this family**: any tool that has no API, no MCP, and lives only as a webpage. Vendor portals. Internal admin tools. Government sites. SaaS settings pages your team uses once a month. Also useful for testing a product you've built — *dogfooding* the way a real user would. Ch. 25 is a deep dive on this family with concrete scenarios.
 
 A practical truth: today, browser agents are slower and flakier than terminal agents, because reading a screenshot is more brittle than reading an API response. They will get faster and more reliable. They are already useful enough to keep one installed.
 
@@ -76,7 +76,7 @@ The strongest setups in 2026 combine one terminal agent (for the file-system, AP
 
 A few products market themselves as **autonomous** software engineers — Devin, Replit Agent, Codex's longer cloud sessions, and a growing list of competitors. Mechanically, they are still the same five-box diagram: a model, an orchestrator, tools, real systems. What's different is **how long they run unattended** and **how much you're meant to watch them**.
 
-These can be useful for long-horizon tasks where you genuinely want to step away (the *let it cook* pattern from Ch. 14). They are *not* a different category of agent; they are an orchestrator tuned for longer leashes. Treat them as a special case of family 1.
+These can be useful for long-horizon tasks where you genuinely want to step away (the *let it cook* pattern from Ch. 15). They are *not* a different category of agent; they are an orchestrator tuned for longer leashes. Treat them as a special case of family 1.
 
 ## How fast is this changing?
 

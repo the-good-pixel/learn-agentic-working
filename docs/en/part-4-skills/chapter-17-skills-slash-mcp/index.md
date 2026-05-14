@@ -1,4 +1,4 @@
-# 15. Skills, slash commands, and MCPs — what's the difference?
+# 17. Skills, slash commands, and MCPs — what's the difference?
 
 You open a fresh terminal in your project and ask the agent to ship a PR. It pushes, opens the PR, watches CI, fixes a flaky test, replies to a code-review comment, and pings you when it's green. Forty minutes later you come back and merge.
 
@@ -70,7 +70,7 @@ Skills handle three kinds of things a slash command can't:
 2. **Accumulated gotchas.** The `demo-video` skill on the product's repo includes hard rules like *"no spring animations"* and *"chyron owns the bottom band"* — bits of feedback we had to give the agent twice before turning them into a rule.
 3. **Composing multiple tools.** The agent uses git, the GitHub MCP, the CI checker, and the file system *together*, all inside one skill invocation.
 
-We'll get into when something becomes worth turning into a skill in Ch. 16, and how to write one (or rather, how to let the agent write one *for you*) in Ch. 17.
+We'll get into when something becomes worth turning into a skill in Ch. 18, and how to write one (or rather, how to let the agent write one *for you*) in Ch. 19.
 
 ## MCP: the new tool underneath
 
@@ -89,13 +89,31 @@ You'll often want both. Install the Linear MCP (the capability), then later add 
 
 This is also where the *equip first, then engage* habit from Ch. 10 earns its keep. The first move when you enter an unfamiliar domain — a new vendor portal, a new system of record, a new platform your team just adopted — is not to start prompting. It's to ask the agent: *"is there an MCP or a skill for this? Check my user-level skills, this project's `.claude/skills`, the vendor's published servers, and the community lists."* Half the time, the answer is yes, and you save yourself a week of teaching the agent things it could have inherited. Only after that search comes up empty do you reach for a prompt — or, better, ask the agent to draft a minimal skill or MCP wrapper so the *next* person doesn't have to search.
 
+## But more isn't better — equip deliberately
+
+The *equip first* habit has a discipline twin that nobody warns you about until it bites: **every installed MCP server, every skill, every plugin you load costs tokens in the context window from turn zero.** A typical MCP server adds several thousand tokens of tool definitions. Ten installed servers burns 20–30K tokens before the agent has read a single file. Recent work calls this the [*MCP tools tax*](https://arxiv.org/abs/2604.21816) and measures it at 10K–60K tokens per turn in typical multi-server deployments — a hidden cost paid on every single message.
+
+The strategy the industry has chosen here is, in principle, reasonable. Rather than train a separate *vertical* model for finance, marketing, ops, or law, vendors ship a general-purpose model and steer it per domain with a stack of instruction files. Skill packs, plugin bundles, "200+ skills in one install" community repos on GitHub — same idea: pile on instructions instead of training a new model. Cheaper, more flexible, in principle sound. **The mismatch is on the model side.** Today's foundational models can't yet navigate many tools, skills, and instructions in a single context window without losing accuracy. The strategy may catch up eventually; right now, the gap is real and *you* wear the cost. Anthropic's own engineering team [says it plainly](https://www.anthropic.com/engineering/writing-tools-for-agents) in the official tool-writing guide: *"Too many tools or overlapping tools can also distract agents from pursuing efficient strategies."*
+
+The empirical numbers track. The [RAG-MCP paper](https://arxiv.org/abs/2505.03275) (Gan & Sun, May 2025) ran a stress test where the candidate pool of MCP tools grows. Baseline LLM tool-selection accuracy falls to **13.6 %**. With retrieval-augmented tool discovery — i.e. only loading the relevant tool's spec on demand — accuracy jumps to **43.1 %**. The follow-up paper [JSPLIT](https://arxiv.org/abs/2510.14537) (Oct 2025) replicates: *"as the number of tools increases, the prompts become longer, leading to high prompt token costs, increased latency, and reduced task success."*
+
+Two distinct costs, and only the first is about the LLM.
+
+**Cost one: the agent gets confused.** With thirty installed tools, the agent picks the wrong one, or doesn't pick one at all. There's a subtler effect too: when you have multiple tools that do roughly the same thing, the agent's choice between them isn't fair. A [recent benchmark](https://arxiv.org/abs/2510.00307) measured this and found two distinct biases: **tools listed earlier in the context get picked more often than they should**, and **once the agent settles on one vendor's tool, it tends to stick with that vendor on later calls** — even when a different one would be a better fit. Tool *order* on the shelf turns out to matter. The reader-facing implication: when you do equip several tools, put the most important (or safest) ones first.
+
+**Cost two: *you* get confused.** The more plugins and skills you install, the more *you* have to remember — which command does what, what each is named, which ones overlap. The user becomes the bottleneck. It's the slow regression to Microsoft Office and Adobe Creative Suite: hundreds of features per product, the user knows six, and the rest generate menu clutter. Forty installed skills named `summarize-doc`, `summarize-document`, `quick-summary`, `summarize-pdf` — and you can't remember which fires on what input. That's the failure mode agents were supposed to rescue you from.
+
+The practical move is the discipline twin of *equip first, then engage*: **equip deliberately, not aspirationally.** Three MCPs you actually use beats ten you might use. If you need a tool occasionally, leave it uninstalled and add it for the session that needs it. Periodically — every few weeks — audit what you have loaded and uninstall what you haven't reached for. The *"more is more"* intuition from chatbot land does not survive the move to agents.
+
+This is the same finding Ch. 16 made about long sessions, just at the equipment layer. Everything you load up front is competing for the same context window that the agent's *actual work* needs to live in. Watch what you put on the shelf as carefully as you watch what fills the window mid-session.
+
 ## A worked decision: "I want my agent to always X"
 
 You catch yourself wishing the agent would *always* do something. Walk down the ladder:
 
 1. **Is it a one-time thing?** Just say it in the prompt. Done.
 2. **Is it the same prompt every time?** Slash command. Save the template, give it a name.
-3. **Is it a procedure with steps and lessons learned?** Skill. Let the agent draft the `SKILL.md` from your last session (Ch. 17).
+3. **Is it a procedure with steps and lessons learned?** Skill. Let the agent draft the `SKILL.md` from your last session (Ch. 19).
 4. **Does it need a tool the agent doesn't have?** MCP. Install one if it exists; if not, ask the agent to wrap the API.
 
 Most of the time the right answer is one rung up the ladder from where you started. Don't reach for an MCP when a skill would do; don't reach for a skill when a slash command is enough.
@@ -137,4 +155,4 @@ Why that one:        ____________________
 
 ## What's next
 
-Ch. 16 takes the question one level deeper: out of all the things you do every week, which ones cross the line from "just keep prompting" to "this should be a skill"? A few real stories, drawn from both engineering and non-engineering work, draw the line.
+Ch. 18 takes the question one level deeper: out of all the things you do every week, which ones cross the line from "just keep prompting" to "this should be a skill"? A few real stories, drawn from both engineering and non-engineering work, draw the line.

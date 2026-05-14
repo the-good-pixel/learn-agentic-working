@@ -1,4 +1,4 @@
-# 17. Writing a good skill (and letting the agent write it for you)
+# 19. Writing a good skill (and letting the agent write it for you)
 
 You've decided you want a skill for the thing you keep redoing. Now what?
 
@@ -25,6 +25,10 @@ The agent will look in the obvious places:
 
 For common needs — *ship a PR, take notes in Linear, send mail through SendGrid, drive a browser session* — there's often a public answer already. Install it (the agent does this for you — copy the folder, restart the session) and move on. Save your skill-writing budget for the things that are actually about *your* work.
 
+**A caveat on installing what you find.** Most public skills aren't real packages — they're a `SKILL.md` plus a handful of code snippets. Especially for highly-starred repos with hundreds of bundled skills, the safer move is to paste the URL and ask the agent to **read the repo, extract only the parts you actually need, and rebuild them locally as your own skill**. Two wins: you get the slice that matters rather than the whole bundle, and you've reviewed the code before it touches your machine.
+
+Why bother? Because supply-chain attacks on skill marketplaces aren't theoretical. [Researchers recently demonstrated](https://arxiv.org/abs/2604.03081) that you can hide malicious logic inside the *code examples* in skill documentation — an agent doing what it normally does (reusing the example) ends up running the attacker's payload. Across four agent frameworks and five models, they bypassed safety defenses 12–34 % of the time. The fix isn't more paranoia about installing things; it's letting the agent read the source for you before anything lands on your machine.
+
 ## Flow 2: write from the conversation
 
 When no published skill fits, the right move is *still* not to open an empty file. It's to **let the agent draft the skill from the session you just had**.
@@ -35,6 +39,7 @@ The flow:
 2. You say: *"That was useful. Write a skill that captures what we just did, including the corrections I had to give you. Save it as `.claude/skills/<name>/SKILL.md`."*
 3. The agent reads back over the conversation, picks out the steps you actually took, the tools you used, the things that went wrong, and the rules you gave it. It drafts the `SKILL.md` with a `description` (the trigger surface), the procedure, and a "won't do this" section.
 4. You skim it. Tweak a line or two. Save.
+5. **If your agent tool doesn't support skills yet**, fall back to long-term memory: *"remember this workflow for next time."* Same idea, different storage layer.
 
 This is the same pattern as everything else in this book: **describe the outcome; the agent handles the mechanics.** You don't write configuration. You don't memorize Markdown frontmatter syntax. You don't have to know what fields a skill takes. The agent already knows; it reads the project's other skills as a reference if it's unsure.
 
@@ -149,7 +154,7 @@ That's it. You're done.
 
 ## Try it yourself
 
-Take the skill candidate you identified at the end of Ch. 16. In a session where you just did the task (or a fresh session after recreating it), say:
+Take the skill candidate you identified at the end of Ch. 18. In a session where you just did the task (or a fresh session after recreating it), say:
 
 > *"Write me a skill that captures what we just did. Include the corrections I had to give you, and add a 'when not to use this' section. Save it as `.claude/skills/<name>/SKILL.md`."*
 
