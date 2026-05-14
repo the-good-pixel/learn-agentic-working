@@ -1,20 +1,24 @@
 # 18. When should you stop re-prompting and write a skill?
 
-The first product demo video takes an afternoon.
+You're a customer success lead. A user emails in about a billing issue — frustrated, fair. You ask the agent to draft a reply: warm, take responsibility, propose a fix, no corporate hedging.
 
-You're shipping a feature on your product — an investing app, say — and you want a 20-second clip showing a new feature page for Threads. You brief the agent: drive the page with a browser-automation tool, record it, composite it with a caption bar and a synthetic cursor. The agent does it. You watch it back and give a dozen corrections — *"no spring animations, they look dated"*, *"don't put callouts in a corner card, use a full-width caption bar"*, *"don't redesign the chrome, copy what we already have"* — and after a few rounds, you have a video you can ship.
+The draft comes back: *"Thank you for reaching out and we're sorry for the inconvenience. We understand your frustration, and we want to leverage this feedback to improve…"*
 
-A week later you want a second video, this time for the watchlist feature. Same setup. Same corrections, *almost word for word*. The spring animations creep back in. The corner card comes back. The caption-bar font drifts.
+You sigh. You strike "leverage". You replace "we understand your frustration" with *"that sounds genuinely annoying — sorry."* You delete "for the inconvenience" because no real human would write that. You ship it.
 
-That's the signal. You stop re-prompting and say:
+A day later, a different ticket. Different customer, different problem. The agent drafts *"Thanks for the heads-up, and apologies for the inconvenience. We want to make sure we leverage…"* Same strikes. Same softening. You ship it.
 
-> *"Write me a skill that captures this. Read what we just did. Include the rules I had to give you twice."*
+A day after that, same again.
 
-The agent drafts a `SKILL.md`. You tweak two lines and save it as `.claude/skills/demo-video/SKILL.md`. The third video — the one for another feature — is one prompt: *"make a demo video for that page."* The agent picks up the skill, follows it, produces the video, doesn't need a single correction about spring animations or caption-bar placement.
+That's three corrections in a week, all on the same dimension. Tone. You stop and say:
+
+> *"Write me a skill that captures how we actually sound to customers. Read the last three drafts you wrote and the edits I made. Bake in the rules I keep applying — no 'we're sorry for the inconvenience', never 'leverage' as a verb, never 'we understand your frustration' (too rehearsed), open with a concrete acknowledgment, end with a specific next step. Save it as `brand-voice`."*
+
+The agent drafts the skill. You read it, add one rule it missed (*"never 'circle back'"*), save. The next reply comes back in your team's voice on the first pass. The one after does too. The dance is gone.
 
 That's the rule of this whole part of the book: **if you find yourself doing the same task often, or correcting the agent on the same task repeatedly, that's the signal — make it a skill.** A skill is your war-story-as-code.
 
-This chapter is about how to spot the signal earlier than the third try.
+The signal looks the same whether the correction is about *email tone*, *video animation timing*, *which column in a finance export is the gross amount*, or *which folder a frontend build sandbox refuses to follow symlinks through*. The shape — *"I keep correcting the same thing"* — is universal. The fix is universal too. This chapter is about how to spot the signal earlier than the third try, with three more stories from different parts of the office to make the pattern unmistakable.
 
 ## Three signals you've outgrown re-prompting
 
@@ -34,7 +38,23 @@ If you can write down *"first do A, then check B; if B is X go to C, otherwise g
 
 If any of those are true, stop re-prompting. Spend ten minutes on the skill. You'll get the time back the next time you need to do the thing.
 
-## The second story: the day you lost to symlinked node_modules
+## The first story: the product demo video
+
+The opener showed the signal in customer comms. Here it is again in marketing. The first time you ask the agent to produce a product demo video — say a 20-second clip for Threads showing a new feature — it takes an afternoon. You brief the agent: drive the page with a browser-automation tool, record it, composite it with a caption bar and a synthetic cursor. The agent does it. You watch it back and give a dozen corrections — *"no spring animations, they look dated"*, *"don't put callouts in a corner card, use a full-width caption bar"*, *"don't redesign the chrome, copy what we already have"* — and after a few rounds, you have a video you can ship.
+
+A week later you want a second video for a different feature. Same setup. Same corrections, *almost word for word*. The spring animations creep back in. The corner card comes back. The caption-bar font drifts.
+
+That's the signal. You stop re-prompting and say:
+
+> *"Write me a skill that captures this. Read what we just did. Include the rules I had to give you twice."*
+
+The agent drafts a `SKILL.md`. You tweak two lines and save it as `.claude/skills/demo-video/SKILL.md`. The third video — for a third feature — is one prompt: *"make a demo video for that page."* The agent picks up the skill, follows it, produces the video, doesn't need a single correction about spring animations or caption-bar placement.
+
+Same shape as the customer-comms story above — *"three corrections in a row, all on the same dimension, write the skill"* — applied to a different room of the building. (Full `demo-video` template in [Appendix E](../../appendix/appendix-e-skills-library/).)
+
+## The second story (engineers only): the day you lost to symlinked node_modules
+
+> *Non-engineers can skip to the third story. This one's a war story about a specific frontend-build trap; the lesson generalizes but the details won't.*
 
 You're working on a frontend project, using paired git worktrees — one for frontend, one for backend — so you can work on a ticket while another branch is still in progress. You do what feels clever: you symlink `node_modules` from the main checkout into the worktree, to avoid a five-minute `npm install`.
 
@@ -62,13 +82,13 @@ This is the same shape as `demo-video`, just on the other side of the building. 
 
 ## Skill as war-story-as-code
 
-Hold those three stories next to each other:
+Hold the four stories next to each other:
 
-- `demo-video` — *I caught myself making the same corrections every time. The skill is the cumulative feedback.*
-- `local-dev` — *I lost a day to a subtle bug. The skill is the postmortem, lived where the next agent will trip on the same thing.*
-- `reconcile-stripe` — *I kept re-answering the same setup questions every month. The skill is the briefing that should have lived somewhere permanent.*
+- `brand-voice` (opener) and `demo-video` (first story) — both the same shape: *I caught myself making the same corrections every time. The skill is the cumulative feedback.*
+- `local-dev` (second story, engineers only) — *I lost a day to a subtle bug. The skill is the postmortem, lived where the next agent will trip on the same thing.*
+- `reconcile-stripe` (third story) — *I kept re-answering the same setup questions every month. The skill is the briefing that should have lived somewhere permanent.*
 
-All three are war stories. All three got encoded.
+Four stories, **three shapes**. All four are war stories. All four got encoded. The corrections you found yourself repeating became `brand-voice` and `demo-video`. The day you lost became `local-dev`. The recurring briefing became `reconcile-stripe`. None of these are documentation in the boring sense — they're the small, scarred, opinionated knowledge that a teammate who's been on the project for a year has, and a new hire doesn't.
 
 This is the angle to internalize: **skills are how an agent inherits the things you learned the hard way.** They aren't "best practices guides". They aren't "documentation". They're the small, scarred, opinionated knowledge that a teammate who's been on the project for a year has, and a new hire doesn't.
 
@@ -112,7 +132,7 @@ For non-engineers, the signal is identical: you wrote four follow-up emails this
 ## The takeaway
 
 - The rule: **if you're doing the same task often, or correcting the agent on the same task repeatedly, write a skill.**
-- Three real stories, three shapes: `demo-video` is *accumulated feedback turned procedure*; `local-dev` is *war story turned permanent warning*; `reconcile-stripe` is *the briefing that should have lived somewhere permanent*. Engineering or ops, the signal is the same.
+- Four real stories, three shapes: `brand-voice` and `demo-video` are *accumulated feedback turned procedure*; `local-dev` is *war story turned permanent warning*; `reconcile-stripe` is *the briefing that should have lived somewhere permanent*. Customer comms, marketing, engineering, finance ops — the signal is the same.
 - Skills are war-story-as-code — the small, scarred knowledge a senior teammate has that a new hire doesn't. The agent is always the new hire.
 - Cost to write a skill: ~10 minutes, the agent does the drafting. Cost not to: the same correction, every week.
 - Not everything is a skill. One-offs stay prompts; project-wide conventions go in `CLAUDE.md`; missing tools become MCPs.
