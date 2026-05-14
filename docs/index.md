@@ -1,47 +1,8 @@
----
-layout: home
+# The Agentic Working Playbook
 
-hero:
-  name: "The Agentic Working Playbook"
-  text: "Get real work done with AI agents."
-  tagline: For engineers, designers, analysts, PMs, marketers, operations — anyone whose work touches a computer.
-  actions:
-    - theme: brand
-      text: Start with Chapter 1
-      link: /en/part-1-foundations/chapter-01-what-changes-when-ai-can-act/
-    - theme: alt
-      text: 10-minute first win
-      link: /en/part-1-foundations/chapter-04-a-10-minute-first-win/
-    - theme: alt
-      text: GitHub
-      link: https://github.com/the-good-pixel/learn-agentic-working
+**A practical, open-source playbook for getting real work done with AI agents.**
 
-features:
-  - title: For engineers
-    details: Stop typing every line. Delegate feature work, bug hunts, refactors, and code review.
-    link: /en/part-5-workflows-by-audience/chapter-20-for-software-engineers/
-    linkText: Read the engineer workflow →
-  - title: For data and analytics
-    details: Turn raw spreadsheets, warehouse queries, and dashboard chores into one-prompt outputs.
-    link: /en/part-5-workflows-by-audience/chapter-21-for-data-and-analytics/
-    linkText: Read the data workflow →
-  - title: For PMs and designers
-    details: Turn tickets, meeting notes, and client feedback into shipped artifacts without waiting on a dev for every small thing.
-    link: /en/part-5-workflows-by-audience/chapter-22-for-pms-and-designers/
-    linkText: Read the PM / design workflow →
-  - title: For business / ops
-    details: Automate the spreadsheet-inbox-report grind across sales, support, finance, HR, and legal.
-    link: /en/part-5-workflows-by-audience/chapter-23-for-business-ops/
-    linkText: Read the ops workflow →
-  - title: For everyone — personal
-    details: Use the same agent on your own life. Bills, travel, learning, your stock portfolio screenshot.
-    link: /en/part-5-workflows-by-audience/chapter-24-for-everyone-personal-workflows/
-    linkText: Read the personal workflow →
-  - title: Curious but new
-    details: Go from "I've used ChatGPT" to "I run agents that do my work" in one weekend.
-    link: /en/part-1-foundations/chapter-04-a-10-minute-first-win/
-    linkText: Try the 10-minute first win →
----
+For engineers, designers, analysts, PMs, marketers, operations — anyone whose work touches a computer.
 
 ## Why this book exists
 
@@ -85,3 +46,11 @@ If you forget every specific pattern in this book and you remember these three, 
 1. **If you can describe what you want, you can ask the agent to do it — including setting itself up.** You will not be asked to write code, edit config files, or install anything by hand. You will be asked to *decide what you want to happen*.
 2. **Equip first, then engage.** Before starting any task in an unfamiliar domain, the first move is *not* "how do I do this?" — it's *"what MCPs and skills already exist for the tools involved? Install them."*
 3. **Monitor, don't block.** Let the agent take real action by default and watch what it does, rather than gating every step. The exception is the small set of *big and irreversible* actions.
+
+## Start reading
+
+→ [**Chapter 1: What changes when AI can act, not just answer?**](./en/part-1-foundations/chapter-01-what-changes-when-ai-can-act/)
+
+Or, if you'd rather just *try it*:
+
+→ [**Chapter 4: A 10-minute first win**](./en/part-1-foundations/chapter-04-a-10-minute-first-win/)
