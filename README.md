@@ -5,7 +5,7 @@
 
 [**📖 Read the book →**](https://the-good-pixel.github.io/learn-agentic-working/) · [Start with Ch. 1](https://the-good-pixel.github.io/learn-agentic-working/en/part-1-foundations/chapter-01-what-changes-when-ai-can-act/) · [10-minute first win](https://the-good-pixel.github.io/learn-agentic-working/en/part-1-foundations/chapter-04-a-10-minute-first-win/)
 
-![Learn Agentic Working — You → Orchestrator → Model → Connector → Real app](assets/og-image.svg)
+[![Learn Agentic Working — book site preview](assets/site-preview.png)](https://the-good-pixel.github.io/learn-agentic-working/)
 
 ---
 
