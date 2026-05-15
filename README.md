@@ -1,133 +1,75 @@
 # Learn Agentic Working
 
-> A practical, open-source playbook for getting real work done with AI agents — for engineers, designers, analysts, PMs, marketers, operations, and anyone whose work touches a computer.
+> **An open-source playbook for getting real work done with AI agents.**
+> For engineers, designers, analysts, PMs, marketers, operations — anyone whose work touches a computer.
 
-This is **not** another "prompt engineering" tutorial. It assumes you've already chatted with ChatGPT or Gemini, and you're ready for the next step: **letting an AI do the work, not just describe it**.
+[**📖 Read the book →**](https://the-good-pixel.github.io/learn-agentic-working/) · [Start with Ch. 1](https://the-good-pixel.github.io/learn-agentic-working/en/part-1-foundations/chapter-01-what-changes-when-ai-can-act/) · [10-minute first win](https://the-good-pixel.github.io/learn-agentic-working/en/part-1-foundations/chapter-04-a-10-minute-first-win/)
 
-We use **Claude Code** as the primary running example because it's the tool the author uses daily, but the patterns apply equally to **Codex**, **OpenCode**, **Cursor agents**, **Gemini CLI**, and any future tool that fits the same shape. Where another tool has a notable equivalent feature, we cite it.
+![Learn Agentic Working — You → Orchestrator → Model → Connector → Real app](assets/og-image.svg)
 
 ---
+
+You've already chatted with ChatGPT or Gemini. You've asked it questions, copy-pasted answers, maybe drafted an email.
+
+That's the **chatbot** mode. The AI talks; you do.
+
+There's a different mode now: the **agent** mode. You tell it what you want done, and *it does it* — reads your files, runs commands, opens browsers, sends emails, queries databases, picks up where it left off.
+
+This book is about that mode. Not the theory of it — the daily practice of it.
 
 ## Who this is for
 
-- **Software engineers** who want to stop typing every line themselves.
-- **Designers, PMs, analysts** who write Notion docs, Jira tickets, SQL, and the occasional script.
-- **Operations, finance, HR, marketing** — anyone with spreadsheets, inboxes, recurring reports, and "could a computer just do this?" tasks.
-- **Team leads** deciding how their team should adopt agents.
+- **Engineers** who want to stop typing every line — delegate feature work, bug hunts, refactors, code review.
+- **Data and analytics folks** turning raw spreadsheets and warehouse queries into one-prompt outputs.
+- **PMs and designers** shipping artifacts (PRDs, demo videos, prototypes) without waiting on a dev for each one.
+- **Business and ops** — sales, support, finance, HR, legal — automating the inbox-spreadsheet-report grind.
+- **Anyone** using the same agent on their own life: bills, travel, learning, the screenshot of their stock portfolio.
 
-If your only experience with AI today is *typing a question into a chat box*, this book is for you. By the end you'll be **delegating tasks**, not asking questions.
+**Prerequisites:** you've used a chat AI like ChatGPT, Gemini, or Claude.ai. That's it.
 
----
+## What makes this book different
 
-## What you'll learn
+- **Cross-audience.** Same playbook for engineers *and* non-engineers — most books pick one. Part V splits into role-specific chapters so each reader gets a workflow that matches their day.
+- **Every workflow is real.** Examples are paraphrased from actual working teams — no invented toy tasks.
+- **Tool-neutral.** Claude Code is the primary running example because that's what the author uses daily, but every chapter cites the equivalent in Codex, OpenCode, Cursor, and Gemini CLI.
+- **Free, MIT-licensed, open to contribution.** Use it, fork it, run an internal training off it, translate it.
 
-```
-Chat   →   Tool-using assistant   →   Agent that gets work done
-(you do it after)   (it suggests)        (it does it, you review)
-```
+## The three throughlines
 
-1. **What an agent actually is** — and why it's different from the chatbot you already know.
-2. **The mental model**: You → Orchestrator → Model → Connectors (MCP is the most common kind) → Real apps (Gmail, Sheets, browsers, Jira, your own files), with the orchestrator looping the model's output back into the next turn. See [the architecture diagram](assets/architecture.svg).
-3. **Setup once, benefit forever** — installation, sensible defaults, permissions, and the configuration files (`CLAUDE.md`, `~/.claude/settings.json`, skills, hooks) that turn a generic agent into *your* agent.
-4. **How to brief an agent like a colleague**, not a search engine — context, plans, scope, and review.
-5. **Extending the agent** — MCP servers for Gmail, Google Drive, Linear, browsers; skills for repeatable workflows; sub-agents for parallel work.
-6. **Real workflows**, mined from actual usage, for both technical and non-technical readers.
-7. **Patterns, anti-patterns, and team norms** — when to trust it, when to babysit, how to review, how to share what you learn.
+If you forget every specific pattern in this book and you remember these three, you'll figure out the rest as the tools change:
 
----
+1. **If you can describe it, ask the agent to do it — including the setup.** You won't be asked to write code, edit configs, or install anything by hand.
+2. **Equip first, then engage.** Before starting any task in a new domain, ask *"what MCPs and skills exist for the tools involved? Install them."*
+3. **Monitor, don't block.** Let the agent take real action by default and watch what it does, rather than gating every step. The exception is the small set of *big and irreversible* actions.
 
 ## Book structure
 
-> Each chapter is a standalone Markdown file. The website is the same content, rendered by GitHub Pages.
+Six parts, 28 chapters, four appendices. Each chapter is standalone, ~2,000–2,500 words, with a "try it yourself" exercise.
 
-### Part I — Foundations (everyone reads this)
-1. **From Chatbot to Agent** — what changes when the AI can act, not just answer.
-2. **The Agentic Architecture** — you, orchestrator, model, connectors, real apps. (Anchored by [the architecture diagram](assets/architecture.svg).)
-3. **A 10-minute first win** — install Claude Code (or Codex / OpenCode), run one real task, feel the difference.
+- **I — Foundations.** What an agent is, the architecture diagram, the 10-minute first win.
+- **II — Setup once.** Install, trust, `CLAUDE.md`, MCP servers.
+- **III — Working with an agent.** Equipping, context, output forms, reviewing, parallel work.
+- **IV — Skills.** When to stop re-prompting and write one.
+- **V — Workflows by audience.** Role-specific chapters: engineers, data, PMs/designers, business/ops, everyone-personal.
+- **VI — Going further.** Voice/vision input, browser-driving, running responsibly, what we got wrong.
 
-### Part II — Setup Once
-4. **Installing your agent** — Claude Code, Codex, OpenCode side-by-side.
-5. **Permissions and trust** — what to allow automatically, what to gate, sandboxing.
-6. **`CLAUDE.md`, `AGENTS.md`, and the project memory pattern** — telling the agent who you are and how you work.
-7. **MCP servers worth installing on day one** — Gmail, Google Drive/Sheets, Linear/Jira, GitHub, web browser, filesystem.
-8. **Skills, slash commands, and hooks** — the three ways to make repeat tasks one-liners.
-
-### Part III — Working With an Agent
-9.  **Briefing**: how to write a task the way you'd brief a smart colleague.
-10. **Planning before doing** — when to ask for a plan, when to just go.
-11. **Context is everything** — files, screenshots, links, tickets, transcripts.
-12. **Reviewing the agent's work** — trust but verify; reading diffs; what to never skip.
-13. **Recovering from mistakes** — undo, revert, redirect mid-task.
-14. **Long-running and background work** — let it cook while you do something else.
-
-### Part IV — Workflows by Audience
-
-Each workflow is a real case (paraphrased from real usage), with the prompt, the setup, and the outcome.
-
-- **For engineers**: feature work from a Linear ticket; cross-repo bug hunts; codebase onboarding; large refactors; CI babysitting; security review.
-- **For data & analytics folks**: "study this CSV and tell me what's weird"; ad-hoc folder/file diff scripts; spreadsheet-to-database imports; chart generation.
-- **For PMs / business / ops**: turning client feedback into a punch list; drafting tickets from meeting notes; competitive research; recurring reports; investigating "why doesn't this thing work" on a third-party platform.
-- **For everyone**: investigating a confusing bank statement; planning WiFi router placement from a floor-plan photo; cleaning up Downloads; setting up automations.
-- **For team leads**: shared skills, shared CLAUDE.md conventions, code review bots, scheduled agents.
-
-### Part V — Going Further
-15. **Multi-agent workflows** — sub-agents, parallel exploration, one agent reviewing another.
-16. **Scheduled & autonomous agents** — cron-like work that runs without you.
-17. **Building your own MCP server** — for your team's internal tool.
-18. **Team adoption playbook** — how to roll this out without chaos.
-19. **Anti-patterns** — what not to do (and what we learned the hard way).
-
-### Appendices
-- A. Glossary (LLM, MCP, agent, skill, hook, sub-agent, tool call…)
-- B. Tool comparison: Claude Code vs Codex vs OpenCode vs Cursor agent vs Gemini CLI.
-- C. Recommended starter `CLAUDE.md` templates by role.
-- D. A curated list of MCP servers.
-- E. Further reading.
-
----
-
-## How this book is written
-
-Most examples are **drawn from real Claude Code transcripts** (anonymized where needed) — actual things the author and his team did to ship work. We deliberately avoid toy examples like "summarize this paragraph"; every workflow shown is something a reader could plausibly want to do at work tomorrow.
-
----
-
-## Repository layout
-
-```
-/
-├── README.md            ← you are here
-├── CLAUDE.md            ← instructions for agents helping write this book
-├── docs/                ← the book itself (Markdown, one file per chapter)
-│   ├── index.md
-│   ├── part-1-foundations/
-│   ├── part-2-setup/
-│   ├── part-3-working-with-agents/
-│   ├── part-4-workflows/
-│   ├── part-5-going-further/
-│   └── appendix/
-├── assets/              ← diagrams, screenshots, GIFs
-├── examples/            ← starter templates (CLAUDE.md, settings.json, skills)
-└── .github/workflows/   ← GitHub Pages deployment
-```
-
-The published site lives at: **(coming soon — GitHub Pages)**
-
----
+→ [**See the full table of contents on the site**](https://the-good-pixel.github.io/learn-agentic-working/)
 
 ## Contributing
 
-This is open source under the MIT license. Contributions welcome — especially:
+Pull requests welcome — especially:
 
-- **Real workflow stories** (with the prompt and what happened).
-- **Tool parity notes** — "Codex / OpenCode also does this, but…".
+- **Real workflow stories** (the prompt, the outcome, what surprised you).
+- **Tool parity notes** — *"Codex/OpenCode also does this, but…"*.
 - **Translations** and audience adaptations (e.g., "for accountants", "for lawyers").
 - **Corrections** when a tool's behavior changes — agent tooling moves fast.
 
-See `CONTRIBUTING.md` (coming soon) for the style guide.
+Open an issue or a PR. No CLA.
 
----
+## Inspirations
+
+Structurally modeled on [Learn Harness Engineering](https://github.com/walkinglabs/learn-harness-engineering) by Walking Labs — short, opinionated, scenario-led chapters with hands-on exercises. If you like the shape of this book, you'll like that one too (different topic).
 
 ## License
 
-MIT. Use it, fork it, run an internal training off it, translate it. Just don't sell it back to the people who wrote the original prompts.
+MIT. See [LICENSE](LICENSE).

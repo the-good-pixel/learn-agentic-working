@@ -10,12 +10,21 @@ export default withMermaid(defineConfig({
   lang: 'en-US',
   cleanUrls: true,
   ignoreDeadLinks: true,
+  srcExclude: ['public/**', '**/node_modules/**'],
 
   head: [
     ['meta', { name: 'theme-color', content: '#1f2937' }],
     ['meta', { property: 'og:title', content: 'Learn Agentic Working' }],
-    ['meta', { property: 'og:description', content: 'For engineers, designers, analysts, PMs, marketers, operations — anyone whose work touches a computer.' }],
+    ['meta', { property: 'og:description', content: 'An open-source playbook for getting real work done with AI agents — for engineers, designers, analysts, PMs, marketers, operations.' }],
     ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:url', content: 'https://the-good-pixel.github.io/learn-agentic-working/' }],
+    ['meta', { property: 'og:image', content: 'https://the-good-pixel.github.io/learn-agentic-working/og-image.png' }],
+    ['meta', { property: 'og:image:width', content: '1200' }],
+    ['meta', { property: 'og:image:height', content: '630' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:title', content: 'Learn Agentic Working' }],
+    ['meta', { name: 'twitter:description', content: 'An open-source playbook for getting real work done with AI agents.' }],
+    ['meta', { name: 'twitter:image', content: 'https://the-good-pixel.github.io/learn-agentic-working/og-image.png' }],
     ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-4FFZN5R9J8' }],
     [
       'script',

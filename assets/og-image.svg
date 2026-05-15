@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e5e7eb"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="80" y="130" font-size="58" font-weight="800" fill="#f8fafc" letter-spacing="-1">Learn Agentic Working</text>
+  <text x="80" y="180" font-size="26" font-weight="500" fill="#94a3b8">An open-source playbook for getting real work done with AI agents.</text>
+
+  <!-- Audience line -->
+  <text x="80" y="240" font-size="20" font-weight="500" fill="#cbd5e1">For engineers · designers · analysts · PMs · marketers · operations</text>
+
+  <!-- Mini architecture diagram -->
+  <g transform="translate(80, 320)">
+    <!-- You -->
+    <circle cx="50" cy="80" r="42" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+    <text x="50" y="78" text-anchor="middle" font-size="18" font-weight="700" fill="#92400e">You</text>
+    <text x="50" y="98" text-anchor="middle" font-size="11" fill="#92400e">prompt</text>
+
+    <!-- Orchestrator -->
+    <rect x="130" y="40" width="180" height="80" rx="10" fill="#e0e7ff" stroke="#4f46e5" stroke-width="2"/>
+    <text x="220" y="74" text-anchor="middle" font-size="20" font-weight="700" fill="#3730a3">Orchestrator</text>
+    <text x="220" y="100" text-anchor="middle" font-size="13" fill="#3730a3">Claude Code · Codex</text>
+
+    <!-- Model -->
+    <rect x="335" y="40" width="160" height="80" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="415" y="74" text-anchor="middle" font-size="20" font-weight="700" fill="#14532d">Model</text>
+    <text x="415" y="100" text-anchor="middle" font-size="13" fill="#14532d">Claude · GPT</text>
+
+    <!-- Connector -->
+    <rect x="520" y="40" width="170" height="80" rx="10" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
+    <text x="605" y="74" text-anchor="middle" font-size="20" font-weight="700" fill="#831843">Connector</text>
+    <text x="605" y="100" text-anchor="middle" font-size="13" fill="#831843">MCP · built-in</text>
+
+    <!-- Real app -->
+    <rect x="715" y="40" width="170" height="80" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+    <text x="800" y="74" text-anchor="middle" font-size="20" font-weight="700" fill="#0c4a6e">Real app</text>
+    <text x="800" y="100" text-anchor="middle" font-size="13" fill="#0c4a6e">Gmail · Sheets</text>
+
+    <!-- Arrows -->
+    <line x1="92" y1="80" x2="125" y2="80" stroke="#e5e7eb" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="310" y1="80" x2="333" y2="80" stroke="#e5e7eb" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="495" y1="80" x2="518" y2="80" stroke="#e5e7eb" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="690" y1="80" x2="713" y2="80" stroke="#e5e7eb" stroke-width="2" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Footer -->
+  <text x="80" y="555" font-size="18" font-weight="500" fill="#94a3b8">Every workflow is real — drawn from working teams. MIT-licensed.</text>
+  <text x="80" y="590" font-size="16" fill="#64748b">github.com/the-good-pixel/learn-agentic-working</text>
+</svg>
