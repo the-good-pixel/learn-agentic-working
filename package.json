@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "examples:index": "node scripts/generate-examples-index.mjs",
+    "docs:dev": "npm run examples:index && vitepress dev docs",
+    "docs:build": "npm run examples:index && vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {

@@ -150,7 +150,7 @@ Verdict (skill / not skill yet): ____________________
 
 **You'll know it worked when** the verdict isn't a 50/50 — you can point at one of the three signals and say *"yes, that one fired"*, or honestly say *"none of them, this is still a one-off"*.
 
-*If you can't find a repeated task in your own week*: the book repo ships six plausible repeat-correction scenarios at `examples/ch-15-corrections/common-corrections.md` — pick one and decide whether it's skill-shaped yet or still a one-off.
+*If you can't find a repeated task in your own week*: the book repo ships six plausible repeat-correction scenarios at [`examples/ch-15-corrections/common-corrections.md`](/examples/ch-15-corrections/common-corrections.md) — pick one and decide whether it's skill-shaped yet or still a one-off.
 
 ## What's next
 

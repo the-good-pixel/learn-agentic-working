@@ -161,7 +161,7 @@ Some shapes of skill that pay off for analysts:
 
 ## Try it yourself
 
-If you don't have a real messy file in front of you, the book repo ships one: `examples/ch-19-analytics/transactions-nov.xlsx` — a three-sheet workbook (Transactions, FX Rates, Categories reference) covering three months of fake-but-realistically-messy transactions with three currencies, a free-text `memo` column, a sparse `category_raw` column from the bank's auto-categorizer, and a few suspicious-looking recurring charges (daily coffee, monthly rent) that test the agent's restraint. Clone the repo and point your agent at that folder. The three starter exercises in `examples/ch-19-analytics/README.md` ratchet up the agent's responsibility:
+If you don't have a real messy file in front of you, the book repo ships one: [`examples/ch-19-analytics/transactions-nov.xlsx`](/examples/ch-19-analytics/transactions-nov.xlsx) — a three-sheet workbook (Transactions, FX Rates, Categories reference) covering three months of fake-but-realistically-messy transactions with three currencies, a free-text `memo` column, a sparse `category_raw` column from the bank's auto-categorizer, and a few suspicious-looking recurring charges (daily coffee, monthly rent) that test the agent's restraint. Clone the repo and point your agent at that folder. The three starter exercises in `examples/ch-19-analytics/README.md` ratchet up the agent's responsibility:
 
 1. **Categorize and rank.**
    > *"Read `examples/ch-19-analytics/transactions-nov.xlsx`, decode the memo column into clean categories, and tell me my top 5 categories of **spend** in USD-equivalent — exclude income (salary deposits) from the totals. State the FX rates you used."*

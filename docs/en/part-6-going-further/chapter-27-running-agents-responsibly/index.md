@@ -105,12 +105,12 @@ This is the boundary that quality, cost, and security all converge on. It's also
 
 **Two.** Open your AI provider's billing dashboard. Find the most expensive workflow you ran in the last week. Ask the agent: *"based on the call pattern, where could a smaller model or prompt caching reduce this cost without losing quality?"*
 
-If you don't have access to a billing export, the book repo ships a fictional one at `examples/ch-24-cost-audit/api-usage-nov.csv` — ~140 rows across five workflows with deliberately mixed cost profiles (a few big infrequent runs, a nightly QA run that's a clear downshift candidate, and a long tail of small per-call work that adds up).
+If you don't have access to a billing export, the book repo ships a fictional one at [`examples/ch-24-cost-audit/api-usage-nov.csv`](/examples/ch-24-cost-audit/api-usage-nov.csv) — ~140 rows across five workflows with deliberately mixed cost profiles (a few big infrequent runs, a nightly QA run that's a clear downshift candidate, and a long tail of small per-call work that adds up).
 
 **You'll know it worked when** the agent names a specific step that could downshift to a cheaper model — and you make the change.
 
 **Three.** Audit the credentials your agent currently has access to. For each one, ask: *is this readonly when it could be? Is this scoped to the smallest reasonable domain?* Tighten one.
 
-If you'd rather practice the audit on a safe mock first, the book repo ships a fictional credential inventory at `examples/ch-24-credentials/current-setup.md` — seven over-permissive credentials of the kind that accumulate in any real setup. Run the audit, then re-run it on your own.
+If you'd rather practice the audit on a safe mock first, the book repo ships a fictional credential inventory at [`examples/ch-24-credentials/current-setup.md`](/examples/ch-24-credentials/current-setup.md) — seven over-permissive credentials of the kind that accumulate in any real setup. Run the audit, then re-run it on your own.
 
 **You'll know it worked when** you can hand your security lead a one-paragraph answer to *"what can your agent actually do, and where would it stop?"*

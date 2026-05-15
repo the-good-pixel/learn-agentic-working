@@ -151,7 +151,7 @@ Why that one:        ____________________
 
 **You'll know it worked when** you can defend your choice in one sentence — *"it's a skill because it has three steps and a gotcha"*, not *"a skill, I guess, because it sounds skill-shaped"*.
 
-*If you can't think of a correction of your own*: the book repo ships six plausible repeated corrections at `examples/ch-15-corrections/common-corrections.md` — pick one and run the layer-decision on it.
+*If you can't think of a correction of your own*: the book repo ships six plausible repeated corrections at [`examples/ch-15-corrections/common-corrections.md`](/examples/ch-15-corrections/common-corrections.md) — pick one and run the layer-decision on it.
 
 ## What's next
 

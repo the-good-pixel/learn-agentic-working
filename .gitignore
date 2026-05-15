@@ -7,3 +7,6 @@ __pycache__/
 node_modules/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
+
+# Auto-generated example folder indexes (built by scripts/generate-examples-index.mjs)
+examples/**/index.html

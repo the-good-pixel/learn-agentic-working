@@ -82,7 +82,7 @@ Notice the shape. You hand the agent a *yardstick* it can hold up to its own wor
 
 This is the rule worth carrying: **you don't have to do the audit yourself. You have to know what the audit *is*. Then hand the audit to the agent.**
 
-A hands-on warm-up for this lives in `examples/ch-13-self-audit/` — a `sales-q3.xlsx` with three sheets (Orders, Customers, Product Catalog) and several deliberately wrong things planted in it. Drop the file in front of your agent and ask it to summarize. Then ask it to re-check itself against the source. Watch what happens on the second pass.
+A hands-on warm-up for this lives in [`examples/ch-13-self-audit/`](/examples/ch-13-self-audit/) — a `sales-q3.xlsx` with three sheets (Orders, Customers, Product Catalog) and several deliberately wrong things planted in it. Drop the file in front of your agent and ask it to summarize. Then ask it to re-check itself against the source. Watch what happens on the second pass.
 
 ## When something is wrong — undo, revert, redirect
 
@@ -158,7 +158,7 @@ The harder review case is when the diff is large *and correct in places, wrong i
 
 ## Try it yourself
 
-**Exercise 1.** Hand the agent the planted-error dataset shipped with the book at `examples/ch-13-self-audit/sales-q3.xlsx` and run the two-step self-audit pattern:
+**Exercise 1.** Hand the agent the planted-error dataset shipped with the book at [`examples/ch-13-self-audit/sales-q3.xlsx`](/examples/ch-13-self-audit/sales-q3.xlsx) and run the two-step self-audit pattern:
 
 > *"Summarize this workbook. Then re-check your summary against the source: per-customer anomalies, formula-consistency on `line_total`, date-format consistency, cross-sheet referential integrity between Orders, Customers, and Product Catalog — anything you'd want to double-check before sending this to the boss."*
 

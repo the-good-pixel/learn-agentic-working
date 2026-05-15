@@ -136,7 +136,7 @@ In other tools: Claude Code has the `Task` tool for spawning sub-agents; Codex a
 
 **Exercise 1.** Find a task you've been describing to a chatbot in long paragraphs. Replace the description with *"read this file"* or *"look at this screenshot"* and ask the same question. Compare the answers.
 
-If you don't have a task handy right now, the book repo ships a ready-made one at `examples/ch-11-context/meeting-notes-raw.docx` — a messy ~2,000-word Word transcript of a product strategy meeting with action items, owners, and deadlines embedded mid-sentence rather than listed. Drop it in front of your agent:
+If you don't have a task handy right now, the book repo ships a ready-made one at [`examples/ch-11-context/meeting-notes-raw.docx`](/examples/ch-11-context/meeting-notes-raw.docx) — a messy ~2,000-word Word transcript of a product strategy meeting with action items, owners, and deadlines embedded mid-sentence rather than listed. Drop it in front of your agent:
 
 > *"Read `examples/ch-11-context/meeting-notes-raw.docx`. Extract action items, owners, and deadlines. Flag anything where the owner or deadline isn't clear from the text."*
 

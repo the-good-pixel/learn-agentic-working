@@ -94,7 +94,7 @@ You'll usually trim 30–60% of the list and find one or two surprising keepers,
 
 Open your last month's company card statement, or your own. Pick **three** line items where the product has "AI" in its name or is an AI upcharge on a tool you already use.
 
-If you don't have a statement handy right now (or you'd rather practice on safe data first), the book repo ships a fictional one at `examples/ch-05-ai-subscriptions/card-statement.pdf` — a one-month company card (2 pages, ~85 line items) including a planted teaching moment where an AI upcharge costs more than the underlying tool. Run the same audit against it before you run it against your real statement.
+If you don't have a statement handy right now (or you'd rather practice on safe data first), the book repo ships a fictional one at [`examples/ch-05-ai-subscriptions/card-statement.pdf`](/examples/ch-05-ai-subscriptions/card-statement.pdf) — a one-month company card (2 pages, ~85 line items) including a planted teaching moment where an AI upcharge costs more than the underlying tool. Run the same audit against it before you run it against your real statement.
 
 For each one, write:
 

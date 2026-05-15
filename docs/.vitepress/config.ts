@@ -1,10 +1,12 @@
 import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 
+const BASE = '/learn-agentic-working/'
+
 export default withMermaid(defineConfig({
   title: 'Learn Agentic Working',
   description: 'A practical, open-source playbook for getting real work done with AI agents.',
-  base: '/learn-agentic-working/',
+  base: BASE,
   lang: 'en-US',
   cleanUrls: true,
   ignoreDeadLinks: true,
@@ -141,6 +143,29 @@ gtag('config', 'G-4FFZN5R9J8');`,
 
     outline: {
       level: [2, 3],
+    },
+  },
+
+  markdown: {
+    config(md) {
+      const defaultRender =
+        md.renderer.rules.link_open ||
+        function (tokens, idx, options, env, self) {
+          return self.renderToken(tokens, idx, options)
+        }
+      md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+        const href = tokens[idx].attrGet('href')
+        if (href && /^\/examples\//.test(href)) {
+          tokens[idx].attrSet('href', BASE.replace(/\/$/, '') + href)
+          tokens[idx].attrSet('target', '_blank')
+          tokens[idx].attrSet('rel', 'noopener')
+          // Only files (not folder URLs ending in /) get the download attribute.
+          if (!href.endsWith('/')) {
+            tokens[idx].attrSet('download', '')
+          }
+        }
+        return defaultRender(tokens, idx, options, env, self)
+      }
     },
   },
 }))
