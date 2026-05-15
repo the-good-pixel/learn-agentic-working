@@ -10,3 +10,7 @@ docs/.vitepress/cache/
 
 # Auto-generated example folder indexes (built by scripts/generate-examples-index.mjs)
 examples/**/index.html
+
+# Local scratch files — never push
+/*-PLAN.md
+/NOTES-*.md
