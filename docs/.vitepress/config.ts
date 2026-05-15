@@ -14,6 +14,15 @@ export default withMermaid(defineConfig({
     ['meta', { property: 'og:title', content: 'Learn Agentic Working' }],
     ['meta', { property: 'og:description', content: 'For engineers, designers, analysts, PMs, marketers, operations — anyone whose work touches a computer.' }],
     ['meta', { property: 'og:type', content: 'website' }],
+    ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-4FFZN5R9J8' }],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-4FFZN5R9J8');`,
+    ],
   ],
 
   themeConfig: {
