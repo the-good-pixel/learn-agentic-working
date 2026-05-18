@@ -14,3 +14,4 @@ examples/**/index.html
 # Local scratch files — never push
 /*-PLAN.md
 /NOTES-*.md
+.idea/
