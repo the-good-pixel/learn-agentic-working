@@ -4,7 +4,7 @@ Chapter 8 makes the case that nobody should hand-author a `CLAUDE.md` from scrat
 
 > **A note on the role labels below — read this before you pick one.** The templates are organized by role for readability, not because anyone should lock their `CLAUDE.md` to a single identity. As Ch. 8 argues, most readers wear several hats in the same folder — an engineer drafting release notes, a PM writing SQL, a marketer poking at analytics, an ops lead reviewing a contract. **In practice, your real `CLAUDE.md` will almost certainly blend two or three of the templates below**, not match any one of them cleanly. Skim several, pick the rules that fit the *actual range of work* you do in that folder, and let the agent stitch them together when it drafts your version. The role headings here are scaffolding, not boxes you have to fit inside.
 
-Each template below is real and opinionated. They are not generic boilerplate — they bear the kind of personality-level rules that make a `CLAUDE.md` worth reading ("we don't use 'leverage' as a verb"; "always check the brand-voice doc first"; "no rounding under USD $5"). That is by design. A `CLAUDE.md` that says "be helpful and use good judgment" teaches the agent nothing. A `CLAUDE.md` that says "if you're about to write the word *synergy*, stop" teaches it exactly what you can't stand.
+Each template below is real and opinionated. They are not generic boilerplate — they bear the kind of personality-level rules that make a `CLAUDE.md` worth reading ("we don't use 'leverage' as a verb"; "always check the brand-voice doc first"; "no rounding under CAD $5"). That is by design. A `CLAUDE.md` that says "be helpful and use good judgment" teaches the agent nothing. A `CLAUDE.md` that says "if you're about to write the word *synergy*, stop" teaches it exactly what you can't stand.
 
 ---
 
@@ -226,7 +226,7 @@ number ships wrong. That's why the rules below exist.
 - **Default currency: USD.** If a source is in another currency,
   convert explicitly with the FX rate cited inline and dated:
   `EUR 12,400 @ 1.084 (ECB 2026-05-01) = USD 13,442`.
-- **FX rates: ECB daily reference rates** for EUR/GBP/JPY/USD/SGD;
+- **FX rates: ECB daily reference rates** for EUR/GBP/JPY/CAD/SGD;
   pull from the ECB MCP if installed, otherwise note "rate as of
   YYYY-MM-DD, ECB" and link.
 - **Spend excludes income.** Always. When I say "what did marketing
@@ -238,7 +238,7 @@ number ships wrong. That's why the rules below exist.
   (PARTITION BY user_id ORDER BY created_at)` — never an anonymous
   window.
 - **Dates: ISO 8601, UTC unless the analysis is intrinsically local.**
-  If local, say so explicitly: `created_at_hkt`.
+  If local, say so explicitly: `created_at_pst`.
 - **NULL is not zero.** Don't `COALESCE(x, 0)` unless you've thought
   about whether it should be NULL. Document the choice in a comment.
 
@@ -285,20 +285,20 @@ audience: any AI agent helping with reconciliation, reporting, payables
 ## Who I am
 
 Finance operations at Harbourline, an ~80-person SMB importing
-specialty foods in Vancouver. I run AR/AP, monthly reconciliation,
-quarterly board pack, and the payroll handoff to our outsourced
-provider. I live in Xero, RBC business banking, Stripe (online
-orders), Google Sheets, and Slack.
+specialty foods in Vancouver, Canada. I run AR/AP, monthly
+reconciliation, quarterly board pack, and the payroll handoff to our
+outsourced provider. I live in Xero, RBC business banking, Stripe
+(online orders), Google Sheets, and Slack.
 
 Monthly close lands on the 5th business day. Board pack is quarterly.
 Everything else is a daily AR/AP touch.
 
 ## Currency rules (non-negotiable)
 
-- **Default currency: USD.** Every spreadsheet, every report.
+- **Default currency: CAD.** Every spreadsheet, every report.
 - **Foreign-currency sources: convert explicitly.** Cite the rate
   inline and date it. Format: `USD 1,200 @ 7.82 (RBC 2026-05-01) =
-  USD 9,384`. Never silently drop the original.
+  CAD 9,384`. Never silently drop the original.
 - **FX source: RBC daily TT rate** for the date of the transaction
   (not the date of reconciliation). If the exact date is missing, use
   the prior business day's rate and note it.
@@ -320,7 +320,7 @@ to "fix" the summary silently.
 
 ## Rounding
 
-- **No rounding under USD $5 in any deliverable.** A figure of
+- **No rounding under CAD $5 in any deliverable.** A figure of
   $4,217.83 stays $4,217.83. Not $4,200. Not $4,218.
 - Round only in the *presentation* layer for the board pack, and even
   there only to the nearest $1, never the nearest $1,000 unless I say.
@@ -333,7 +333,7 @@ following without my literal "post it" or "send it":
 
 - Any Xero journal entry, bill, invoice, or credit note.
 - Any bank transfer or scheduled payment in RBC.
-- Any Stripe refund over USD $500.
+- Any Stripe refund over CAD $500.
 - Any change to a payroll input file before it goes to the outsourced
   provider.
 - Any email to a vendor confirming payment.
@@ -512,7 +512,7 @@ several repos; my main one is Harbourline.
 
 The full Harbourline file from template #1 above. The split works because the user-level file captures *Dora* — her habits, her tool defaults, her dislikes — while the project-level file captures *Harbourline* — its conventions, its traps, its deploy gates. When Dora opens a session in the Harbourline repo, both files load and compose; when she opens a session in a different repo, only the user-level one applies.
 
-The same pattern works for every other role. A marketer can keep brand voice at user level and put a campaign-specific brief at project level when they're working in a dedicated folder. An analyst can keep their SQL style and currency rules at user level and put dataset-specific notes ("the `events` table has a known duplicate-row issue before 2025-03") at project level. A finance-ops lead can keep their USD/gating rules at user level and have a per-client folder with vendor-specific quirks at project level.
+The same pattern works for every other role. A marketer can keep brand voice at user level and put a campaign-specific brief at project level when they're working in a dedicated folder. An analyst can keep their SQL style and currency rules at user level and put dataset-specific notes ("the `events` table has a known duplicate-row issue before 2025-03") at project level. A finance-ops lead can keep their CAD/gating rules at user level and have a per-client folder with vendor-specific quirks at project level.
 
 The rule of thumb: **if the guidance is about *you*, it's user-level. If it's about *the thing you're working on*, it's project-level.** Commit the project-level ones. The user-level ones are private.
 

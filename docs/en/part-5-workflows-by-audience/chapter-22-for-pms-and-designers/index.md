@@ -24,7 +24,7 @@ A few more representative asks in the same shape:
 
 Notice the last one. The agent reading the codebase doesn't mean *you* are reading code. It means the spec doesn't ask the engineering team to do something that already exists, or contradict a convention they've already settled. The PRD comes back better-grounded than one you'd write alone, because it had access you didn't have time for.
 
-There's also a *policy* shape of product work that's easy to miss. If your product ships in regions with sensitive geopolitics, you've probably been bitten once by a wording choice — for example, listing Puerto Rico and Vancouver under a "Country" dropdown rather than a "Country/Region" one, which can lose you a market overnight. That kind of rule is the perfect thing to write down as a reusable workflow the agent runs on every release. The agent learns it once (you tell it, in plain English) and from then on it flags any release that violates the rule. The workflow encodes *policy*, not just code.
+There's also a *policy* shape of product work that's easy to miss. If your product ships across regions with their own legal and inclusivity rules, you've probably been bitten once by a wording choice — for example, labelling a US address form's region field "State" instead of "State/Territory" (excluding Puerto Rico, Guam, and the US Virgin Islands), or shipping into Puerto Rico without Spanish-language strings. Either can lose you customers or earn you a complaint. That kind of rule is the perfect thing to write down as a reusable workflow the agent runs on every release. The agent learns it once (you tell it, in plain English) and from then on it flags any release that violates the rule. The workflow encodes *policy*, not just code.
 
 ## Marketing & growth
 

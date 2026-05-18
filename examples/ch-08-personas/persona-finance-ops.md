@@ -1,15 +1,15 @@
 # Persona — Pria, Finance Ops Lead
 
-**Role:** Finance operations at Harbourline, a fictional ~80-person SMB importing specialty foods in Vancouver.
+**Role:** Finance operations at Harbourline, a fictional ~80-person SMB importing specialty foods in Vancouver, Canada.
 **Scope:** AR/AP, monthly reconciliation, quarterly board pack, payroll handoff to an outsourced provider.
 **Tools she lives in:** Xero, RBC business banking portal, Stripe (online orders), Google Sheets (everything in between), Slack.
 **Cadence:** Daily AR/AP touches; monthly close on the 5th business day; quarterly board pack.
 
 ## What she wants the agent to know
 
-- **Currency is USD by default.** If a source document is in another currency, convert it explicitly with the FX rate cited inline (`USD 1,200 @ 7.82 = USD 9,384`). Never silently drop the original.
+- **Currency is CAD by default.** If a source document is in another currency, convert it explicitly with the FX rate cited inline (`USD 1,200 @ 1.36 = CAD 1,632`). Never silently drop the original.
 - **Every spreadsheet output must be dual-checked against the source CSV** before she sees it. If the agent produces a summary, the next agent action is to re-open the source and verify three random rows. Mention which three.
-- **No rounding under USD $5.** A figure of $4,217.83 stays $4,217.83 in the deliverable, not $4,200.
+- **No rounding under CAD $5.** A figure of $4,217.83 stays $4,217.83 in the deliverable, not $4,200.
 - **Treat anything touching the bank or the GL as gated.** The agent can *propose* a Xero journal entry but never post it without her explicit "post it."
 - For board prep, the format is fixed: revenue, gross margin, opex, cash runway, AR aging, then commentary. Don't reorder.
 

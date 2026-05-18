@@ -5,9 +5,9 @@ exercise — don't "fix" them.
 ============================================================
 
      IZAKAYA TSURUHASHI 鶴橋居酒屋
-        Shop 2A, Causeway Plaza
-        Robson Street, Vancouver
-        TEL 2XXX-XXXX
+        1240 Robson Street
+        Vancouver, BC, Canada
+        TEL (604) XXX-XXXX
         ----------------------
 
    Table 14            Guests: 3
@@ -43,6 +43,6 @@ exercise — don't "fix" them.
      the total above. Tipping is not
      expected but appreciated.
 
-   Thank you / 多謝光臨 / ありがとうございました
+   Thank you / ありがとうございました
 
 ============================================================

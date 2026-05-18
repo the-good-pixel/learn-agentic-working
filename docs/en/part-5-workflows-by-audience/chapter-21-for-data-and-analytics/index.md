@@ -167,7 +167,7 @@ If you don't have a real messy file in front of you, the book repo ships one: [`
    > *"Read `examples/ch-19-analytics/transactions-nov.xlsx`, decode the memo column into clean categories, and tell me my top 5 categories of **spend** in USD-equivalent — exclude income (salary deposits) from the totals. State the FX rates you used."*
    **You'll know it worked when** the agent picks a sensible category taxonomy (and ideally cross-references the `Categories (reference)` sheet rather than inventing one), excludes income from spend totals, and explicitly states the FX assumptions it made for the three currencies (ideally pulled from the `FX Rates` sheet).
 2. **One-page HTML report.**
-   > *"Same file — produce a one-page **self-contained** HTML report I can open in my browser (single file, no build step, no Python web server required), with a chart for category breakdown and a table of all transactions over HK$500-equivalent."*
+   > *"Same file — produce a one-page **self-contained** HTML report I can open in my browser (single file, no build step, no Python web server required), with a chart for category breakdown and a table of all transactions over US$50-equivalent."*
    **You'll know it worked when** you double-click the HTML and it opens straight away — the chart renders without internet access if possible, the table is sorted sensibly, and there are no sibling files the report depends on.
 3. **Duplicate detection (and restraint).**
    > *"Same file — find any duplicate transactions (same amount, same vendor, within 3 days). If you find none, say so — don't manufacture flags."*

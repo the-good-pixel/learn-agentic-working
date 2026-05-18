@@ -1,33 +1,34 @@
-FORM IR-56G(R) — SUPPLEMENTARY SCHEDULE
-Section 4(b)(ii) — Apportionment for ESPP shares acquired during dual-jurisdiction periods
+FORM 83(B)-SUP — SUPPLEMENTARY SCHEDULE
+Section 4(b)(ii) — Apportionment for ESPP shares acquired during multi-state residency periods
 
 Where the employee held qualifying participation in an Employee Share Purchase Plan
-(ESPP) administered by a non-resident parent entity during any portion of the basis
-period in which the employee's principal place of employment, as determined under
-Section 8(1A)(c) of the Ordinance and notwithstanding the deeming provisions of
-Section 9(1)(a)(iv), was situated outside the Territory, the chargeable benefit
-arising from the acquisition shall be apportioned on a time-basis pro-rata
-calculation reflecting the number of qualifying workdays the employee was
-physically present and rendering services within the Territory during the offering
-period (as defined in subsection 4(a)(i) above and not, for the avoidance of doubt,
-the purchase period), divided by the total number of qualifying workdays in the
-offering period, with the resulting fraction applied to the spread between the
-fair market value at acquisition and the discounted purchase price paid by the
-employee, save that where the employee elected, by notice in the prescribed form
-within thirty (30) days of the acquisition date, to be assessed on the gross
-unapportioned spread (see Election F, overleaf), this subsection shall not apply
-and the entirety of the spread shall be assessable in the year of acquisition
-without regard to the days-in-Territory test set out herein.
+(ESPP) administered by a non-resident parent entity during any portion of the
+taxable year in which the employee's principal place of employment, as determined
+under Internal Revenue Code Section 861 and notwithstanding the sourcing rules of
+Treasury Regulation Section 1.861-4(b)(2), was situated outside the Reporting
+State, the compensation income arising from the acquisition shall be apportioned
+on a time-basis pro-rata calculation reflecting the number of qualifying workdays
+the employee was physically present and rendering services within the Reporting
+State during the offering period (as defined in subsection 4(a)(i) above and not,
+for the avoidance of doubt, the purchase period), divided by the total number of
+qualifying workdays in the offering period, with the resulting fraction applied
+to the spread between the fair market value at acquisition and the discounted
+purchase price paid by the employee, save that where the employee elected, by
+notice in the prescribed form within thirty (30) days of the acquisition date,
+to be assessed on the gross unapportioned spread (see Election F, overleaf),
+this subsection shall not apply and the entirety of the spread shall be
+assessable in the year of acquisition without regard to the days-in-State test
+set out herein.
 
 Please enter:
   (i)   Offering period start date:  ______________________
   (ii)  Offering period end date:    ______________________
   (iii) Total workdays in offering period: __________
-  (iv)  Qualifying days in Territory:      __________
+  (iv)  Qualifying days in Reporting State: __________
   (v)   Election F made? (Y/N):            __________
-  (vi)  Apportioned chargeable amount (USD): __________
+  (vi)  Apportioned compensation amount (USD): __________
 
 Attach a copy of the Plan document and any cross-jurisdictional split certified by
-the parent entity's tax agent. Failure to complete this schedule where applicable
-may result in assessment under Section 64 on the gross amount, with no right of
-subsequent apportionment.
+the parent entity's tax preparer. Failure to complete this schedule where applicable
+may result in assessment under IRC Section 6662 on the gross amount, with no right
+of subsequent apportionment.

@@ -16,6 +16,6 @@ Three fictional personas you can step into for the Ch. 8 CLAUDE.md interview exe
 
 - Mira's `CLAUDE.md` enforces no-exclamation-marks and brand voice rules in plain language.
 - Hugo's mentions "read `brand-voice.md` before drafting any client copy" as a hard rule.
-- Pria's gates Xero posts and pins USD as default.
+- Pria's gates Xero posts and pins CAD as default.
 
 The shape of a good `CLAUDE.md` is *role-specific*, not generic. That's the point.

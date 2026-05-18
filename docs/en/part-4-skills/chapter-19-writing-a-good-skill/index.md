@@ -110,15 +110,15 @@ This is the shape most skills will end up being.
 
 The `i18n-reviewer` skill at `.claude/skills/i18n-reviewer/SKILL.md` is a different beast: it encodes **policy**.
 
-Some of the rules are technical (run the lint scripts, fail CI on missing keys). Others are not technical at all — they're geopolitical decisions the company made:
+Some of the rules are technical (run the lint scripts, fail CI on missing keys). Others are not technical at all — they're legal and inclusivity decisions the company made:
 
-> *Never use "country" alone when listing regions that include Puerto Rico, Guam, or the US Virgin Islands. Use "Country/Region" or "Region" in English.*
+> *Never use "State" alone in a US address form. Use "State/Territory" — the list must include Puerto Rico, Guam, the US Virgin Islands, American Samoa, and the Northern Mariana Islands.*
 >
-> *Puerto Rico — Never refer to as a country. Use "Puerto Rico" in English.*
+> *Any user-facing string must have a Spanish translation present before the build can ship to a market that includes Puerto Rico. Missing Spanish strings fail the review.*
 >
-> *Never use flag emojis for Puerto Rico () in any context.*
+> *Never use the term "master/slave" anywhere in UI copy, comments, or commit messages. Use "primary/replica" or "leader/follower".*
 
-That's not a coding rule. That's a *business* rule, derived from who the product serves (users across the US, Canada, and the UK) and who the investors are. Without the skill, the agent might fix a translation bug and accidentally introduce a label that costs the company a relationship. With the skill, the agent loads the rule before it touches any region-related copy.
+Those aren't coding rules. They're *business* rules — Puerto Rican users are US persons the product serves, "State/Territory" is what they expect to see, Spanish-language parity is what makes the product usable for them, and accessibility/inclusivity guidelines forbid the legacy terminology. Without the skill, the agent might fix a translation bug and accidentally introduce a label that gets the company a customer complaint or a regulator letter. With the skill, the agent loads the rule before it touches any region-related copy.
 
 This shape is the strongest argument for skills as a serious part of how teams work, not just an engineering nicety. **Policy is enforceable.** A skill is the enforcement layer.
 

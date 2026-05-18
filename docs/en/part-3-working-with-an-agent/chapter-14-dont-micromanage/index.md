@@ -65,7 +65,7 @@ When in doubt, *delete* and watch the next session's output. If something gets w
 
 ## When fighting the grain is right
 
-Some rules are non-negotiable even at a quality cost. Safety policy. Legal compliance. Geopolitical naming (the `i18n-reviewer` skill in Ch. 19 says *"never use 'country' alone when listing regions that include Puerto Rico, Guam, or the US Virgin Islands"* — that's a business rule the company cannot afford to soft-enforce). Accessibility requirements. Brand-trademark spellings the legal team insists on.
+Some rules are non-negotiable even at a quality cost. Safety policy. Legal compliance. Regional naming (the `i18n-reviewer` skill in Ch. 19 says *"never use 'State' alone in a US address form — use 'State/Territory' so Puerto Rico, Guam, and the other territories fit"* — that's a business rule the company cannot afford to soft-enforce). Accessibility requirements. Brand-trademark spellings the legal team insists on.
 
 For these, the chapter's advice flips: **don't try to enforce them with paragraph-long prompt rules.** That puts a non-negotiable rule in the same fragile attention budget as your style preferences, and the rule will sometimes lose. Instead, push the rule outside the prompt entirely:
 
